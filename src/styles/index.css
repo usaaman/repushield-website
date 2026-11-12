@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0F2C3D;
+  --color-navy-midnight: #091722;
+  --color-navy-deep: #0B1E28;
+  --color-navy-dark: #07131B;
+  --color-ocean: #0A789B;
+  --color-ocean-light: #0D96C1;
+  --color-teal: #14B8A6;
+  --color-teal-light: #2DD4BF;
+  --color-bg-soft: #F6F8FA;
+  --color-bg-ivory: #FBFBFB;
+  --color-muted: #5A7383;
+  --color-dark-muted: #D1E3EC;
+  
+  --color-champagne: #DFD3C3;
+  --color-champagne-gold: #C5A880;
+  --color-champagne-light: #F7F3EE;
+
+  --font-serif: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', serif;
+  --font-display: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', serif;
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-script: 'Caveat', cursive;
+}
+
+:root {
+  --color-navy: #0F2C3D;
+  --color-ocean: #0A789B;
+  --color-teal: #14B8A6;
+  --color-bg: #F6F8FA;
+  --color-white: #FFFFFF;
+  --color-text: #0F2C3D;
+  --color-muted: #5A7383;
+  --color-on-dark: #FFFFFF;
+  --color-on-dark-muted: #D1E3EC;
+}
+
+/* Base Body Setup */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-navy);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Film Grain Texture */
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* Luxury Editorial Primitives */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.glass-luxury {
+  background: rgba(15, 44, 61, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-luxury-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-subtle {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+.glass-admin {
+  background: rgba(15, 44, 61, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-admin-card {
+  background: rgba(15, 44, 61, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
