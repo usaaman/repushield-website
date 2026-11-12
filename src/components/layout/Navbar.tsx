@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { ShieldCheck, MessageCircle, Menu, X, ArrowUpRight } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { Container } from '../common/Container'
 import { Button } from '../common/Button'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
 export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const location = useLocation()
+  const prefersReduced = usePrefersReducedMotion()
 
   const navLinks = [
     { label: 'Home', href: '/' },
@@ -18,20 +22,13 @@ export const Navbar: React.FC = () => {
     { label: 'Ads Landing', href: '/google-ads' },
   ]
 
-  const activeClass = ({ isActive }: { isActive: boolean }) =>
-    `text-sm font-medium transition-colors px-3 py-1.5 rounded-full ${
-      isActive
-        ? 'text-ocean font-semibold bg-ocean/10'
-        : 'text-navy/80 hover:text-navy hover:bg-slate-100'
-    }`
-
   return (
-    <header className="sticky top-0 z-50 glass-nav">
+    <header className="sticky top-0 z-50 glass-nav transition-all duration-300">
       <Container size="xl">
         <div className="flex items-center justify-between h-20">
-          {/* Brand Logo */}
+          {/* Brand Logo with Subtle Hover Transition */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl bg-navy flex items-center justify-center text-teal shadow-md transition-transform group-hover:scale-105">
+            <div className="w-10 h-10 rounded-xl bg-navy flex items-center justify-center text-teal shadow-md transition-all duration-300 group-hover:scale-105 group-hover:shadow-teal/20">
               <ShieldCheck className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div className="flex flex-col">
@@ -39,18 +36,42 @@ export const Navbar: React.FC = () => {
                 Repu<span className="text-ocean">Shield</span>
               </span>
               <span className="text-[10px] uppercase font-bold tracking-wider text-muted -mt-1">
-                Reputation Assistance
+                Reputation Advisory
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation with Animated Indicator */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <NavLink key={link.href} to={link.href} className={activeClass}>
-                {link.label}
-              </NavLink>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.href
+
+              return (
+                <NavLink
+                  key={link.href}
+                  to={link.href}
+                  className={`relative text-xs uppercase tracking-wider font-semibold px-3.5 py-2.5 rounded-full transition-colors duration-200 ${
+                    isActive
+                      ? 'text-navy font-bold'
+                      : 'text-navy/70 hover:text-navy hover:bg-slate-100/60'
+                  }`}
+                >
+                  <span className="relative z-10">{link.label}</span>
+                  {isActive && !prefersReduced && (
+                    <motion.div
+                      layoutId="activeNavIndicator"
+                      className="absolute bottom-1 inset-x-3.5 h-[2px] bg-teal rounded-full"
+                      transition={{
+                        type: 'spring',
+                        stiffness: 400,
+                        damping: 32,
+                      }}
+                    />
+                  )}
+                </NavLink>
+              )
+            })}
+
             <Link
               to="/admin"
               className="text-xs font-semibold px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors flex items-center gap-1 ml-1"
@@ -71,8 +92,8 @@ export const Navbar: React.FC = () => {
               <MessageCircle className="w-4 h-4" />
               <span>WhatsApp</span>
             </Button>
-            <Button variant="primary" size="sm" to="/contact">
-              Request Assistance
+            <Button variant="luxury-primary" size="sm" to="/contact">
+              <span>Request Assistance</span>
             </Button>
           </div>
 
@@ -96,7 +117,13 @@ export const Navbar: React.FC = () => {
                   key={link.href}
                   to={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={activeClass}
+                  className={({ isActive }) =>
+                    `text-xs uppercase tracking-wider font-semibold px-3.5 py-2 rounded-xl transition-colors ${
+                      isActive
+                        ? 'text-ocean font-bold bg-ocean/10'
+                        : 'text-navy/80 hover:text-navy hover:bg-slate-100'
+                    }`
+                  }
                 >
                   {link.label}
                 </NavLink>
@@ -104,7 +131,7 @@ export const Navbar: React.FC = () => {
               <Link
                 to="/admin"
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-sm font-medium px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 col-span-2 flex items-center justify-between"
+                className="text-xs font-semibold px-3.5 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 col-span-2 flex items-center justify-between"
               >
                 <span>Admin Prototype</span>
                 <ArrowUpRight className="w-4 h-4 text-muted" />
@@ -122,7 +149,7 @@ export const Navbar: React.FC = () => {
                 <span>Chat on WhatsApp</span>
               </Button>
               <Button
-                variant="primary"
+                variant="luxury-primary"
                 size="md"
                 to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
@@ -137,4 +164,3 @@ export const Navbar: React.FC = () => {
     </header>
   )
 }
-

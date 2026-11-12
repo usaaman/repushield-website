@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -30,8 +32,10 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props
 }) => {
+  const prefersReduced = usePrefersReducedMotion()
+
   const baseClasses =
-    'inline-flex items-center justify-center font-medium rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2'
+    'inline-flex items-center justify-center font-medium rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none'
 
   const sizeClasses = {
     sm: 'text-xs px-4 py-2 gap-1.5 tracking-wide',
@@ -52,7 +56,7 @@ export const Button: React.FC<ButtonProps> = ({
     whatsapp:
       'bg-[#25D366] text-white hover:bg-[#20ba59] focus-visible:ring-[#25D366] shadow-sm font-semibold',
     'luxury-primary':
-      'bg-gradient-to-r from-teal to-ocean text-white hover:opacity-95 shadow-lg shadow-teal/20 border border-teal/40 font-semibold',
+      'bg-gradient-to-r from-teal to-ocean text-white hover:brightness-110 shadow-lg shadow-teal/20 border border-teal/40 font-semibold',
     'luxury-ghost':
       'bg-white/10 hover:bg-white/20 text-white border border-white/25 backdrop-blur-md hover:border-white/40 shadow-sm',
     'luxury-teal':
@@ -61,30 +65,40 @@ export const Button: React.FC<ButtonProps> = ({
 
   const combinedClasses = `${baseClasses} ${sizeClasses} ${variantClasses} ${className}`
 
+  const motionProps = prefersReduced
+    ? {}
+    : {
+        whileHover: { y: -2, scale: 1.015 },
+        whileTap: { scale: 0.98 },
+        transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] as const },
+      }
+
   if (to) {
+    const MotionLink = motion.create(Link)
     return (
-      <Link to={to} className={combinedClasses}>
+      <MotionLink to={to} className={combinedClasses} {...motionProps}>
         {children}
-      </Link>
+      </MotionLink>
     )
   }
 
   if (href) {
     return (
-      <a
+      <motion.a
         href={href}
         className={combinedClasses}
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
+        {...motionProps}
       >
         {children}
-      </a>
+      </motion.a>
     )
   }
 
   return (
-    <button className={combinedClasses} {...props}>
+    <motion.button className={combinedClasses} {...motionProps} {...(props as any)}>
       {children}
-    </button>
+    </motion.button>
   )
 }

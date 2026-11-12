@@ -99,22 +99,28 @@ export const Accordion: React.FC<AccordionProps> = ({
                       height: 'auto',
                       opacity: 1,
                       transition: {
-                        height: { duration: 0.28, ease: [0.21, 0.47, 0.32, 0.98] },
-                        opacity: { duration: 0.2, delay: 0.05 },
+                        height: { duration: 0.34, ease: [0.16, 1, 0.3, 1] },
+                        opacity: { duration: 0.24, delay: 0.06 },
                       },
                     }}
                     exit={{
                       height: 0,
                       opacity: 0,
                       transition: {
-                        height: { duration: 0.22, ease: [0.21, 0.47, 0.32, 0.98] },
-                        opacity: { duration: 0.15 },
+                        height: { duration: 0.26, ease: [0.16, 1, 0.3, 1] },
+                        opacity: { duration: 0.16 },
                       },
                     }}
                   >
-                    <div className="px-5 sm:px-6 pb-5 pt-1 text-secondary text-sm leading-relaxed border-t border-slate-100">
+                    <motion.div
+                      initial={{ y: -6, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -4, opacity: 0 }}
+                      transition={{ duration: 0.22 }}
+                      className="px-5 sm:px-6 pb-5 pt-1 text-secondary text-sm leading-relaxed border-t border-slate-100"
+                    >
                       {item.answer}
-                    </div>
+                    </motion.div>
                   </motion.div>
                 )}
               </AnimatePresence>
