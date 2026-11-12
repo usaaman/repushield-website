@@ -121,108 +121,171 @@ export const HomePage: React.FC = () => {
 
         {/* Main Editorial Hero Content */}
         <Container size="xl" className="relative z-10 my-auto py-8 sm:py-12">
-          <div className="max-w-4xl space-y-8">
-            {/* Prestige Eyebrow Pill */}
-            <FadeIn direction="up">
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/15 backdrop-blur-md text-xs tracking-widest uppercase font-medium text-slate-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
-                <span>Independent Digital Reputation Advisory</span>
-                <span className="hidden sm:inline text-white/30">•</span>
-                <span className="hidden sm:inline font-script text-teal-light lowercase text-base tracking-normal">
-                  discretion &amp; precision
-                </span>
-              </div>
-            </FadeIn>
-
-            {/* Editorial Headline with Refined Cormorant Garamond Typography */}
-            <FadeIn direction="up" delay={0.1}>
-              <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-white leading-[1.08] sm:leading-[1.05]">
-                Where Corporate Discretion Meets{' '}
-                <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-teal-light via-teal to-ocean-light">
-                  Policy-First
-                </span>{' '}
-                Reputation Defense.
-              </h1>
-            </FadeIn>
-
-            {/* Refined Supporting Paragraph */}
-            <FadeIn direction="up" delay={0.2}>
-              <p className="text-base sm:text-xl text-dark-muted font-normal max-w-2xl leading-relaxed">
-                We assist discerning enterprises across North America and South Asia with forensic review policy assessments and formal appeal submissions. Grounded strictly in Google&apos;s regulatory guidelines — with zero false promises.
-              </p>
-            </FadeIn>
-
-            {/* Premium Editorial CTAs */}
-            <FadeIn direction="up" delay={0.3}>
-              <div className="pt-2 flex flex-wrap gap-4 sm:gap-5 items-center">
-                <Button
-                  variant="luxury-primary"
-                  size="lg"
-                  to="/contact"
-                  className="group px-8 py-4 text-sm uppercase tracking-wider font-semibold"
-                >
-                  <span>Initiate Case Assessment</span>
-                  <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                </Button>
-
-                <Button
-                  variant="luxury-ghost"
-                  size="lg"
-                  href={whatsappInquiryUrl}
-                  isExternal
-                  className="px-7 py-4 text-sm font-medium tracking-wide flex items-center gap-2.5"
-                >
-                  <MessageCircle className="w-4 h-4 text-teal" />
-                  <span>Confidential WhatsApp</span>
-                </Button>
-              </div>
-            </FadeIn>
-
-            {/* Strategic Trust Pillars Ledger */}
-            <FadeIn direction="up" delay={0.4}>
-              <div className="pt-10 mt-6 border-t border-white/10 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-xs text-dark-muted">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-white font-medium">
-                    <Scale className="w-3.5 h-3.5 text-teal shrink-0" />
-                    <span>Regulatory Precision</span>
-                  </div>
-                  <p className="text-[11px] text-slate-400 leading-normal">
-                    Strict adherence to published platform policies.
-                  </p>
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center mb-12 sm:mb-16">
+            {/* Left Column: Hero Narrative */}
+            <div className="lg:col-span-7 space-y-8">
+              {/* Prestige Eyebrow Pill */}
+              <FadeIn direction="up">
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/15 backdrop-blur-md text-xs tracking-widest uppercase font-medium text-slate-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
+                  <span>Independent Digital Reputation Advisory</span>
+                  <span className="hidden sm:inline text-white/30">•</span>
+                  <span className="hidden sm:inline font-script text-teal-light lowercase text-base tracking-normal">
+                    discretion &amp; precision
+                  </span>
                 </div>
+              </FadeIn>
 
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-white font-medium">
-                    <Lock className="w-3.5 h-3.5 text-teal shrink-0" />
-                    <span>Absolute Discretion</span>
-                  </div>
-                  <p className="text-[11px] text-slate-400 leading-normal">
-                    Confidential dossiers &amp; non-disclosure protocols.
-                  </p>
-                </div>
+              {/* Editorial Headline with Refined Cormorant Garamond Typography */}
+              <FadeIn direction="up" delay={0.1}>
+                <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-white leading-[1.08] sm:leading-[1.05]">
+                  Where Corporate Discretion Meets{' '}
+                  <span className="italic font-light text-transparent bg-clip-text bg-gradient-to-r from-teal-light via-teal to-ocean-light">
+                    Policy-First
+                  </span>{' '}
+                  Reputation Defense.
+                </h1>
+              </FadeIn>
 
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-white font-medium">
-                    <Building2 className="w-3.5 h-3.5 text-teal shrink-0" />
-                    <span>USA • Canada • Pakistan</span>
-                  </div>
-                  <p className="text-[11px] text-slate-400 leading-normal">
-                    Multi-jurisdictional business representation.
-                  </p>
-                </div>
+              {/* Refined Supporting Paragraph */}
+              <FadeIn direction="up" delay={0.2}>
+                <p className="text-base sm:text-xl text-dark-muted font-normal max-w-2xl leading-relaxed">
+                  We assist discerning enterprises across North America and South Asia with forensic review policy assessments and formal appeal submissions. Grounded strictly in Google&apos;s regulatory guidelines — with zero false promises.
+                </p>
+              </FadeIn>
 
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-white font-medium">
-                    <ShieldCheck className="w-3.5 h-3.5 text-teal shrink-0" />
-                    <span>Zero False Guarantees</span>
-                  </div>
-                  <p className="text-[11px] text-slate-400 leading-normal">
-                    Google solely decides removal determinations.
-                  </p>
+              {/* Premium Editorial CTAs */}
+              <FadeIn direction="up" delay={0.3}>
+                <div className="pt-2 flex flex-wrap gap-4 sm:gap-5 items-center">
+                  <Button
+                    variant="luxury-primary"
+                    size="lg"
+                    to="/contact"
+                    className="group px-8 py-4 text-sm uppercase tracking-wider font-semibold"
+                  >
+                    <span>Initiate Case Assessment</span>
+                    <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Button>
+
+                  <Button
+                    variant="luxury-ghost"
+                    size="lg"
+                    href={whatsappInquiryUrl}
+                    isExternal
+                    className="px-7 py-4 text-sm font-medium tracking-wide flex items-center gap-2.5"
+                  >
+                    <MessageCircle className="w-4 h-4 text-teal" />
+                    <span>Confidential WhatsApp</span>
+                  </Button>
                 </div>
-              </div>
-            </FadeIn>
+              </FadeIn>
+            </div>
+
+            {/* Right Column: Hero Visual Asset (Relevant Reputation Defense Photography) */}
+            <div className="lg:col-span-5 relative">
+              <FadeIn direction="left" delay={0.25}>
+                <div className="relative mx-auto max-w-lg lg:max-w-none">
+                  {/* Subtle Radiant Backlight Glow */}
+                  <div className="absolute -inset-2 bg-gradient-to-tr from-teal/30 via-ocean/20 to-transparent rounded-[2.5rem] blur-2xl opacity-60 pointer-events-none" />
+
+                  {/* Outer Luxury Frame */}
+                  <div className="relative rounded-3xl border border-white/20 bg-gradient-to-b from-white/10 to-white/5 p-2 sm:p-2.5 backdrop-blur-xl shadow-2xl shadow-navy-midnight/80 group overflow-hidden">
+                    {/* Image Container with Aspect Ratio */}
+                    <div className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[14/11] lg:aspect-[4/5] bg-navy-deep">
+                      <img
+                        src="/images/hero-reputation-counsel.jpg"
+                        alt="RepuShield Executive Online Reputation Defense & Policy Advisory"
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                        loading="eager"
+                      />
+
+                      {/* Rich Dark Vignette Overlay for Readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy-midnight/95 via-navy-midnight/25 to-transparent" />
+
+                      {/* Floating Glass Policy Assessment Card */}
+                      <div className="absolute bottom-3 inset-x-3 sm:bottom-4 sm:inset-x-4 glass-luxury rounded-2xl p-4 sm:p-4.5 border border-white/20 shadow-xl space-y-2.5 backdrop-blur-xl">
+                        <div className="flex items-center justify-between border-b border-white/15 pb-2.5">
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-8 h-8 rounded-lg bg-teal/20 text-teal flex items-center justify-center border border-teal/40">
+                              <ShieldCheck className="w-4 h-4 stroke-[2.2]" />
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold text-white tracking-tight">Google Policy Verification</p>
+                              <p className="text-[10px] text-teal font-medium">Forensic Evidence Dossier</p>
+                            </div>
+                          </div>
+                          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-teal/20 text-teal text-[10px] font-semibold border border-teal/30">
+                            <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
+                            <span>ACTIVE</span>
+                          </span>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-300">
+                          <div className="flex items-center gap-1.5">
+                            <Check className="w-3 h-3 text-teal shrink-0" />
+                            <span>Conflict Audited</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <Check className="w-3 h-3 text-teal shrink-0" />
+                            <span>Policy Cited</span>
+                          </div>
+                        </div>
+
+                        <p className="text-[10px] text-dark-muted border-t border-white/10 pt-2 leading-tight">
+                          Strictly aligned with Google Content Policies. Zero fabricated removal promises.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
           </div>
+
+          {/* Strategic Trust Pillars Ledger */}
+          <FadeIn direction="up" delay={0.4}>
+            <div className="pt-8 border-t border-white/10 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-xs text-dark-muted">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-white font-medium">
+                  <Scale className="w-3.5 h-3.5 text-teal shrink-0" />
+                  <span>Regulatory Precision</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-normal">
+                  Strict adherence to published platform policies.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-white font-medium">
+                  <Lock className="w-3.5 h-3.5 text-teal shrink-0" />
+                  <span>Absolute Discretion</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-normal">
+                  Confidential dossiers &amp; non-disclosure protocols.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-white font-medium">
+                  <Building2 className="w-3.5 h-3.5 text-teal shrink-0" />
+                  <span>USA • Canada • Pakistan</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-normal">
+                  Multi-jurisdictional business representation.
+                </p>
+              </div>
+
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-white font-medium">
+                  <ShieldCheck className="w-3.5 h-3.5 text-teal shrink-0" />
+                  <span>Zero False Guarantees</span>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-normal">
+                  Google solely decides removal determinations.
+                </p>
+              </div>
+            </div>
+          </FadeIn>
         </Container>
 
         {/* Sophisticated Organic Multi-Layered SVG Transition */}
