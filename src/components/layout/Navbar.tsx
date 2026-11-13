@@ -12,7 +12,16 @@ export const Navbar: React.FC = () => {
   const location = useLocation()
   const prefersReduced = usePrefersReducedMotion()
 
-  const hasDarkHero = ['/', '/about', '/services'].includes(location.pathname)
+  const hasDarkHero = [
+    '/',
+    '/about',
+    '/services',
+    '/pricing',
+    '/case-studies',
+    '/contact',
+    '/faq',
+    '/google-ads',
+  ].includes(location.pathname)
   const isOverHero = hasDarkHero && !isScrolled
 
   useEffect(() => {
@@ -141,7 +150,7 @@ export const Navbar: React.FC = () => {
               to="/contact"
               className="px-5 py-2.5 text-xs font-bold shadow-sm"
             >
-              <span>Get Assistance</span>
+              <span>Get Help With Reviews</span>
             </Button>
           </div>
 
@@ -228,7 +237,7 @@ export const Navbar: React.FC = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className="w-full text-xs font-bold"
                 >
-                  <span>Get Assistance</span>
+                  <span>Get Help With Reviews</span>
                 </Button>
               </div>
             </motion.div>

@@ -13,6 +13,7 @@ import {
   Layers,
   Sparkles,
   HelpCircle,
+  ShieldAlert,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import {
@@ -34,7 +35,7 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 export const AboutPage: React.FC = () => {
   const prefersReduced = usePrefersReducedMotion()
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20learn%20more%20about%20your%20reputation%20assistance%20services.'
+    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20learn%20more%20about%20your%20Google%20review%20removal%20assistance.'
 
   // Section 3: Three Approach Pillars
   const approachPillars = [
@@ -42,7 +43,7 @@ export const AboutPage: React.FC = () => {
       number: '01',
       title: 'Policy First',
       description:
-        'We focus on platform policies and distinguish potentially policy-violating content from genuine customer feedback.',
+        'We focus strictly on platform policies and distinguish potentially policy-violating content from genuine customer feedback.',
       details: [
         'Objective review auditing against published Google content guidelines',
         'Identification of clear conflict of interest and competitor attacks',
@@ -72,7 +73,7 @@ export const AboutPage: React.FC = () => {
         'Cross-referencing evidence against specific Google policy clauses',
         'Step-by-step guidance through official Business Profile appeal workflows',
       ],
-      icon: <CompassIcon className="w-6 h-6 text-teal" />,
+      icon: <Layers className="w-6 h-6 text-teal" />,
     },
   ]
 
@@ -148,7 +149,7 @@ export const AboutPage: React.FC = () => {
                 </span>
                 <span className="text-white/40">•</span>
                 <span className="font-script text-base text-teal-light font-normal tracking-wide">
-                  Ethical Advisory
+                  Policy Focused
                 </span>
               </div>
             </FadeIn>
@@ -164,7 +165,7 @@ export const AboutPage: React.FC = () => {
 
             <FadeIn direction="up" delay={0.25} duration={0.65}>
               <p className="text-base sm:text-xl text-slate-200 font-normal leading-relaxed max-w-2xl">
-                A transparent, policy-focused approach to online reputation assistance.
+                A transparent, policy-focused approach to negative Google review assistance.
               </p>
             </FadeIn>
 
@@ -176,7 +177,7 @@ export const AboutPage: React.FC = () => {
                   to="/contact"
                   className="px-7 py-3.5 text-sm font-bold shadow-lg shadow-teal/20"
                 >
-                  <span>Request Assistance</span>
+                  <span>Get Help With Negative Reviews</span>
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Button>
                 <Button
@@ -205,7 +206,7 @@ export const AboutPage: React.FC = () => {
             {/* Left Narrative Column */}
             <div className="lg:col-span-7 space-y-6">
               <FadeIn direction="up">
-                <Badge variant="ocean" scriptNote="Independent Advisory">
+                <Badge variant="ocean" scriptNote="Our Purpose">
                   Who We Are
                 </Badge>
               </FadeIn>
@@ -225,24 +226,24 @@ export const AboutPage: React.FC = () => {
 
               <FadeIn direction="up" delay={0.25}>
                 <p className="text-sm sm:text-base text-secondary leading-relaxed font-normal">
-                  In an era where unfair review attacks, non-customer spam, and competitor interference can severely damage honest enterprises, we offer an objective and professional sounding board. Rather than making unsubstantiated claims, we evaluate the facts against published guidelines and help you communicate clearly through sanctioned channels.
+                  In today's digital economy, potential customers check Google ratings before making purchasing decisions. A single malicious 1-star attack, competitor smear, or fake review can unfairly distort your business's reputation. We provide business owners with an objective, experienced partner who understands Google's policies and official appeal procedures.
                 </p>
               </FadeIn>
 
               <FadeIn direction="up" delay={0.32}>
                 <div className="pt-2 flex flex-wrap items-center gap-3 text-xs text-muted">
                   <span className="font-semibold text-navy uppercase tracking-wider text-[11px]">
-                    Key Focus Areas:
+                    What We Focus On:
                   </span>
                   <div className="flex flex-wrap items-center gap-2 text-secondary">
                     <span className="px-3 py-1 rounded-full bg-bg-soft border border-slate-200">
-                      Policy Violation Forensics
+                      1-Star Review Audits
                     </span>
                     <span className="px-3 py-1 rounded-full bg-bg-soft border border-slate-200">
-                      Objective Evidence Packaging
+                      Fake & Spam Detection
                     </span>
                     <span className="px-3 py-1 rounded-full bg-bg-soft border border-slate-200">
-                      Official Escalation Pathways
+                      Official Escalation Dossiers
                     </span>
                   </div>
                 </div>
@@ -255,14 +256,14 @@ export const AboutPage: React.FC = () => {
                 <div className="bg-bg-soft rounded-3xl p-8 sm:p-9 border border-slate-200 shadow-sm space-y-6">
                   <div className="flex items-center gap-3 border-b border-slate-200 pb-5">
                     <div className="w-12 h-12 rounded-2xl bg-navy text-teal flex items-center justify-center shadow-xs">
-                      <ShieldCheck className="w-6 h-6 stroke-[2.2]" />
+                      <ShieldAlert className="w-6 h-6 stroke-[2.2]" />
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-navy">
-                        Our Operational Model
+                        Why Policy Compliance Matters
                       </h3>
                       <p className="text-xs text-secondary">
-                        Principled & Evidence-Based
+                        Protecting Your Google Profile
                       </p>
                     </div>
                   </div>
@@ -274,10 +275,10 @@ export const AboutPage: React.FC = () => {
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-navy">
-                          Independent Counsel
+                          Avoid Account Penalties
                         </p>
                         <p className="text-xs text-secondary mt-0.5">
-                          Autonomous guidance dedicated to defending your legitimate policy rights.
+                          Unethical tactics like buying fake reviews or review-bombing backfire. We operate strictly within official Google channels.
                         </p>
                       </div>
                     </div>
@@ -288,10 +289,10 @@ export const AboutPage: React.FC = () => {
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-navy">
-                          Published Platform Guidelines
+                          Evidence-Based Submissions
                         </p>
                         <p className="text-xs text-secondary mt-0.5">
-                          Every assessment strictly references Google’s Prohibited and Restricted Content policies.
+                          Google moderators require factual verification. We assemble point-of-sale logs, employee rosters, and operational timelines.
                         </p>
                       </div>
                     </div>
@@ -302,10 +303,10 @@ export const AboutPage: React.FC = () => {
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-navy">
-                          Factual Dossier Assembly
+                          Realistic Expectations
                         </p>
                         <p className="text-xs text-secondary mt-0.5">
-                          Clear operational timelines and verifiable records structured for official review.
+                          We never guarantee review deletion. If a review cannot be removed, we guide you on constructive public responses.
                         </p>
                       </div>
                     </div>
@@ -316,7 +317,7 @@ export const AboutPage: React.FC = () => {
                       to="/services"
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-ocean hover:text-navy transition-colors"
                     >
-                      <span>Explore our assistance services</span>
+                      <span>Explore our review assistance services</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
@@ -339,7 +340,7 @@ export const AboutPage: React.FC = () => {
               </Badge>
             }
             title="A Principled, Three-Pillar Approach to"
-            accent="Reputation Defense"
+            accent="Review Assistance"
             subtitle="We provide clear, honest guidance built on published platform policies. We never promise guaranteed removals or cut corners with dishonest methods."
           />
 
@@ -457,7 +458,6 @@ export const AboutPage: React.FC = () => {
         <Container size="lg">
           <FadeIn direction="up">
             <div className="bg-white rounded-3xl p-8 sm:p-12 lg:p-14 border border-slate-200 shadow-md relative overflow-hidden">
-              {/* Subtle accent border at top */}
               <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-ocean via-teal to-ocean" />
 
               <div className="flex flex-col sm:flex-row items-start gap-6">
@@ -498,13 +498,12 @@ export const AboutPage: React.FC = () => {
           6. FINAL CTA SECTION
           ========================================================================= */}
       <section className="relative bg-navy text-white py-20 sm:py-28 overflow-hidden">
-        {/* Ambient Glow & Film Grain */}
         <AmbientGlow className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-teal/15 opacity-50" />
         <div className="absolute inset-0 noise-overlay pointer-events-none opacity-20" />
 
         <Container size="lg" className="relative z-10 text-center space-y-7">
           <FadeIn direction="up">
-            <Badge variant="glass" scriptNote="Prompt Attention">
+            <Badge variant="glass" scriptNote="Take Action">
               <Sparkles className="w-3.5 h-3.5 mr-1 text-teal" />
               <span>Next Steps</span>
             </Badge>
@@ -519,7 +518,7 @@ export const AboutPage: React.FC = () => {
 
           <FadeIn direction="up" delay={0.2}>
             <p className="text-base sm:text-lg text-dark-muted max-w-2xl mx-auto leading-relaxed">
-              Share the disputed reviews with our team for an objective, policy-focused assessment. We explain your available options with honesty and transparency.
+              Share the disputed reviews affecting your business for an objective, policy-focused assessment. We explain your available options with honesty and transparency.
             </p>
           </FadeIn>
 
@@ -557,11 +556,6 @@ export const AboutPage: React.FC = () => {
       </section>
     </div>
   )
-}
-
-// Internal icon helper to prevent import clashes
-function CompassIcon({ className }: { className?: string }) {
-  return <Layers className={className} />
 }
 
 export default AboutPage

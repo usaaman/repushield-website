@@ -7,7 +7,16 @@ import { useScrollToTop } from '@/hooks/useScrollToTop'
 export const PublicLayout: React.FC = () => {
   useScrollToTop()
   const location = useLocation()
-  const hasDarkHero = ['/', '/about', '/services'].includes(location.pathname)
+  const hasDarkHero = [
+    '/',
+    '/about',
+    '/services',
+    '/pricing',
+    '/case-studies',
+    '/contact',
+    '/faq',
+    '/google-ads',
+  ].includes(location.pathname)
 
   return (
     <div className="flex flex-col min-h-screen bg-bg-soft text-navy">

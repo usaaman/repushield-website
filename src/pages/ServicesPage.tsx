@@ -12,6 +12,7 @@ import {
   Sparkles,
   HelpCircle,
   MessageCircle,
+  ShieldAlert,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import {
@@ -33,61 +34,94 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 export const ServicesPage: React.FC = () => {
   const prefersReduced = usePrefersReducedMotion()
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20learn%20more%20about%20your%20reputation%20services.'
+    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20learn%20more%20about%20your%20Google%20review%20removal%20assistance.'
 
-  // Section 2: Four Core Services
+  // Section 2: Five Core Negative Review Services
   const mainServices = [
     {
-      id: 'assessment',
-      icon: <FileSearch className="w-6 h-6 text-teal" />,
-      title: 'Google Review Policy Assessment',
-      description:
-        'We help businesses examine disputed Google reviews against relevant platform policies and identify whether there may be grounds for reporting.',
-      items: [
-        'Review content assessment against published guidelines',
-        'Identification of potentially relevant policy concerns (e.g. conflicts of interest, spam, offensive language)',
-        'Initial guidance on available options and realistic procedural expectations',
+      id: 'one-star',
+      icon: <ShieldAlert className="w-6 h-6 text-teal" />,
+      title: '1-Star Google Review Removal Assistance',
+      problem:
+        'A wave of sudden 1-star ratings without text or explanation can drag down your aggregate rating and drive customers to competitors.',
+      howWeHelp:
+        'We analyze rating patterns, identify non-customer spikes, and build formal dossiers referencing Google’s spam and conflict policies.',
+      involves: [
+        'Review content and profile audit',
+        'Verification against internal transaction and booking logs',
+        'Submission through official Business Profile reporting tools',
       ],
-      badge: 'Core Audit',
+      expectation:
+        'Google evaluates whether the review demonstrates genuine customer engagement. Eligible policy breaches are submitted for removal.',
+      badge: '1-Star Defense',
     },
     {
-      id: 'reporting',
-      icon: <FileText className="w-6 h-6 text-teal" />,
-      title: 'Review Reporting Assistance',
-      description:
-        'We help businesses organize relevant information and understand the appropriate process for submitting reports through official platform channels.',
-      items: [
-        'Review URL and information organization into structured files',
-        'Relevant evidence documentation (transaction records, correspondence logs)',
-        'Guidance on official reporting procedures through Google Business Profile tools',
+      id: 'fake-spam',
+      icon: <FileSearch className="w-6 h-6 text-teal" />,
+      title: 'Fake & Spam Review Reporting',
+      problem:
+        'Automated bot ratings, promotional advertising, or mistaken identity reviews clutter your listing with misleading information.',
+      howWeHelp:
+        'We help business owners document clear evidence that the reviewer was never a patron and that the content breaches Google’s spam guidelines.',
+      involves: [
+        'Off-topic and promotional link identification',
+        'Suspicious account pattern documentation',
+        'Direct policy citation under Google’s Fake Content clauses',
       ],
-      badge: 'Structured Dossier',
+      expectation:
+        'Google’s moderation team investigates the reviewer profile and removes content found to be promotional, fake, or automated.',
+      badge: 'Spam Detection',
+    },
+    {
+      id: 'policy-violating',
+      icon: <FileText className="w-6 h-6 text-teal" />,
+      title: 'Policy-Violating Review Assistance',
+      problem:
+        'Reviews containing defamatory allegations, harassment, hate speech, vulgarity, or personal employee attacks cause immediate reputational harm.',
+      howWeHelp:
+        'We cross-reference the review text against specific clauses in Google’s Prohibited and Restricted Content policies to assemble an airtight complaint.',
+      involves: [
+        'Former employee and competitor conflict of interest checks',
+        'Harassment, profanity, and privacy violation flags',
+        'Structuring verifiable operational timelines for escalation',
+      ],
+      expectation:
+        'Content with demonstrable platform policy violations is flagged for expedited review through official Google channels.',
+      badge: 'Policy Audit',
     },
     {
       id: 'appeal',
       icon: <Compass className="w-6 h-6 text-teal" />,
-      title: 'Appeal Process Guidance',
-      description:
-        'We provide guidance to businesses navigating available appeal procedures when they believe a review or reporting decision deserves further consideration.',
-      items: [
-        'Explanation of available appeal steps and administrative workflows',
-        'Evidence organization and rebuttal clarity for secondary review',
-        'Guidance on official appeal channels and formal dispute routing',
+      title: 'Google Review Appeal Assistance',
+      problem:
+        'When an initial automated review flag is ignored or dismissed by Google’s automated filters, business owners feel they have hit a dead end.',
+      howWeHelp:
+        'We guide you through the official Google Business Profile appeal tool, compiling secondary rebuttal evidence for human moderator review.',
+      involves: [
+        'Case ID retrieval and formal appeal routing',
+        'Comprehensive evidence dossier assembly (receipts, correspondence)',
+        'Clear, factual written rebuttals focused strictly on Google guidelines',
       ],
-      badge: 'Administrative Escalation',
+      expectation:
+        'A human Google policy specialist re-evaluates the case. While outcomes cannot be guaranteed, appeals present your strongest factual case.',
+      badge: 'Official Appeal',
     },
     {
-      id: 'consultation',
+      id: 'protection',
       icon: <MessageSquare className="w-6 h-6 text-teal" />,
-      title: 'Online Reputation Consultation',
-      description:
-        'We help businesses understand how to respond professionally to online feedback and approach reputation-related concerns responsibly.',
-      items: [
-        'Professional review response guidance for genuine customer feedback',
-        'Reputation management recommendations and crisis de-escalation',
-        'Long-term communication practices that build customer trust and brand resilience',
+      title: 'Online Reputation Protection',
+      problem:
+        'Legitimate customer complaints cannot be removed simply for being negative, but poorly worded responses can worsen the situation.',
+      howWeHelp:
+        'We provide professional guidance on de-escalating genuine negative feedback and crafting diplomatic public responses that restore trust.',
+      involves: [
+        'De-escalation strategy for genuine customer dissatisfaction',
+        'Constructive, brand-safe public response drafting',
+        'Best practices for encouraging authentic positive customer feedback',
       ],
-      badge: 'Strategic Advisory',
+      expectation:
+        'Demonstrates transparency and customer care to prospective clients, turning difficult interactions into demonstrations of professional integrity.',
+      badge: 'Trust Building',
     },
   ]
 
@@ -174,7 +208,7 @@ export const ServicesPage: React.FC = () => {
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
                 <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
                 <span className="tracking-wide text-xs">
-                  RepuShield Services
+                  RepuShield Review Services
                 </span>
                 <span className="text-white/40">•</span>
                 <span className="font-script text-base text-teal-light font-normal tracking-wide">
@@ -206,7 +240,7 @@ export const ServicesPage: React.FC = () => {
                   to="/contact"
                   className="px-7 py-3.5 text-sm font-bold shadow-lg shadow-teal/20"
                 >
-                  <span>Request Assistance</span>
+                  <span>Get Help With Negative Reviews</span>
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Button>
                 <Button
@@ -227,76 +261,104 @@ export const ServicesPage: React.FC = () => {
       </section>
 
       {/* =========================================================================
-          2. MAIN SERVICES SECTION (FOUR DETAILED SERVICES)
+          2. MAIN SERVICES SECTION (DETAILED PROBLEM/SOLUTION SERVICE CARDS)
           ========================================================================= */}
       <SectionWrapper id="services-list" variant="white" className="py-20 sm:py-28">
         <Container size="xl">
           <SectionHeading
             badge={
-              <Badge variant="teal" scriptNote="Structured Assistance">
+              <Badge variant="teal" scriptNote="Targeted Solutions">
                 What We Offer
               </Badge>
             }
-            title="Comprehensive, Policy-Aligned"
-            accent="Assistance Options"
-            subtitle="Every service is designed to bring procedural clarity, objective evidence organization, and ethical advocacy to your online reputation challenges."
+            title="Comprehensive Google Review"
+            accent="Assistance Services"
+            subtitle="Clear, customer-focused services built specifically to resolve negative, fake, and policy-violating Google reviews through official channels."
           />
 
-          <StaggerContainer
-            className="grid md:grid-cols-2 gap-8 mt-14"
-            staggerChildren={0.15}
-          >
+          <div className="space-y-8 mt-14">
             {mainServices.map((service) => (
-              <StaggerItem key={service.id}>
-                <Card
-                  variant="white"
-                  hoverLift
-                  className="h-full p-8 sm:p-9 border border-slate-200 shadow-sm flex flex-col justify-between"
-                >
-                  <div className="space-y-5">
-                    <div className="flex items-center justify-between">
+              <Card
+                key={service.id}
+                variant="white"
+                hoverLift
+                className="p-8 sm:p-10 border border-slate-200 shadow-sm"
+              >
+                <div className="grid lg:grid-cols-12 gap-8 items-start">
+                  {/* Left Column: Problem & RepuShield Solution */}
+                  <div className="lg:col-span-7 space-y-4">
+                    <div className="flex items-center gap-3">
                       <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
                         {service.icon}
                       </div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-bg-soft text-slate-700 border border-slate-200">
-                        {service.badge}
-                      </span>
+                      <div>
+                        <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-bg-soft text-slate-700 border border-slate-200">
+                          {service.badge}
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-bold text-navy tracking-tight mt-1">
+                          {service.title}
+                        </h3>
+                      </div>
                     </div>
 
-                    <h3 className="text-xl sm:text-2xl font-bold text-navy tracking-tight">
-                      {service.title}
-                    </h3>
-
-                    <p className="text-sm sm:text-base text-secondary leading-relaxed">
-                      {service.description}
-                    </p>
-
-                    <div className="space-y-3 pt-3 border-t border-slate-100">
-                      <p className="text-xs uppercase font-bold text-navy tracking-wider">
-                        Key Service Components:
+                    <div className="space-y-2 pt-2">
+                      <p className="text-xs font-bold uppercase tracking-wider text-amber-700 flex items-center gap-1.5">
+                        <AlertTriangle className="w-3.5 h-3.5" />
+                        The Problem
                       </p>
-                      {service.items.map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-secondary">
-                          <Check className="w-4 h-4 text-teal shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
+                      <p className="text-sm text-secondary leading-relaxed bg-amber-500/5 p-3.5 rounded-xl border border-amber-500/15">
+                        {service.problem}
+                      </p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <p className="text-xs font-bold uppercase tracking-wider text-ocean flex items-center gap-1.5">
+                        <ShieldCheck className="w-3.5 h-3.5 text-teal" />
+                        How RepuShield Helps
+                      </p>
+                      <p className="text-sm text-secondary leading-relaxed">
+                        {service.howWeHelp}
+                      </p>
                     </div>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
-                    <Button variant="ghost" size="sm" to="/contact" className="text-xs font-bold text-ocean hover:text-navy px-0">
-                      <span>Inquire about this service</span>
-                      <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                    </Button>
-                    <span className="text-[11px] text-muted">
-                      Policy-Compliant
-                    </span>
+                  {/* Right Column: Service Inclusions & Realistic Expectations */}
+                  <div className="lg:col-span-5 bg-bg-soft p-6 rounded-2xl border border-slate-200/90 space-y-4 flex flex-col justify-between h-full">
+                    <div className="space-y-3">
+                      <p className="text-xs uppercase font-bold text-navy tracking-wider">
+                        What This Service Involves:
+                      </p>
+                      <div className="space-y-2">
+                        {service.involves.map((item, i) => (
+                          <div key={i} className="flex items-start gap-2 text-xs text-secondary">
+                            <Check className="w-3.5 h-3.5 text-teal shrink-0 mt-0.5" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="pt-3 border-t border-slate-200">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-1">
+                          Realistic Expectations:
+                        </p>
+                        <p className="text-xs text-secondary leading-relaxed">
+                          {service.expectation}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
+                      <Button variant="teal" size="sm" to="/contact">
+                        <span>Request Assistance</span>
+                        <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                      </Button>
+                      <span className="text-[11px] text-muted">Policy Compliant</span>
+                    </div>
                   </div>
-                </Card>
-              </StaggerItem>
+                </div>
+              </Card>
             ))}
-          </StaggerContainer>
+          </div>
         </Container>
       </SectionWrapper>
 

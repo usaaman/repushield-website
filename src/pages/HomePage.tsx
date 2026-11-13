@@ -18,10 +18,10 @@ import {
   Hotel,
   ShoppingBag,
   Briefcase,
-  HelpCircle,
-  AlertCircle,
   Check,
   Sparkles,
+  HelpCircle,
+  AlertTriangle,
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 import {
@@ -45,55 +45,67 @@ export const HomePage: React.FC = () => {
   const prefersReduced = usePrefersReducedMotion()
 
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20request%20assistance%20with%20a%20Google%20review%20policy%20assessment.'
+    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20need%20help%20with%20negative%20Google%20reviews%20affecting%20my%20business.'
 
-  // Core Services Data
+  // Core Services Data (5 Targeted Services)
   const services = [
     {
-      icon: <FileSearch className="w-6 h-6 text-teal" />,
-      title: 'Google Review Policy Assessment',
+      icon: <ShieldAlert className="w-6 h-6 text-teal" />,
+      title: '1-Star Google Review Removal Assistance',
       description:
-        'In-depth forensic audit of disputed reviews against published Google content guidelines to identify actionable policy violations such as conflicts of interest, spam, or harassment.',
+        'Help businesses assess and report eligible 1-star reviews that may violate Google’s published policies.',
       points: [
-        'Conflict of interest & employee review audits',
-        'Profanity, harassment & defamatory flags',
-        'Non-customer / off-topic engagement checks',
+        'Detailed violation audit against Google guidelines',
+        'Identification of non-customer rating spikes',
+        'Guidance on official reporting documentation',
       ],
       linkTo: '/services',
     },
     {
-      icon: <FileText className="w-6 h-6 text-teal" />,
-      title: 'Review Reporting Assistance',
+      icon: <FileSearch className="w-6 h-6 text-teal" />,
+      title: 'Fake & Spam Review Reporting',
       description:
-        'Guidance on assembling verifiable business facts, customer record timelines, and clear policy citations into structured reporting packages ready for platform submission.',
+        'Assistance with identifying and reporting fake, spam, promotional, or completely irrelevant reviews.',
       points: [
-        'Factual operational timeline assembly',
-        'Specific policy clause cross-referencing',
-        'Standard escalation channel preparation',
+        'Off-topic and promotional content flags',
+        'Spam and automated rating pattern analysis',
+        'Submitting structured evidence through Google channels',
+      ],
+      linkTo: '/services',
+    },
+    {
+      icon: <Scale className="w-6 h-6 text-teal" />,
+      title: 'Policy-Violating Review Assistance',
+      description:
+        'Help businesses understand whether reviews containing harassment, prohibited content, or conflicts of interest may be reportable.',
+      points: [
+        'Former employee and competitor review audits',
+        'Defamation, harassment, and profanity flags',
+        'Cross-referencing specific Google policy clauses',
       ],
       linkTo: '/services',
     },
     {
       icon: <Compass className="w-6 h-6 text-teal" />,
-      title: 'Appeal Process Guidance',
+      title: 'Google Review Appeal Assistance',
       description:
-        'Procedural step-by-step assistance navigating the Google Business Profile appeal and escalation pathways when initial automated reporting flags are overlooked.',
+        'Guidance through the available official appeal process when an initial review report does not result in the expected outcome.',
       points: [
         'Official Google Business Profile appeal routing',
-        'Secondary administrative review assistance',
-        'Procedural documentation & status tracking',
+        'Secondary administrative review evidence assembly',
+        'Procedural documentation and rebuttal clarity',
       ],
       linkTo: '/services',
     },
     {
       icon: <MessageSquare className="w-6 h-6 text-teal" />,
-      title: 'Online Reputation Consultation',
+      title: 'Online Reputation Protection',
       description:
-        'Professional advice on public review response formulation, internal resolution strategies, and long-term brand reputation health for small and mid-sized enterprises.',
+        'Practical guidance to help businesses maintain a trustworthy online presence while addressing problematic reviews.',
       points: [
-        'Ethical, de-escalating review responses',
-        'Proactive profile reputation defense',
-        'Operational feedback management guidance',
+        'Professional review response guidance for legitimate complaints',
+        'Reputation crisis de-escalation strategies',
+        'Proactive monitoring recommendations for business profiles',
       ],
       linkTo: '/services',
     },
@@ -103,80 +115,92 @@ export const HomePage: React.FC = () => {
   const steps = [
     {
       number: '01',
-      title: 'Submit Your Request',
+      title: 'Share Your Negative Review',
       description:
-        'Share links to the contested Google reviews along with brief operational context and reasons why the content is believed to breach platform guidelines.',
+        'Send us the Google review URL and basic business information so we can understand the dispute.',
       tag: 'Initial Intake',
     },
     {
       number: '02',
       title: 'Review Assessment',
       description:
-        'Our specialists analyze the reviews objectively against Google’s published Prohibited and Restricted Content policies to verify qualification.',
-      tag: 'Policy Audit',
+        'We examine the review and assess whether it may violate relevant Google content guidelines.',
+      tag: 'Policy Evaluation',
     },
     {
       number: '03',
-      title: 'Policy-Based Guidance',
+      title: 'Reporting Assistance',
       description:
-        'We prepare structured evidence documentation and guide your authorized business representative through formal platform reporting mechanisms.',
+        'We help organize relevant information and guide the appropriate official reporting process.',
       tag: 'Dossier Assembly',
     },
     {
       number: '04',
-      title: 'Follow-Up Support',
+      title: 'Follow-Up & Appeal Guidance',
       description:
-        'We monitor case milestones and provide ongoing procedural advice for secondary appeal escalation if initial automated reports are denied.',
-      tag: 'Ongoing Guidance',
+        'We explain available next steps based on Google’s response, including official escalation options.',
+      tag: 'Appeal Support',
     },
   ]
 
   // Why Choose RepuShield Data
   const whyChoosePoints = [
     {
-      icon: <Scale className="w-6 h-6 text-teal" />,
-      title: 'Transparent Process',
+      icon: <ShieldCheck className="w-6 h-6 text-teal" />,
+      title: 'Focused on Google Review Issues',
       description:
-        'No mysterious black-box methods. You know exactly which Google policies are being cited, what evidence is assembled, and what steps are taken.',
+        'We specialize specifically in negative, fake, and policy-violating Google reviews, not generic PR theory.',
     },
     {
-      icon: <ShieldCheck className="w-6 h-6 text-teal" />,
-      title: 'Policy-Focused Approach',
+      icon: <Scale className="w-6 h-6 text-teal" />,
+      title: 'Policy-Based Approach',
       description:
-        'We operate strictly within official platform guidelines. We never use bots, fake positive reviews, or unethical removal schemes.',
+        'Every case is assessed strictly against Google’s published Prohibited and Restricted Content policies.',
     },
     {
       icon: <MessageCircle className="w-6 h-6 text-teal" />,
-      title: 'Clear Communication',
+      title: 'Transparent Communication',
       description:
-        'Direct, confidential communication via WhatsApp and email with realistic turnaround expectations and prompt, honest assessments.',
+        'Direct, clear communication via WhatsApp and email. You always know what steps are being taken.',
+    },
+    {
+      icon: <FileText className="w-6 h-6 text-teal" />,
+      title: 'Professional Reporting Assistance',
+      description:
+        'We help assemble factual evidence, customer logs, and specific policy citations into clean reporting packages.',
+    },
+    {
+      icon: <Lock className="w-6 h-6 text-teal" />,
+      title: 'No Fake Reviews or Manipulation',
+      description:
+        'We operate strictly within platform rules. We never post fake counter-reviews, buy ratings, or use bots.',
     },
     {
       icon: <Building2 className="w-6 h-6 text-teal" />,
-      title: 'Business-Oriented Support',
+      title: 'Honest Expectations',
       description:
-        'Built specifically for small and medium businesses, medical clinics, restaurants, hotels, and professional practices across the USA, Canada, and Pakistan.',
+        'We never make false removal guarantees. If a negative review is legitimate customer feedback, we explain why honestly.',
     },
   ]
 
   // Industries Supported Data
   const industries = [
     {
-      title: 'Restaurants & Dining',
+      title: 'Restaurants & Cafes',
       icon: <Utensils className="w-5 h-5 text-teal" />,
       image: '/images/industries/restaurant.jpg',
       description:
         'Defending dining establishments against competitor sabotage, coordinated negative review campaigns, and claims by non-patrons.',
     },
     {
-      title: 'Healthcare & Clinics',
+      title: 'Medical & Dental Clinics',
       icon: <Stethoscope className="w-5 h-5 text-teal" />,
       image: '/images/industries/clinic.jpg',
       description:
-        'Protecting medical, dental, and wellness practices against defamatory attacks, non-patient spam, and privacy-violating comments.',
+        'Protecting medical, dental, and healthcare practices against defamatory attacks, non-patient spam, and privacy-violating comments.',
     },
     {
-      title: 'Hospitality & Hotels',
+      title: 'Hotels & Hospitality',
       icon: <Hotel className="w-5 h-5 text-teal" />,
       image: '/images/industries/hospitality.jpg',
       description:
@@ -198,39 +222,44 @@ export const HomePage: React.FC = () => {
     },
   ]
 
-  // Homepage FAQ Preview Data
+  // Homepage FAQ Preview Data (6 Core Questions)
   const faqItems = [
     {
-      question: 'Does RepuShield promise or guarantee review removals?',
+      question: 'Can you help remove negative 1-star Google reviews?',
       answer:
-        'No. RepuShield does not and cannot promise or guarantee review removal. Google LLC holds exclusive authority over all content hosted on Google Maps and Google Business Profiles. Our role is strictly advisory: we identify demonstrable violations of published policies, assemble objective evidence files, and guide business owners through formal reporting and appeal mechanisms.',
+        'Yes. We assist businesses with 1-star reviews that violate Google’s published Prohibited and Restricted Content policies. While Google holds the sole authority to delete any review, we evaluate the review, identify applicable policy breaches, and guide you through official reporting and appeal channels.',
     },
     {
-      question: 'What types of Google reviews violate platform policy?',
+      question: 'Can fake Google reviews be reported?',
       answer:
-        'Google’s Prohibited and Restricted Content policies strictly forbid reviews that contain conflicts of interest (e.g. competitors or former employees), spam, fraudulent/fake customer feedback, harassment, hate speech, offensive language, or content that does not represent a genuine business experience.',
+        'Yes. Google’s policies strictly prohibit fake content, deceptive reviews, and content not based on a real business experience. We help assemble evidence (such as lack of customer transaction records or suspicious review bursts) to support an official policy report.',
     },
     {
-      question: 'Can legitimate negative customer feedback be removed?',
+      question: 'What types of reviews may violate Google’s policies?',
       answer:
-        'No. Google’s platform policies are specifically designed to protect honest consumer feedback. RepuShield does not seek the removal of genuine negative customer experiences. In those situations, we provide professional guidance on public review response strategies and customer resolution best practices.',
+        'Common policy violations include conflicts of interest (reviews left by competitors or former employees), harassment, hate speech, offensive or sexually explicit language, off-topic rants, advertising spam, and impersonation.',
     },
     {
-      question: 'What regions and markets does RepuShield support?',
+      question: 'Can every negative Google review be removed?',
       answer:
-        'We assist small and medium enterprises, clinics, hospitality businesses, and professional service providers primarily located in the United States, Canada, and Pakistan, adhering to applicable regional guidelines and business standards.',
+        'No. Google’s policies protect honest customer feedback. If a customer had a genuine negative experience and expresses their opinion without violating platform rules, Google will not remove it. In those cases, we advise on professional public response strategies.',
     },
     {
-      question: 'How long does the Google review appeal process take?',
+      question: 'What happens if Google rejects a review report?',
       answer:
-        'Our initial policy assessment is typically completed within 24 to 48 hours. Once a formal report or appeal dossier is submitted, Google’s internal review queues generally take between 3 and 14 business days to evaluate and render an administrative decision.',
+        'If an initial automated report is denied, an official appeal option is often available through the Google Business Profile management portal. We assist in preparing a secondary appeal dossier citing specific policy clauses and verifiable facts for human re-evaluation.',
+    },
+    {
+      question: 'How do I get started with RepuShield?',
+      answer:
+        'Simply share the disputed review link and business details through our contact form or directly on WhatsApp. We provide an initial policy assessment and explain the available reporting options.',
     },
   ]
 
   return (
     <div className="flex flex-col bg-bg-soft text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
-          1. HERO SECTION — MINIMAL LUXURY EDITORIAL (FULL BACKGROUND PHOTOGRAPHY)
+          1. HERO SECTION — HIGH-CONVERSION FULL BACKGROUND PHOTOGRAPHY
           ========================================================================= */}
       <section className="relative min-h-[90vh] lg:min-h-[94vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
         {/* Full-Bleed High-Quality Background Photograph */}
@@ -245,9 +274,7 @@ export const HomePage: React.FC = () => {
           aria-hidden="true"
         />
 
-        {/* Sophisticated Dark Navy Gradient Overlay:
-            Horizontal: High contrast dark navy on left for readability, tapering toward right so twilight architectural photography remains visible.
-            Vertical: Darker at the top beneath the navigation and at the base transitioning into the curved sweep. */}
+        {/* Sophisticated Dark Navy Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#091722]/95 via-[#0F2C3D]/80 to-[#091722]/40 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/85 via-transparent to-[#07131B]/95 pointer-events-none" />
 
@@ -266,7 +293,7 @@ export const HomePage: React.FC = () => {
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
                 <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
                 <span className="tracking-wide text-xs">
-                  Independent Online Reputation Assistance
+                  Independent Google Review Removal Assistance
                 </span>
               </div>
             </FadeIn>
@@ -274,8 +301,8 @@ export const HomePage: React.FC = () => {
             {/* Main Headline */}
             <TextReveal
               lines={[
-                { text: 'Your Online Reputation' },
-                { text: 'Deserves Protection.', highlight: true },
+                { text: 'Negative Google Reviews' },
+                { text: 'Hurting Your Business?', highlight: true },
               ]}
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]"
               delay={0.12}
@@ -284,7 +311,7 @@ export const HomePage: React.FC = () => {
             {/* Supporting Copy */}
             <FadeIn direction="up" delay={0.25} duration={0.65}>
               <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl">
-                Build trust in your business with transparent, policy-focused assistance for reporting and appealing Google reviews that may violate platform policies.
+                Don't let suspicious or policy-violating reviews damage the trust you've built. RepuShield helps businesses identify and report eligible negative Google reviews through official policy-based reporting and appeal processes.
               </p>
             </FadeIn>
 
@@ -301,7 +328,7 @@ export const HomePage: React.FC = () => {
                   to="/contact"
                   className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
                 >
-                  <span>Request Assistance</span>
+                  <span>Get Help With Negative Reviews</span>
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Button>
               </StaggerItem>
@@ -350,229 +377,266 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* =========================================================================
-          2. TRUST AND TRANSPARENCY SECTION
+          2. THE PROBLEM SECTION — ONE NEGATIVE REVIEW IMPACT
           ========================================================================= */}
       <SectionWrapper variant="soft" className="py-20 sm:py-28">
         <Container size="xl">
           <SectionHeading
             badge={
-              <Badge variant="ocean" scriptNote="Transparent Counsel">
-                Our Foundation
+              <Badge variant="ocean" scriptNote="The Reality">
+                The Impact on Business
               </Badge>
             }
-            title="A Principled Approach to"
-            accent="Reputation Management"
-            subtitle="We provide clear, honest guidance built on published platform policies. We never promise guaranteed removals or cut corners with dishonest methods."
+            title="One Negative Review Can"
+            accent="Change a Customer's Decision."
+            subtitle="Potential customers check online reviews before choosing a business. Unfair, fake or policy-violating reviews can create a misleading impression and cost you customer trust."
+          />
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
+            <Card variant="white" hoverLift className="h-full space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center">
+                <ShieldAlert className="w-6 h-6 stroke-[2]" />
+              </div>
+              <h3 className="text-lg font-bold text-navy">1-Star Rating Attacks</h3>
+              <p className="text-sm text-secondary leading-relaxed">
+                A sudden wave of 1-star ratings without comments often signals coordinated attacks or competitor sabotage rather than genuine customer experiences.
+              </p>
+            </Card>
+
+            <Card variant="white" hoverLift className="h-full space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center">
+                <FileSearch className="w-6 h-6 stroke-[2]" />
+              </div>
+              <h3 className="text-lg font-bold text-navy">Fake & Spam Reviews</h3>
+              <p className="text-sm text-secondary leading-relaxed">
+                Off-topic promotional spam, mistaken identity reviews, or bot ratings mislead prospective customers who rely on authentic feedback.
+              </p>
+            </Card>
+
+            <Card variant="white" hoverLift className="h-full space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
+                <Scale className="w-6 h-6 stroke-[2]" />
+              </div>
+              <h3 className="text-lg font-bold text-navy">Conflict of Interest</h3>
+              <p className="text-sm text-secondary leading-relaxed">
+                Disgruntled former employees or direct business rivals may post defamatory reviews that explicitly violate Google's conflict of interest guidelines.
+              </p>
+            </Card>
+
+            <Card variant="white" hoverLift className="h-full space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center">
+                <HelpCircle className="w-6 h-6 stroke-[2]" />
+              </div>
+              <h3 className="text-lg font-bold text-navy">Procedural Confusion</h3>
+              <p className="text-sm text-secondary leading-relaxed">
+                Most business owners simply click "Flag as inappropriate" and wait. Without structured evidence and policy cross-referencing, eligible reports are frequently overlooked.
+              </p>
+            </Card>
+          </div>
+        </Container>
+      </SectionWrapper>
+
+      {/* =========================================================================
+          3. THE SOLUTION SECTION — FAIR ONLINE REPUTATION
+          ========================================================================= */}
+      <SectionWrapper variant="white" className="py-20 sm:py-28">
+        <Container size="xl">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <Badge variant="teal" scriptNote="Legitimate Relief">
+                The RepuShield Solution
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-navy leading-tight">
+                Your Business Deserves a{' '}
+                <span className="text-ocean">Fair Online Reputation.</span>
+              </h2>
+              <p className="text-base sm:text-lg text-secondary leading-relaxed">
+                You’ve invested years delivering exceptional products and services. When an illegitimate, fake, or policy-breaching review appears, you don't have to simply accept the damage.
+              </p>
+              <p className="text-sm sm:text-base text-secondary leading-relaxed">
+                RepuShield provides structured, professional assistance to evaluate disputed reviews against Google’s published guidelines, build verifiable documentation dossiers, and guide your business through official reporting and appeal pathways.
+              </p>
+              <div className="pt-2 flex flex-wrap gap-4">
+                <Button variant="primary" size="md" to="/contact">
+                  <span>Get Help With Negative Reviews</span>
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
+                <Button variant="secondary" size="md" to="/services">
+                  <span>View All Services</span>
+                </Button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5">
+              <div className="bg-bg-soft rounded-3xl p-8 border border-slate-200 shadow-sm space-y-5">
+                <h3 className="text-lg font-bold text-navy border-b border-slate-200 pb-4">
+                  What We Provide
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-teal text-white flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-4 h-4 stroke-[2.5]" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-navy">Review Policy Assessment</p>
+                      <p className="text-xs text-secondary">Thorough evaluation against Google's published Prohibited Content policies.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-teal text-white flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-4 h-4 stroke-[2.5]" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-navy">Negative Review Reporting Assistance</p>
+                      <p className="text-xs text-secondary">Structuring evidence and customer logs into official reporting dossiers.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-teal text-white flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-4 h-4 stroke-[2.5]" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-navy">Fake & Spam Review Reporting</p>
+                      <p className="text-xs text-secondary">Documenting non-patron spam and off-topic reviews for platform escalation.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-teal text-white flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-4 h-4 stroke-[2.5]" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-navy">Google Appeal Guidance</p>
+                      <p className="text-xs text-secondary">Step-by-step assistance through secondary administrative appeal workflows.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </SectionWrapper>
+
+      {/* =========================================================================
+          4. SERVICES SECTION — CLEAR CUSTOMER-FOCUSED CARDS
+          ========================================================================= */}
+      <SectionWrapper variant="soft" className="py-20 sm:py-28">
+        <Container size="xl">
+          <SectionHeading
+            badge={<Badge variant="teal">What We Do</Badge>}
+            title="Specialized Google Review"
+            accent="Assistance Services"
+            subtitle="Clear, customer-focused services built to address negative, fake, and policy-violating reviews through sanctioned Google channels."
+          />
+
+          <StaggerContainer
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-14"
+            staggerChildren={0.12}
+          >
+            {services.map((service, index) => (
+              <StaggerItem key={service.title} className={index === 4 ? 'sm:col-span-2 lg:col-span-1' : ''}>
+                <Card variant="white" hoverLift className="h-full flex flex-col justify-between p-8">
+                  <div className="space-y-4">
+                    <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
+                      {service.icon}
+                    </div>
+                    <h3 className="text-xl font-bold text-navy tracking-tight">{service.title}</h3>
+                    <p className="text-sm text-secondary leading-relaxed">{service.description}</p>
+                    <div className="space-y-2 pt-2 border-t border-slate-100">
+                      {service.points.map((point) => (
+                        <div key={point} className="flex items-start gap-2 text-xs text-secondary">
+                          <Check className="w-3.5 h-3.5 text-teal shrink-0 mt-0.5" />
+                          <span>{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="pt-6 mt-4 border-t border-slate-100">
+                    <Link
+                      to="/contact"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-ocean hover:text-navy transition-colors"
+                    >
+                      <span>Get assistance with this</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </Card>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </Container>
+      </SectionWrapper>
+
+      {/* =========================================================================
+          5. HOW IT WORKS SECTION — GETTING HELP IS SIMPLE
+          ========================================================================= */}
+      <SectionWrapper variant="white" className="py-20 sm:py-28">
+        <Container size="xl">
+          <SectionHeading
+            badge={
+              <Badge variant="ocean" scriptNote="Structured Workflow">
+                How It Works
+              </Badge>
+            }
+            title="Getting Help Is"
+            accent="Simple."
+            subtitle="Four straightforward steps to assess, document, and report disputed Google reviews through official channels."
           />
 
           <StaggerContainer
             className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14"
             staggerChildren={0.12}
           >
-            <StaggerItem>
-              <Card variant="white" hoverLift className="h-full space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center">
-                  <Scale className="w-6 h-6 stroke-[2]" />
-                </div>
-                <h3 className="text-lg font-bold text-navy">Policy-Focused Assistance</h3>
-                <p className="text-sm text-secondary leading-relaxed">
-                  Every case is assessed strictly against Google’s published Prohibited and Restricted Content policies. We focus only on reviews that clearly breach published rules.
-                </p>
-              </Card>
-            </StaggerItem>
-
-            <StaggerItem>
-              <Card variant="white" hoverLift className="h-full space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-teal/15 text-teal flex items-center justify-center">
-                  <MessageCircle className="w-6 h-6 stroke-[2]" />
-                </div>
-                <h3 className="text-lg font-bold text-navy">Transparent Communication</h3>
-                <p className="text-sm text-secondary leading-relaxed">
-                  We give you honest, upfront answers. If a negative review represents genuine customer dissatisfaction, we explain why it cannot be removed and advise on constructive public responses.
-                </p>
-              </Card>
-            </StaggerItem>
-
-            <StaggerItem>
-              <Card variant="white" hoverLift className="h-full space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center">
-                  <FileText className="w-6 h-6 stroke-[2]" />
-                </div>
-                <h3 className="text-lg font-bold text-navy">Professional Guidance</h3>
-                <p className="text-sm text-secondary leading-relaxed">
-                  We help compile verifiable business records, transaction logs, and factual timelines into clear documentation ready for Google Business Profile appeal channels.
-                </p>
-              </Card>
-            </StaggerItem>
-
-            <StaggerItem>
-              <Card variant="white" hoverLift className="h-full space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center">
-                  <Lock className="w-6 h-6 stroke-[2]" />
-                </div>
-                <h3 className="text-lg font-bold text-navy">Realistic Expectations</h3>
-                <p className="text-sm text-secondary leading-relaxed">
-                  Google independently reviews all reports and holds sole decision-making authority. We explain realistic timeframes without making false claims or fabricated guarantees.
-                </p>
-              </Card>
-            </StaggerItem>
-          </StaggerContainer>
-        </Container>
-      </SectionWrapper>
-
-      {/* =========================================================================
-          3. SERVICES OVERVIEW SECTION
-          ========================================================================= */}
-      <SectionWrapper variant="white" className="py-24 sm:py-32 border-y border-slate-200/70">
-        <Container size="xl">
-          <SectionHeading
-            badge={<Badge variant="teal">What We Do</Badge>}
-            title="Core Reputation Assistance"
-            accent="Services"
-            subtitle="Targeted advisory services designed to help business owners identify policy violations, compile evidence, and navigate platform appeal channels."
-          />
-
-          <StaggerContainer className="grid md:grid-cols-2 gap-8 mt-16" staggerChildren={0.12}>
-            {services.map((service, index) => (
-              <StaggerItem key={index}>
-                <div className="h-full p-8 sm:p-10 rounded-3xl bg-bg-soft/70 border border-slate-200/90 hover:border-ocean/40 hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-                  <div className="space-y-5">
-                    <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-2xl bg-navy flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
-                        {service.icon}
-                      </div>
-                      <span className="font-mono text-sm font-bold text-muted">0{index + 1}</span>
-                    </div>
-
-                    <h3 className="text-xl font-bold text-navy group-hover:text-ocean transition-colors">
-                      {service.title}
-                    </h3>
-
-                    <p className="text-sm text-secondary leading-relaxed">
-                      {service.description}
-                    </p>
-
-                    <ul className="space-y-2 pt-2 border-t border-slate-200/60 text-xs text-secondary">
-                      {service.points.map((pt, pIdx) => (
-                        <li key={pIdx} className="flex items-center gap-2">
-                          <Check className="w-3.5 h-3.5 text-teal shrink-0" />
-                          <span>{pt}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="pt-6 mt-6 border-t border-slate-200/60 flex items-center justify-between">
-                    <Link
-                      to={service.linkTo}
-                      className="text-xs font-bold text-ocean hover:text-navy inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform"
-                    >
-                      <span>Learn More About This Service</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                    <span className="text-[11px] text-muted">Policy Compliant</span>
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-
-          <FadeIn direction="up" delay={0.3}>
-            <div className="mt-12 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center text-xs text-secondary max-w-2xl mx-auto">
-              <span className="font-semibold text-navy">Important Service Note:</span> RepuShield does not guarantee review removals. All determinations are made independently by Google LLC under its published policies.
-            </div>
-          </FadeIn>
-        </Container>
-      </SectionWrapper>
-
-      {/* =========================================================================
-          4. HOW IT WORKS (FOUR-STEP PROCESS)
-          ========================================================================= */}
-      <SectionWrapper variant="soft" className="py-24 sm:py-32">
-        <Container size="xl">
-          <SectionHeading
-            badge={
-              <Badge variant="ocean" scriptNote="Structured Workflow">
-                Simple &amp; Clear
-              </Badge>
-            }
-            title="How RepuShield"
-            accent="Works"
-            subtitle="A four-step collaborative process built around official Google reporting channels and verifiable operational evidence."
-          />
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16 relative">
-            {steps.map((step, idx) => (
-              <FadeIn key={idx} direction="up" delay={idx * 0.1} duration={0.6}>
-                <div className="h-full p-8 rounded-3xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md transition-all space-y-4 flex flex-col justify-between relative group">
+            {steps.map((step) => (
+              <StaggerItem key={step.number}>
+                <Card variant="white" hoverLift className="h-full flex flex-col justify-between p-7 border border-slate-200">
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-3xl font-extrabold text-ocean/30 group-hover:text-ocean transition-colors">
-                        {step.number}
-                      </span>
-                      <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                      <span className="text-3xl font-extrabold text-teal font-mono">{step.number}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-bg-soft text-slate-600 border border-slate-200">
                         {step.tag}
                       </span>
                     </div>
-
                     <h3 className="text-lg font-bold text-navy">{step.title}</h3>
-
-                    <p className="text-sm text-secondary leading-relaxed">
-                      {step.description}
-                    </p>
+                    <p className="text-sm text-secondary leading-relaxed">{step.description}</p>
                   </div>
-
-                  <div className="pt-4 border-t border-slate-100 text-xs font-semibold text-teal flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5" />
-                    <span>Step {step.number} Complete</span>
-                  </div>
-                </div>
-              </FadeIn>
+                </Card>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
-          <FadeIn direction="up" delay={0.4}>
-            <div className="mt-12 p-6 rounded-3xl bg-white border border-slate-200/80 max-w-3xl mx-auto flex items-start gap-4 shadow-sm">
-              <div className="w-10 h-10 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center shrink-0 mt-0.5">
-                <AlertCircle className="w-5 h-5" />
-              </div>
-              <div className="space-y-1 text-xs text-secondary leading-relaxed">
-                <h4 className="text-sm font-bold text-navy">
-                  Google&apos;s Independent Adjudication Authority
-                </h4>
-                <p>
-                  RepuShield assists you in preparing and presenting the strongest possible factual dossier under published rules. Google independently reviews all reports and decides whether any content violates its policies and whether removal action is taken.
-                </p>
-              </div>
-            </div>
-          </FadeIn>
+          <div className="mt-10 p-4 rounded-2xl bg-bg-soft border border-slate-200 text-center max-w-2xl mx-auto">
+            <p className="text-xs text-secondary">
+              <strong className="text-navy font-semibold">Important:</strong> RepuShield does not control Google’s internal moderation systems or guarantee outcomes. All reports and appeals are independently decided by Google LLC.
+            </p>
+          </div>
         </Container>
       </SectionWrapper>
 
       {/* =========================================================================
-          5. WHY CHOOSE REPUSHIELD
+          6. WHY CHOOSE REPUSHIELD SECTION
           ========================================================================= */}
-      <SectionWrapper variant="white" className="py-24 sm:py-32 border-y border-slate-200/70">
+      <SectionWrapper variant="soft" className="py-20 sm:py-28">
         <Container size="xl">
           <SectionHeading
             badge={<Badge variant="teal">Our Commitments</Badge>}
-            title="Why Choose"
+            title="Why Businesses Trust"
             accent="RepuShield"
-            subtitle="We provide clear, honest, and policy-grounded assistance designed for businesses that value their integrity as much as their reputation."
+            subtitle="Genuine business value grounded in published policies, transparent communication, and ethical practices."
           />
 
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16" staggerChildren={0.12}>
-            {whyChoosePoints.map((item, idx) => (
-              <StaggerItem key={idx}>
-                <div className="h-full p-8 rounded-3xl bg-bg-soft/70 border border-slate-200 hover:border-ocean/40 hover:bg-white hover:shadow-lg transition-all duration-300 space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-navy text-teal flex items-center justify-center shadow-sm">
-                    {item.icon}
+          <StaggerContainer
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-14"
+            staggerChildren={0.1}
+          >
+            {whyChoosePoints.map((point) => (
+              <StaggerItem key={point.title}>
+                <Card variant="white" hoverLift className="h-full p-8 border border-slate-200 space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center">
+                    {point.icon}
                   </div>
-                  <h3 className="text-lg font-bold text-navy">{item.title}</h3>
-                  <p className="text-sm text-secondary leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
+                  <h3 className="text-lg font-bold text-navy">{point.title}</h3>
+                  <p className="text-sm text-secondary leading-relaxed">{point.description}</p>
+                </Card>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -580,201 +644,141 @@ export const HomePage: React.FC = () => {
       </SectionWrapper>
 
       {/* =========================================================================
-          6. INDUSTRIES WE SUPPORT
+          7. TARGET INDUSTRIES SECTION
           ========================================================================= */}
-      <SectionWrapper variant="soft" className="py-24 sm:py-32">
+      <SectionWrapper variant="white" className="py-20 sm:py-28">
         <Container size="xl">
           <SectionHeading
             badge={
               <Badge variant="ocean" scriptNote="Tailored Guidance">
-                Market Sectors
+                Who We Serve
               </Badge>
             }
-            title="Industries We"
-            accent="Support"
-            subtitle="Online reviews affect businesses in different ways. We understand the specific policy challenges and review dynamics facing each sector."
+            title="Protecting Businesses Across"
+            accent="Key Industries"
+            subtitle="Different businesses face unique review challenges. Here is how policy-violating feedback affects different sectors."
           />
 
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16" staggerChildren={0.12}>
-            {industries.map((ind, idx) => (
-              <StaggerItem key={idx}>
-                <div className="h-full rounded-3xl bg-white border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
-                  {/* Industry Image */}
-                  <div className="relative h-48 overflow-hidden bg-navy-dark">
-                    <img
-                      src={ind.image}
-                      alt={ind.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent" />
-                    <div className="absolute bottom-3 left-4 flex items-center gap-2 text-white">
-                      <div className="w-8 h-8 rounded-xl bg-navy/80 backdrop-blur-md text-teal flex items-center justify-center border border-white/20">
-                        {ind.icon}
-                      </div>
-                      <span className="text-sm font-bold tracking-tight">{ind.title}</span>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
+            {industries.map((ind) => (
+              <Card key={ind.title} variant="white" hoverLift className="overflow-hidden p-0 border border-slate-200">
+                <div className="h-44 w-full relative overflow-hidden bg-navy-dark">
+                  <img
+                    src={ind.image}
+                    alt={ind.title}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/30 to-transparent" />
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center gap-2 text-white">
+                    <div className="w-8 h-8 rounded-lg bg-teal/20 backdrop-blur-md flex items-center justify-center border border-teal/40">
+                      {ind.icon}
                     </div>
-                  </div>
-
-                  {/* Industry Description */}
-                  <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                    <p className="text-sm text-secondary leading-relaxed">
-                      {ind.description}
-                    </p>
-
-                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-ocean font-semibold">
-                      <span>Policy Assessment Available</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </div>
+                    <span className="font-bold text-sm tracking-tight">{ind.title}</span>
                   </div>
                 </div>
-              </StaggerItem>
-            ))}
-
-            {/* General Small & Medium Business Card */}
-            <StaggerItem>
-              <div className="h-full rounded-3xl bg-navy text-white p-8 flex flex-col justify-between shadow-xl border border-slate-700/60 relative overflow-hidden group">
-                <div className="absolute -top-12 -right-12 w-48 h-48 bg-teal/15 rounded-full blur-2xl pointer-events-none" />
-                
-                <div className="space-y-4 relative z-10">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 text-teal flex items-center justify-center border border-white/15">
-                    <Building2 className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-xl font-bold tracking-tight text-white">
-                    Small &amp; Medium Enterprises
-                  </h3>
-                  <p className="text-sm text-dark-muted leading-relaxed">
-                    Whether you operate a local auto repair shop, a contracting company, or a boutique consultancy, unfair review attacks damage real revenue. We help you assert your rights under published platform policies.
+                <div className="p-6">
+                  <p className="text-xs sm:text-sm text-secondary leading-relaxed">
+                    {ind.description}
                   </p>
                 </div>
-
-                <div className="pt-6 relative z-10">
-                  <Button variant="teal" size="sm" to="/contact" className="w-full">
-                    <span>Discuss Your Case</span>
-                    <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                  </Button>
-                </div>
-              </div>
-            </StaggerItem>
-          </StaggerContainer>
-
-          <FadeIn direction="up" delay={0.3}>
-            <p className="mt-8 text-center text-xs text-muted max-w-xl mx-auto">
-              Note: The sectors listed represent industries where policy guidance is offered. RepuShield does not publish fictional client lists or unverified endorsements.
-            </p>
-          </FadeIn>
+              </Card>
+            ))}
+          </div>
         </Container>
       </SectionWrapper>
 
       {/* =========================================================================
-          7. TRANSPARENCY AND GOOGLE INDEPENDENCE SECTION
+          8. GOOGLE LLC INDEPENDENCE & TRUST SECTION
           ========================================================================= */}
-      <section className="py-20 sm:py-28 bg-navy text-white relative overflow-hidden">
+      <SectionWrapper variant="navy" className="py-20 sm:py-28 overflow-hidden">
         <AmbientGlow className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-teal/15 opacity-40" />
-        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-30" />
+        <Container size="lg" className="relative z-10 text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-white border border-white/20 text-xs font-semibold mx-auto">
+            <AlertTriangle className="w-4 h-4 text-teal" />
+            <span>Platform Independence Notice</span>
+          </div>
 
-        <Container size="lg" className="relative z-10">
-          <div className="rounded-3xl bg-gradient-to-br from-white/10 to-white/5 border border-white/15 p-8 sm:p-12 lg:p-14 backdrop-blur-xl shadow-2xl text-center space-y-6">
-            <div className="w-14 h-14 rounded-2xl bg-teal/20 text-teal flex items-center justify-center mx-auto border border-teal/30 shadow-sm">
-              <ShieldAlert className="w-7 h-7" />
-            </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Independent Review Removal Assistance
+          </h2>
 
-            <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-teal">
-                Important Transparency Statement
-              </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white max-w-2xl mx-auto">
-                Independent Advisory Notice &amp; Platform Clarification
-              </h2>
-            </div>
-
-            {/* Exact Required Disclaimer */}
-            <div className="max-w-3xl mx-auto p-6 rounded-2xl bg-white/5 border border-white/10 text-sm sm:text-base text-slate-200 leading-relaxed font-medium">
-              &ldquo;RepuShield is an independent service provider and is not affiliated with, endorsed by, or officially connected to Google LLC. Google independently determines whether reported reviews violate its policies and whether any action is taken.&rdquo;
-            </div>
-
-            <div className="grid sm:grid-cols-3 gap-4 pt-4 max-w-3xl mx-auto text-xs text-dark-muted">
-              <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-2">
-                <Check className="w-4 h-4 text-teal shrink-0" />
-                <span>No Guaranteed Removal</span>
-              </div>
-              <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-2">
-                <Check className="w-4 h-4 text-teal shrink-0" />
-                <span>No Fake Reviews or Bots</span>
-              </div>
-              <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center gap-2">
-                <Check className="w-4 h-4 text-teal shrink-0" />
-                <span>Honest Turnaround Times</span>
-              </div>
-            </div>
+          <div className="max-w-3xl mx-auto space-y-4 text-dark-muted text-sm sm:text-base leading-relaxed">
+            <p>
+              <strong className="text-white">RepuShield is an independent service provider and is not affiliated with, endorsed by, or officially connected to Google LLC.</strong> Google Maps, Google Business Profile, and Google Reviews are trademarks of Google LLC.
+            </p>
+            <p>
+              Google independently determines whether reported reviews violate its policies and whether any action is taken. We assist business owners with policy-compliant evidence documentation and official dispute routing. We do not claim guaranteed removals or proprietary deletion tools.
+            </p>
           </div>
         </Container>
-      </section>
+      </SectionWrapper>
 
       {/* =========================================================================
-          8. FAQ PREVIEW SECTION
+          9. FREQUENTLY ASKED QUESTIONS PREVIEW
           ========================================================================= */}
-      <SectionWrapper variant="soft" className="py-24 sm:py-32">
-        <Container size="md">
+      <SectionWrapper variant="soft" className="py-20 sm:py-28">
+        <Container size="lg">
           <SectionHeading
-            badge={<Badge variant="amber">Help &amp; Clarity</Badge>}
+            badge={<Badge variant="amber">Help & Clarity</Badge>}
             title="Frequently Asked"
             accent="Questions"
-            subtitle="Straightforward answers about our review policy assistance, qualification criteria, and what to expect."
+            subtitle="Straightforward, honest answers to common questions about negative Google reviews and our assistance service."
           />
 
-          <div className="mt-14">
+          <div className="mt-12">
             <Accordion items={faqItems} defaultOpenIndex={0} />
           </div>
 
           <div className="mt-10 text-center">
-            <Button variant="secondary" size="md" to="/faq" className="text-xs font-bold uppercase tracking-wider">
-              <HelpCircle className="w-4 h-4 mr-1.5" />
-              <span>Read Full FAQ Page</span>
-            </Button>
+            <Link
+              to="/faq"
+              className="inline-flex items-center gap-2 text-sm font-bold text-ocean hover:text-navy transition-colors"
+            >
+              <span>View all frequently asked questions</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </Container>
       </SectionWrapper>
 
       {/* =========================================================================
-          9. FINAL CALL TO ACTION SECTION
+          10. FINAL CONSULTATION CTA SECTION
           ========================================================================= */}
-      <section className="py-20 sm:py-28 bg-navy-midnight text-white relative overflow-hidden">
+      <section className="relative bg-navy text-white py-20 sm:py-28 overflow-hidden">
         <AmbientGlow className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-teal/15 opacity-50" />
-        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
+        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-20" />
 
-        <Container size="lg" className="relative z-10 text-center space-y-8">
+        <Container size="lg" className="relative z-10 text-center space-y-7">
           <FadeIn direction="up">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs text-teal font-semibold tracking-wide">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Protect Your Online Reputation</span>
-            </div>
+            <Badge variant="glass" scriptNote="Take Action">
+              <Sparkles className="w-3.5 h-3.5 mr-1 text-teal" />
+              <span>Next Steps</span>
+            </Badge>
           </FadeIn>
 
-          {/* Exact Required Final Headline */}
           <FadeIn direction="up" delay={0.1}>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white max-w-3xl mx-auto tracking-tight leading-[1.12]">
-              Let&apos;s Take a Closer Look at Your{' '}
-              <span className="text-teal">Online Reputation</span>.
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight max-w-3xl mx-auto leading-tight">
+              Ready to Address{' '}
+              <span className="text-teal">Unfair Google Reviews?</span>
             </h2>
           </FadeIn>
 
           <FadeIn direction="up" delay={0.2}>
             <p className="text-base sm:text-lg text-dark-muted max-w-2xl mx-auto leading-relaxed">
-              Speak with our team today for an honest, confidential case review. We evaluate contested reviews against official Google guidelines and guide you on the right path forward.
+              Tell us about the reviews affecting your business. Our team can help you understand the available reporting and appeal options.
             </p>
           </FadeIn>
 
-          {/* Primary CTA & WhatsApp Buttons */}
           <FadeIn direction="up" delay={0.3}>
-            <div className="pt-4 flex flex-wrap justify-center gap-4 sm:gap-5">
+            <div className="pt-3 flex flex-wrap justify-center gap-4 sm:gap-5">
               <Button
                 variant="teal"
                 size="lg"
                 to="/contact"
                 className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
               >
-                <span>Request Assistance</span>
+                <span>Get Help With Your Reviews</span>
                 <ArrowRight className="w-4 h-4 ml-1.5" />
               </Button>
 
@@ -783,7 +787,7 @@ export const HomePage: React.FC = () => {
                 size="lg"
                 href={whatsappUrl}
                 isExternal
-                className="px-8 py-4 text-sm font-bold flex items-center gap-2"
+                className="px-7 py-4 text-sm font-semibold flex items-center gap-2"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Chat on WhatsApp</span>
@@ -791,21 +795,18 @@ export const HomePage: React.FC = () => {
             </div>
           </FadeIn>
 
-          {/* Confirmed Direct Contact Details */}
           <FadeIn direction="up" delay={0.4}>
-            <div className="pt-8 border-t border-white/10 max-w-xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 text-xs text-dark-muted">
+            <div className="pt-2 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-300">
               <a
-                href={whatsappUrl}
+                href="https://wa.me/923406523353"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-white transition-colors"
               >
                 <MessageCircle className="w-4 h-4 text-teal" />
-                <span>+92 340 6523353 (WhatsApp)</span>
+                <span>+92 340 6523353</span>
               </a>
-
-              <span className="hidden sm:inline text-white/20">•</span>
-
+              <span className="text-white/20">•</span>
               <a
                 href="mailto:usamahameedahmadani@gmail.com"
                 className="flex items-center gap-2 hover:text-white transition-colors"
