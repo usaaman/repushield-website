@@ -230,213 +230,123 @@ export const HomePage: React.FC = () => {
   return (
     <div className="flex flex-col bg-bg-soft text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
-          1. HERO SECTION — ART-DIRECTED, REPUTATION DEFENSE IDENTITY
+          1. HERO SECTION — MINIMAL LUXURY EDITORIAL (FULL BACKGROUND PHOTOGRAPHY)
           ========================================================================= */}
-      <section className="relative min-h-[90vh] flex flex-col justify-between bg-navy text-white overflow-hidden pt-20 sm:pt-28 pb-0">
-        {/* Subtle Background Architectural Layer with Slow Zoom */}
+      <section className="relative min-h-[90vh] lg:min-h-[94vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
+        {/* Full-Bleed High-Quality Background Photograph */}
         <motion.div
-          initial={prefersReduced ? { scale: 1, opacity: 0.3 } : { scale: 1.12, opacity: 0.18 }}
-          animate={{ scale: 1, opacity: 0.28 }}
-          transition={{ duration: 4.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+          initial={prefersReduced ? { scale: 1, opacity: 0.85 } : { scale: 1.05, opacity: 0.7 }}
+          animate={{ scale: 1, opacity: 0.85 }}
+          transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
           style={{
-            backgroundImage:
-              "url('/images/hero-corporate-architecture.jpg')",
+            backgroundImage: "url('/images/hero-reputation-counsel.jpg')",
           }}
           aria-hidden="true"
         />
 
-        {/* Multi-Layered Navy & Teal Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/95 via-navy/90 to-navy-dark/98 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-navy-midnight/90 pointer-events-none" />
+        {/* Sophisticated Dark Navy Gradient Overlay:
+            Horizontal: High contrast dark navy on left for readability, tapering toward right so twilight architectural photography remains visible.
+            Vertical: Darker at the top beneath the navigation and at the base transitioning into the curved sweep. */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#091722]/95 via-[#0F2C3D]/80 to-[#091722]/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/85 via-transparent to-[#07131B]/95 pointer-events-none" />
 
-        {/* Ambient Subtle Radial Lighting */}
-        <AmbientGlow className="absolute top-1/4 right-1/4 w-[550px] h-[550px] bg-ocean/25 opacity-70" />
-        <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/20 opacity-60" />
+        {/* Subtle Ambient Radial Lighting */}
+        <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
+        <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
 
-        {/* Tactile Film Grain */}
-        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-35" />
+        {/* Tactile Fine Film Grain */}
+        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
 
-        {/* Main Hero Container */}
-        <Container size="xl" className="relative z-10 my-auto py-8 sm:py-12">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center mb-12 sm:mb-16">
-            {/* Left Column: Narrative & CTAs */}
-            <div className="lg:col-span-7 space-y-7">
-              {/* Badge with Caveat Script Label */}
-              <FadeIn direction="up" delay={0.05} duration={0.6}>
-                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
-                  <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
-                  <span className="tracking-wide uppercase text-[11px]">
-                    Independent Online Reputation Assistance
+        {/* Clean, Left-Aligned Minimal Hero Content */}
+        <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16 lg:py-20">
+          <div className="max-w-2xl lg:max-w-3xl space-y-7">
+            {/* Eyebrow Badge */}
+            <FadeIn direction="up" delay={0.05} duration={0.6}>
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
+                <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
+                <span className="tracking-wide text-xs">
+                  Independent Online Reputation Assistance
+                </span>
+              </div>
+            </FadeIn>
+
+            {/* Main Headline */}
+            <TextReveal
+              lines={[
+                { text: 'Your Online Reputation' },
+                { text: 'Deserves Protection.', highlight: true },
+              ]}
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]"
+              delay={0.12}
+            />
+
+            {/* Supporting Copy */}
+            <FadeIn direction="up" delay={0.25} duration={0.65}>
+              <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl">
+                Build trust in your business with transparent, policy-focused assistance for reporting and appealing Google reviews that may violate platform policies.
+              </p>
+            </FadeIn>
+
+            {/* Primary & Secondary CTAs */}
+            <StaggerContainer
+              delayChildren={0.35}
+              staggerChildren={0.1}
+              className="pt-2 flex flex-wrap gap-4 items-center"
+            >
+              <StaggerItem>
+                <Button
+                  variant="teal"
+                  size="lg"
+                  to="/contact"
+                  className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
+                >
+                  <span>Request Assistance</span>
+                  <ArrowRight className="w-4 h-4 ml-1.5" />
+                </Button>
+              </StaggerItem>
+
+              <StaggerItem>
+                <Button
+                  variant="luxury-ghost"
+                  size="lg"
+                  to="/services"
+                  className="px-7 py-4 text-sm font-semibold"
+                >
+                  <span>Explore Our Services</span>
+                </Button>
+              </StaggerItem>
+            </StaggerContainer>
+
+            {/* Understated Target Markets Strip */}
+            <FadeIn direction="up" delay={0.45} duration={0.6}>
+              <div className="pt-4 flex flex-wrap items-center gap-3 text-xs text-slate-300">
+                <span className="font-semibold text-white uppercase tracking-wider text-[11px]">
+                  Serving Businesses In:
+                </span>
+                <div className="flex items-center gap-2.5 text-slate-300">
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal" />
+                    United States
                   </span>
-                  <span className="text-white/30">•</span>
-                  <span className="font-script text-base text-teal-light font-normal tracking-wide">
-                    Policy First
+                  <span className="text-white/40">•</span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal" />
+                    Canada
+                  </span>
+                  <span className="text-white/40">•</span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal" />
+                    Pakistan
                   </span>
                 </div>
-              </FadeIn>
-
-              {/* Exact Approved Headline */}
-              <TextReveal
-                lines={[
-                  { text: 'Your Online Reputation' },
-                  { text: 'Deserves Protection.', highlight: true },
-                ]}
-                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]"
-                delay={0.12}
-              />
-
-              {/* Exact Approved Supporting Copy */}
-              <FadeIn direction="up" delay={0.3} duration={0.65}>
-                <p className="text-base sm:text-lg text-dark-muted font-normal max-w-2xl leading-relaxed">
-                  Build trust in your business with transparent, policy-focused assistance for reporting and appealing Google reviews that may violate platform policies.
-                </p>
-              </FadeIn>
-
-              {/* Primary & Secondary CTAs */}
-              <StaggerContainer
-                delayChildren={0.4}
-                staggerChildren={0.12}
-                className="pt-2 flex flex-wrap gap-4 sm:gap-5 items-center"
-              >
-                <StaggerItem>
-                  <Button
-                    variant="teal"
-                    size="lg"
-                    to="/contact"
-                    className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
-                  >
-                    <span>Request Assistance</span>
-                    <ArrowRight className="w-4 h-4 ml-1.5" />
-                  </Button>
-                </StaggerItem>
-
-                <StaggerItem>
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    to="/services"
-                    className="px-7 py-4 text-sm font-semibold"
-                  >
-                    <span>Explore Our Services</span>
-                  </Button>
-                </StaggerItem>
-
-                <StaggerItem>
-                  <Button
-                    variant="whatsapp"
-                    size="lg"
-                    href={whatsappUrl}
-                    isExternal
-                    className="px-6 py-4 text-sm font-semibold flex items-center gap-2"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    <span>WhatsApp Inquiry</span>
-                  </Button>
-                </StaggerItem>
-              </StaggerContainer>
-
-              {/* Target Markets Strip */}
-              <FadeIn direction="up" delay={0.5} duration={0.6}>
-                <div className="pt-4 flex items-center gap-4 text-xs text-dark-muted">
-                  <span className="font-semibold text-white uppercase tracking-wider text-[11px]">
-                    Serving Businesses In:
-                  </span>
-                  <div className="flex items-center gap-3 text-slate-300">
-                    <span className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal" />
-                      United States
-                    </span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal" />
-                      Canada
-                    </span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal" />
-                      Pakistan
-                    </span>
-                  </div>
-                </div>
-              </FadeIn>
-            </div>
-
-            {/* Right Column: Hero Visual Composition */}
-            <div className="lg:col-span-5 relative">
-              <motion.div
-                initial={prefersReduced ? { opacity: 1 } : { opacity: 0, scale: 0.95, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="relative mx-auto max-w-lg lg:max-w-none"
-              >
-                {/* Radiant Ambient Backlight */}
-                <div className="absolute -inset-2 bg-gradient-to-tr from-teal/30 via-ocean/20 to-transparent rounded-[2.5rem] blur-2xl opacity-60 pointer-events-none" />
-
-                {/* Outer Glassmorphism Card Frame */}
-                <div className="relative rounded-3xl border border-white/20 bg-gradient-to-b from-white/15 to-white/5 p-2 sm:p-2.5 backdrop-blur-xl shadow-2xl shadow-navy/80 group overflow-hidden">
-                  <div className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[14/11] lg:aspect-[4/5] bg-navy-dark">
-                    <img
-                      src="/images/hero-reputation-counsel.jpg"
-                      alt="RepuShield Online Reputation Protection & Google Review Policy Assistance"
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                      loading="eager"
-                    />
-
-                    {/* Gradient Overlay for Text Readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/30 to-transparent pointer-events-none" />
-
-                    {/* Floating Glassmorphism Information Badge */}
-                    <motion.div
-                      initial={prefersReduced ? { opacity: 1 } : { y: 24, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.75, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute bottom-3 inset-x-3 sm:bottom-4 sm:inset-x-4 glass-luxury rounded-2xl p-4 sm:p-4.5 border border-white/20 shadow-xl space-y-2.5 backdrop-blur-xl"
-                    >
-                      <div className="flex items-center justify-between border-b border-white/15 pb-2.5">
-                        <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-lg bg-teal/20 text-teal flex items-center justify-center border border-teal/40">
-                            <ShieldCheck className="w-4 h-4 stroke-[2.2]" />
-                          </div>
-                          <div>
-                            <p className="text-xs font-bold text-white tracking-tight">
-                              Policy Compliance Assessment
-                            </p>
-                            <p className="text-[10px] text-teal font-medium">
-                              Evidence Dossier Protocol
-                            </p>
-                          </div>
-                        </div>
-                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-teal/20 text-teal text-[10px] font-semibold border border-teal/30">
-                          <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
-                          <span>ACTIVE</span>
-                        </span>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-300">
-                        <div className="flex items-center gap-1.5">
-                          <Check className="w-3.5 h-3.5 text-teal shrink-0" />
-                          <span>Conflict of Interest Check</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <Check className="w-3.5 h-3.5 text-teal shrink-0" />
-                          <span>Policy Clause Mapping</span>
-                        </div>
-                      </div>
-
-                      <p className="text-[10px] text-dark-muted border-t border-white/10 pt-2 leading-tight">
-                        Aligned with published Google policies. No fake guarantees.
-                      </p>
-                    </motion.div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
+              </div>
+            </FadeIn>
           </div>
         </Container>
 
         {/* Smooth Organic Wave Transition into the Light Section */}
-        <CurvedHeroTransition fillColor="soft" height={110} />
+        <CurvedHeroTransition fillColor="soft" height={100} />
       </section>
 
       {/* =========================================================================
@@ -908,7 +818,7 @@ export const HomePage: React.FC = () => {
 
           <FadeIn direction="up" delay={0.5}>
             <p className="text-[11px] text-slate-400 max-w-md mx-auto">
-              Typically responds within 2–6 hours. Confidential and policy-compliant case assessment.
+              Confidential and policy-compliant case assessment.
             </p>
           </FadeIn>
         </Container>
