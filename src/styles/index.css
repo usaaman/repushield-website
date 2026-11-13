@@ -18,9 +18,9 @@
   --color-champagne-gold: #C5A880;
   --color-champagne-light: #F7F3EE;
 
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', serif;
-  --font-display: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', serif;
-  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-script: 'Caveat', cursive;
 }
 
