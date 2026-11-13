@@ -12,8 +12,8 @@ export const Navbar: React.FC = () => {
   const location = useLocation()
   const prefersReduced = usePrefersReducedMotion()
 
-  const isHome = location.pathname === '/'
-  const isOverHero = isHome && !isScrolled
+  const hasDarkHero = ['/', '/about', '/services'].includes(location.pathname)
+  const isOverHero = hasDarkHero && !isScrolled
 
   useEffect(() => {
     const handleScroll = () => {
