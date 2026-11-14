@@ -18,8 +18,8 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
   ...props
 }) => {
   const variantStyles = {
-    soft: 'bg-bg-soft text-navy',
-    white: 'bg-white text-navy',
+    soft: 'bg-transparent text-navy',
+    white: 'bg-transparent text-navy',
     navy: 'bg-navy text-white',
     transparent: 'bg-transparent text-navy',
   }[variant]
@@ -34,4 +34,3 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
     </section>
   )
 }
-

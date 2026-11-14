@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Outlet, Link } from 'react-router-dom'
-import { ShieldCheck, MessageCircle, ArrowRight } from 'lucide-react'
+import { MessageCircle, ArrowRight } from 'lucide-react'
 import { Container } from '../common/Container'
 import { Button } from '../common/Button'
 import { useScrollToTop } from '@/hooks/useScrollToTop'
@@ -32,48 +32,57 @@ export const AdsLandingLayout: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-bg-soft text-navy selection:bg-teal selection:text-white" id="top">
+    <div className="flex flex-col min-h-screen relative text-navy selection:bg-teal selection:text-white" id="top">
+      {/* Fixed Ambient Background Canvas Layer */}
+      <div
+        className="fixed inset-0 pointer-events-none -z-10 overflow-hidden bg-gradient-to-b from-[#EAF4F7] via-[#F4F9FA] to-[#E3F0F4]"
+        aria-hidden="true"
+      >
+        <div className="ambient-orb ambient-orb-1 absolute -top-[12%] -right-[8%] w-[50vw] max-w-[680px] h-[50vw] max-h-[680px] rounded-full bg-[#0A789B]/24 blur-[110px]" />
+        <div className="ambient-orb ambient-orb-2 absolute top-[36%] -left-[12%] w-[52vw] max-w-[720px] h-[52vw] max-h-[720px] rounded-full bg-[#14B8A6]/20 blur-[115px]" />
+        <div className="ambient-orb ambient-orb-3 absolute -bottom-[10%] right-[6%] w-[42vw] max-w-[620px] h-[42vw] max-h-[620px] rounded-full bg-[#0F2C3D]/14 blur-[125px]" />
+      </div>
       {/* =========================================================================
           SIMPLIFIED ADS HEADER (FOCUSED, ZERO DISTRACTIONS)
           ========================================================================= */}
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs text-navy'
-            : 'bg-[#091722]/60 backdrop-blur-md border-b border-white/10 text-white'
+            ? 'bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-xs text-navy'
+            : 'bg-[#091722]/55 backdrop-blur-md border-b border-white/15 text-white shadow-xs'
         }`}
       >
         <Container size="xl">
           <div className="flex items-center justify-between h-20">
-            {/* Brand Logo with Shield Mark */}
-            <Link to="/" className="flex items-center gap-2.5 group">
-              <div
-                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 ${
-                  isScrolled
-                    ? 'bg-navy text-teal shadow-xs'
-                    : 'bg-white/10 border border-white/20 text-teal shadow-xs'
-                }`}
-              >
-                <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
-              </div>
-              <div className="flex flex-col">
-                <span
-                  className={`text-lg sm:text-xl font-extrabold tracking-tight transition-colors duration-200 ${
-                    isScrolled ? 'text-navy' : 'text-white'
+            {/* Brand Logo Link */}
+            <Link
+              to="/"
+              className="flex items-center group relative focus:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded-lg transition-transform duration-200 hover:opacity-95"
+              aria-label="RiseRepute Home"
+            >
+              <div className="relative h-10 sm:h-[44px] w-[180px] sm:w-[198px] flex items-center">
+                <img
+                  src="/logo/riserepute-horizontal-light.png"
+                  alt="RiseRepute"
+                  width={198}
+                  height={44}
+                  loading="eager"
+                  fetchPriority="high"
+                  className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-300 ${
+                    isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
                   }`}
-                >
-                  Repu
-                  <span className={isScrolled ? 'text-ocean' : 'text-teal'}>
-                    Shield
-                  </span>
-                </span>
-                <span
-                  className={`text-[9px] sm:text-[10px] uppercase font-bold tracking-wider -mt-1 transition-colors duration-200 ${
-                    isScrolled ? 'text-muted' : 'text-slate-300'
+                />
+                <img
+                  src="/logo/riserepute-horizontal-dark.png"
+                  alt="RiseRepute"
+                  width={198}
+                  height={44}
+                  loading="eager"
+                  fetchPriority="high"
+                  className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-300 ${
+                    isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
                   }`}
-                >
-                  Review Advisory
-                </span>
+                />
               </div>
             </Link>
 
@@ -93,6 +102,8 @@ export const AdsLandingLayout: React.FC = () => {
               <Button
                 variant="teal"
                 size="sm"
+                shine
+                glow
                 href="#lead-form"
                 onClick={scrollToForm}
                 className="px-3.5 sm:px-5 py-2 text-xs font-bold shadow-md shadow-teal/20 flex items-center gap-1"
@@ -116,14 +127,20 @@ export const AdsLandingLayout: React.FC = () => {
       <footer className="bg-navy text-white py-12 border-t border-slate-800">
         <Container size="xl">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10 text-center md:text-left">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-ocean flex items-center justify-center text-white">
-                <ShieldCheck className="w-4 h-4 stroke-[2.2]" />
-              </div>
-              <span className="text-lg font-extrabold tracking-tight text-white">
-                Repu<span className="text-teal">Shield</span>
-              </span>
-            </div>
+            <Link
+              to="/"
+              className="inline-block group focus:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded-lg transition-transform duration-200 hover:opacity-95"
+              aria-label="RiseRepute Home"
+            >
+              <img
+                src="/logo/riserepute-stacked-light.png"
+                alt="RiseRepute"
+                width={160}
+                height={105}
+                loading="lazy"
+                className="w-[160px] h-auto object-contain transition-opacity duration-200 group-hover:opacity-90"
+              />
+            </Link>
 
             <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-dark-muted">
               <a

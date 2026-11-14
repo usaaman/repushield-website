@@ -20,7 +20,11 @@ import {
   AmbientGlow,
 } from '@/components/common'
 
+import { motion } from 'framer-motion'
+import { useParallax } from '@/hooks/useParallax'
+
 export const CaseStudiesPage: React.FC = () => {
+  const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20discuss%20a%20confidential%20Google%20review%20case.'
 
@@ -65,20 +69,22 @@ export const CaseStudiesPage: React.FC = () => {
   ]
 
   return (
-    <div className="flex flex-col bg-bg-soft text-navy selection:bg-teal selection:text-white">
+    <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
           1. PAGE HERO
           ========================================================================= */}
       <section className="relative min-h-[70vh] lg:min-h-[78vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/95 via-navy/90 to-[#07131B]/95 pointer-events-none" />
-        <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-        <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
+          <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
+          <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        </motion.div>
         <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
 
         <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl lg:max-w-3xl space-y-6">
             <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm">
                 <Lock className="w-4 h-4 text-teal shrink-0" />
                 <span className="tracking-wide text-xs">
                   Strict Confidentiality
@@ -110,6 +116,8 @@ export const CaseStudiesPage: React.FC = () => {
                 <Button
                   variant="teal"
                   size="lg"
+                  shine
+                  glow
                   to="/contact"
                   className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
                 >
@@ -140,7 +148,7 @@ export const CaseStudiesPage: React.FC = () => {
           ========================================================================= */}
       <SectionWrapper variant="white" className="py-20 sm:py-28">
         <Container size="lg">
-          <div className="bg-bg-soft rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm space-y-6">
+          <div className="glass-card-public rounded-3xl p-8 sm:p-12 space-y-6">
             <div className="flex items-center gap-3 border-b border-slate-200 pb-5">
               <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center">
                 <ShieldCheck className="w-6 h-6 stroke-[2.2]" />
@@ -192,54 +200,67 @@ export const CaseStudiesPage: React.FC = () => {
       </SectionWrapper>
 
       {/* =========================================================================
-          3. EDUCATIONAL POLICY FRAMEWORKS
+          3. EDUCATIONAL POLICY FRAMEWORKS — DARK NAVY BAND
           ========================================================================= */}
-      <SectionWrapper variant="soft" className="py-20 sm:py-28">
-        <Container size="xl">
-          <SectionHeading
-            badge={<Badge variant="teal">Policy Frameworks</Badge>}
-            title="How Google Review"
-            accent="Policies Apply"
-            subtitle="To understand how eligible negative reviews can be addressed, examine these real-world policy scenarios and reporting procedures."
-          />
+      <div className="relative">
+        <CurvedHeroTransition position="top" fillColor="navy" height={75} />
+        <section className="bg-gradient-to-b from-[#0F2C3D] via-[#0B212E] to-[#07131B] text-white py-16 sm:py-24 relative overflow-hidden">
+          <AmbientGlow className="absolute top-1/3 left-1/4 w-[500px] h-[350px] bg-ocean/20 opacity-50" />
+          <Container size="xl" className="relative z-10">
+            <SectionHeading
+              badge={<Badge variant="teal">Policy Frameworks</Badge>}
+              title="How Google Review"
+              accent="Policies Apply"
+              subtitle="To understand how eligible negative reviews can be addressed, examine these real-world policy scenarios and reporting procedures."
+              className="[&_h2]:text-white [&_p]:text-slate-300"
+            />
 
-          <div className="grid md:grid-cols-2 gap-8 mt-14">
-            {policyFrameworks.map((fw, idx) => (
-              <Card key={idx} variant="white" hoverLift className="p-8 border border-slate-200 shadow-sm space-y-5">
-                <div className="space-y-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-bg-soft text-slate-700 border border-slate-200">
-                    {fw.category}
-                  </span>
-                  <h3 className="text-xl font-bold text-navy tracking-tight mt-1">
-                    {fw.title}
-                  </h3>
-                </div>
+            <div className="grid md:grid-cols-2 gap-8 mt-14">
+              {policyFrameworks.map((fw, idx) => (
+                <Card
+                  key={idx}
+                  variant="glass"
+                  hoverLift
+                  spotlight
+                  tilt
+                  className="glass-card-dark h-full p-8 space-y-5 text-white"
+                >
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/10 text-teal-light border border-white/15">
+                      {fw.category}
+                    </span>
+                    <h3 className="text-xl font-bold text-white tracking-tight mt-1">
+                      {fw.title}
+                    </h3>
+                  </div>
 
-                <div className="space-y-2">
-                  <p className="text-xs font-bold uppercase tracking-wider text-amber-700">The Situation</p>
-                  <p className="text-sm text-secondary leading-relaxed bg-amber-500/5 p-3.5 rounded-xl border border-amber-500/15">
-                    {fw.scenario}
-                  </p>
-                </div>
+                  <div className="space-y-2">
+                    <p className="text-xs font-bold uppercase tracking-wider text-amber-300">The Situation</p>
+                    <p className="text-sm text-slate-300 leading-relaxed bg-amber-500/10 p-3.5 rounded-xl border border-amber-500/20">
+                      {fw.scenario}
+                    </p>
+                  </div>
 
-                <div className="space-y-1.5">
-                  <p className="text-xs font-bold uppercase tracking-wider text-ocean">Google Policy Clause</p>
-                  <p className="text-xs text-navy font-mono bg-bg-soft p-2.5 rounded-lg border border-slate-200">
-                    {fw.policyCitation}
-                  </p>
-                </div>
+                  <div className="space-y-1.5">
+                    <p className="text-xs font-bold uppercase tracking-wider text-teal">Google Policy Clause</p>
+                    <p className="text-xs text-teal font-mono bg-white/5 p-2.5 rounded-lg border border-white/15">
+                      {fw.policyCitation}
+                    </p>
+                  </div>
 
-                <div className="space-y-1.5 pt-2 border-t border-slate-100">
-                  <p className="text-xs font-bold uppercase tracking-wider text-teal">Procedural Resolution Strategy</p>
-                  <p className="text-xs sm:text-sm text-secondary leading-relaxed">
-                    {fw.proceduralResolution}
-                  </p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </SectionWrapper>
+                  <div className="space-y-1.5 pt-2 border-t border-white/10">
+                    <p className="text-xs font-bold uppercase tracking-wider text-teal-light">Procedural Resolution Strategy</p>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      {fw.proceduralResolution}
+                    </p>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </Container>
+        </section>
+        <CurvedHeroTransition position="bottom" fillColor="soft" height={75} />
+      </div>
 
       {/* =========================================================================
           4. FINAL CTA
@@ -274,6 +295,8 @@ export const CaseStudiesPage: React.FC = () => {
               <Button
                 variant="teal"
                 size="lg"
+                shine
+                glow
                 to="/contact"
                 className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
               >
