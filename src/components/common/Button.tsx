@@ -19,6 +19,8 @@ export interface ButtonProps
   to?: string
   href?: string
   isExternal?: boolean
+  shine?: boolean
+  glow?: boolean
   children: React.ReactNode
 }
 
@@ -28,6 +30,8 @@ export const Button: React.FC<ButtonProps> = ({
   to,
   href,
   isExternal,
+  shine = false,
+  glow = false,
   children,
   className = '',
   ...props
@@ -63,7 +67,10 @@ export const Button: React.FC<ButtonProps> = ({
       'bg-teal text-navy-midnight font-bold hover:bg-teal-light shadow-md shadow-teal/25 border border-teal-light/40',
   }[variant]
 
-  const combinedClasses = `${baseClasses} ${sizeClasses} ${variantClasses} ${className}`
+  const shineClass = shine ? 'btn-shine' : ''
+  const glowClass = glow ? 'btn-glow-teal' : ''
+
+  const combinedClasses = `${baseClasses} ${sizeClasses} ${variantClasses} ${shineClass} ${glowClass} ${className}`.trim()
 
   const motionProps = prefersReduced
     ? {}

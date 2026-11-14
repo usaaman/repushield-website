@@ -290,7 +290,7 @@ export const HomePage: React.FC = () => {
           <div className="max-w-2xl lg:max-w-3xl space-y-7">
             {/* Eyebrow Badge */}
             <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm">
                 <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
                 <span className="tracking-wide text-xs">
                   Independent Google Review Removal Assistance
@@ -325,6 +325,8 @@ export const HomePage: React.FC = () => {
                 <Button
                   variant="teal"
                   size="lg"
+                  shine
+                  glow
                   to="/contact"
                   className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
                 >
@@ -337,6 +339,7 @@ export const HomePage: React.FC = () => {
                 <Button
                   variant="luxury-ghost"
                   size="lg"
+                  shine
                   to="/services"
                   className="px-7 py-4 text-sm font-semibold"
                 >
@@ -393,7 +396,7 @@ export const HomePage: React.FC = () => {
           />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
-            <Card variant="white" hoverLift className="h-full space-y-4">
+            <Card variant="glass" hoverLift spotlight className="h-full space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center">
                 <ShieldAlert className="w-6 h-6 stroke-[2]" />
               </div>
@@ -403,7 +406,7 @@ export const HomePage: React.FC = () => {
               </p>
             </Card>
 
-            <Card variant="white" hoverLift className="h-full space-y-4">
+            <Card variant="glass" hoverLift spotlight className="h-full space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center">
                 <FileSearch className="w-6 h-6 stroke-[2]" />
               </div>
@@ -413,7 +416,7 @@ export const HomePage: React.FC = () => {
               </p>
             </Card>
 
-            <Card variant="white" hoverLift className="h-full space-y-4">
+            <Card variant="glass" hoverLift spotlight className="h-full space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
                 <Scale className="w-6 h-6 stroke-[2]" />
               </div>
@@ -423,7 +426,7 @@ export const HomePage: React.FC = () => {
               </p>
             </Card>
 
-            <Card variant="white" hoverLift className="h-full space-y-4">
+            <Card variant="glass" hoverLift spotlight className="h-full space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center">
                 <HelpCircle className="w-6 h-6 stroke-[2]" />
               </div>
@@ -534,7 +537,7 @@ export const HomePage: React.FC = () => {
           >
             {services.map((service, index) => (
               <StaggerItem key={service.title} className={index === 4 ? 'sm:col-span-2 lg:col-span-1' : ''}>
-                <Card variant="white" hoverLift className="h-full flex flex-col justify-between p-8">
+                <Card variant="glass" hoverLift spotlight className="h-full flex flex-col justify-between p-8">
                   <div className="space-y-4">
                     <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
                       {service.icon}
@@ -588,7 +591,7 @@ export const HomePage: React.FC = () => {
           >
             {steps.map((step) => (
               <StaggerItem key={step.number}>
-                <Card variant="white" hoverLift className="h-full flex flex-col justify-between p-7 border border-slate-200">
+                <Card variant="glass" hoverLift spotlight className="h-full flex flex-col justify-between p-7">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                       <span className="text-3xl font-extrabold text-teal font-mono">{step.number}</span>
@@ -630,7 +633,7 @@ export const HomePage: React.FC = () => {
           >
             {whyChoosePoints.map((point) => (
               <StaggerItem key={point.title}>
-                <Card variant="white" hoverLift className="h-full p-8 border border-slate-200 space-y-4">
+                <Card variant="glass" hoverLift spotlight className="h-full p-8 space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center">
                     {point.icon}
                   </div>
@@ -661,7 +664,7 @@ export const HomePage: React.FC = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
             {industries.map((ind) => (
-              <Card key={ind.title} variant="white" hoverLift className="overflow-hidden p-0 border border-slate-200">
+              <Card key={ind.title} variant="glass" hoverLift spotlight className="overflow-hidden p-0">
                 <div className="h-44 w-full relative overflow-hidden bg-navy-dark">
                   <img
                     src={ind.image}
@@ -775,6 +778,8 @@ export const HomePage: React.FC = () => {
               <Button
                 variant="teal"
                 size="lg"
+                shine
+                glow
                 to="/contact"
                 className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
               >

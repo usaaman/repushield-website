@@ -78,7 +78,7 @@ export const CaseStudiesPage: React.FC = () => {
         <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl lg:max-w-3xl space-y-6">
             <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm">
                 <Lock className="w-4 h-4 text-teal shrink-0" />
                 <span className="tracking-wide text-xs">
                   Strict Confidentiality
@@ -110,6 +110,8 @@ export const CaseStudiesPage: React.FC = () => {
                 <Button
                   variant="teal"
                   size="lg"
+                  shine
+                  glow
                   to="/contact"
                   className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
                 >
@@ -140,7 +142,7 @@ export const CaseStudiesPage: React.FC = () => {
           ========================================================================= */}
       <SectionWrapper variant="white" className="py-20 sm:py-28">
         <Container size="lg">
-          <div className="bg-bg-soft rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm space-y-6">
+          <div className="glass-card-public rounded-3xl p-8 sm:p-12 space-y-6">
             <div className="flex items-center gap-3 border-b border-slate-200 pb-5">
               <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center">
                 <ShieldCheck className="w-6 h-6 stroke-[2.2]" />
@@ -205,7 +207,7 @@ export const CaseStudiesPage: React.FC = () => {
 
           <div className="grid md:grid-cols-2 gap-8 mt-14">
             {policyFrameworks.map((fw, idx) => (
-              <Card key={idx} variant="white" hoverLift className="p-8 border border-slate-200 shadow-sm space-y-5">
+              <Card key={idx} variant="glass" hoverLift spotlight className="p-8 space-y-5">
                 <div className="space-y-2">
                   <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-bg-soft text-slate-700 border border-slate-200">
                     {fw.category}
@@ -274,6 +276,8 @@ export const CaseStudiesPage: React.FC = () => {
               <Button
                 variant="teal"
                 size="lg"
+                shine
+                glow
                 to="/contact"
                 className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
               >

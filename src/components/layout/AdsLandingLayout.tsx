@@ -39,8 +39,8 @@ export const AdsLandingLayout: React.FC = () => {
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs text-navy'
-            : 'bg-[#091722]/60 backdrop-blur-md border-b border-white/10 text-white'
+            ? 'bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-xs text-navy'
+            : 'bg-[#091722]/55 backdrop-blur-md border-b border-white/15 text-white shadow-xs'
         }`}
       >
         <Container size="xl">
@@ -93,6 +93,8 @@ export const AdsLandingLayout: React.FC = () => {
               <Button
                 variant="teal"
                 size="sm"
+                shine
+                glow
                 href="#lead-form"
                 onClick={scrollToForm}
                 className="px-3.5 sm:px-5 py-2 text-xs font-bold shadow-md shadow-teal/20 flex items-center gap-1"

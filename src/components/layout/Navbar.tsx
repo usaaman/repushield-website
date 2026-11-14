@@ -53,8 +53,8 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         isOverHero
-          ? 'bg-[#091722]/35 backdrop-blur-md border-b border-white/10 text-white'
-          : 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs text-navy'
+          ? 'bg-[#091722]/55 backdrop-blur-md border-b border-white/15 text-white shadow-xs'
+          : 'bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-xs text-navy'
       }`}
     >
       <Container size="xl">
@@ -147,6 +147,8 @@ export const Navbar: React.FC = () => {
             <Button
               variant={isOverHero ? 'teal' : 'primary'}
               size="sm"
+              shine
+              glow
               to="/contact"
               className="px-5 py-2.5 text-xs font-bold shadow-sm"
             >

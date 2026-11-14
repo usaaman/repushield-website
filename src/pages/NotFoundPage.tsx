@@ -8,7 +8,7 @@ export const NotFoundPage: React.FC = () => {
   return (
     <div className="py-24 sm:py-32 flex items-center justify-center min-h-[70vh]">
       <Container size="sm">
-        <div className="bg-white rounded-3xl p-8 sm:p-14 shadow-sm border border-slate-200 text-center space-y-6">
+        <div className="glass-card-public rounded-3xl p-8 sm:p-14 text-center space-y-6">
           <div className="w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center mx-auto">
             <ShieldAlert className="w-8 h-8" />
           </div>

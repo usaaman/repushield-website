@@ -205,7 +205,7 @@ export const ServicesPage: React.FC = () => {
         <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl lg:max-w-3xl space-y-6">
             <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm">
                 <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
                 <span className="tracking-wide text-xs">
                   RepuShield Review Services
@@ -237,6 +237,8 @@ export const ServicesPage: React.FC = () => {
                 <Button
                   variant="teal"
                   size="lg"
+                  shine
+                  glow
                   to="/contact"
                   className="px-7 py-3.5 text-sm font-bold shadow-lg shadow-teal/20"
                 >
@@ -246,6 +248,7 @@ export const ServicesPage: React.FC = () => {
                 <Button
                   variant="luxury-ghost"
                   size="lg"
+                  shine
                   href="#services-list"
                   className="px-7 py-3.5 text-sm font-semibold"
                 >
@@ -280,9 +283,10 @@ export const ServicesPage: React.FC = () => {
             {mainServices.map((service) => (
               <Card
                 key={service.id}
-                variant="white"
+                variant="glass"
                 hoverLift
-                className="p-8 sm:p-10 border border-slate-200 shadow-sm"
+                spotlight
+                className="p-8 sm:p-10"
               >
                 <div className="grid lg:grid-cols-12 gap-8 items-start">
                   {/* Left Column: Problem & RepuShield Solution */}
@@ -385,9 +389,10 @@ export const ServicesPage: React.FC = () => {
             {processSteps.map((step) => (
               <StaggerItem key={step.step}>
                 <Card
-                  variant="white"
+                  variant="glass"
                   hoverLift
-                  className="h-full p-7 sm:p-8 border border-slate-200/90 shadow-sm flex flex-col justify-between"
+                  spotlight
+                  className="h-full p-7 sm:p-8 flex flex-col justify-between"
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -580,6 +585,8 @@ export const ServicesPage: React.FC = () => {
               <Button
                 variant="teal"
                 size="lg"
+                shine
+                glow
                 to="/contact"
                 className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
               >

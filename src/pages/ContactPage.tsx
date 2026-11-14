@@ -132,7 +132,7 @@ export const ContactPage: React.FC = () => {
         <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16">
           <div className="max-w-2xl lg:max-w-3xl space-y-6">
             <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm">
                 <Phone className="w-4 h-4 text-teal shrink-0" />
                 <span className="tracking-wide text-xs">
                   Direct Inquiries
@@ -216,7 +216,7 @@ export const ContactPage: React.FC = () => {
               </div>
 
               {/* Markets Served Badge */}
-              <div className="p-5 rounded-2xl bg-bg-soft border border-slate-200 space-y-2">
+              <div className="p-5 rounded-2xl glass-card-public space-y-2">
                 <p className="text-xs font-bold uppercase tracking-wider text-navy flex items-center gap-2">
                   <Globe className="w-4 h-4 text-teal" />
                   Markets Supported
@@ -227,7 +227,7 @@ export const ContactPage: React.FC = () => {
               </div>
 
               {/* Confidentiality Commitment */}
-              <div className="p-5 rounded-2xl bg-bg-soft border border-slate-200 flex items-start gap-3">
+              <div className="p-5 rounded-2xl glass-card-public flex items-start gap-3">
                 <ShieldCheck className="w-5 h-5 text-teal shrink-0 mt-0.5" />
                 <p className="text-xs text-secondary leading-relaxed">
                   <strong className="text-navy font-semibold">Strict Confidentiality:</strong> Your inquiry, business identity, and review details are handled with complete privacy and never shared publicly.
@@ -237,7 +237,7 @@ export const ContactPage: React.FC = () => {
 
             {/* Right Column: Full Inquiry Form */}
             <div className="lg:col-span-7">
-              <Card variant="white" className="p-8 sm:p-12 border border-slate-200 shadow-md">
+              <Card variant="glass" className="p-8 sm:p-12 shadow-md">
                 {submitted ? (
                   <div className="py-12 text-center space-y-5 animate-in fade-in duration-300">
                     <div className="w-16 h-16 rounded-full bg-teal/20 text-teal flex items-center justify-center mx-auto">
@@ -294,7 +294,7 @@ export const ContactPage: React.FC = () => {
                           placeholder="e.g. Apex Dental Care"
                           value={formData.businessName}
                           onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-bg-soft border border-slate-200 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-teal/50 focus:border-teal"
+                          className="w-full px-4 py-3 rounded-xl glass-input text-sm text-navy"
                         />
                       </div>
 
@@ -314,7 +314,7 @@ export const ContactPage: React.FC = () => {
                           placeholder="Your Name"
                           value={formData.contactName}
                           onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-bg-soft border border-slate-200 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-teal/50 focus:border-teal"
+                          className="w-full px-4 py-3 rounded-xl glass-input text-sm text-navy"
                         />
                       </div>
                     </div>
@@ -336,7 +336,7 @@ export const ContactPage: React.FC = () => {
                           placeholder="you@company.com"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-bg-soft border border-slate-200 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-teal/50 focus:border-teal"
+                          className="w-full px-4 py-3 rounded-xl glass-input text-sm text-navy"
                         />
                       </div>
 
@@ -355,7 +355,7 @@ export const ContactPage: React.FC = () => {
                           placeholder="https://maps.google.com/..."
                           value={formData.profileUrl}
                           onChange={(e) => setFormData({ ...formData, profileUrl: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-bg-soft border border-slate-200 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-teal/50 focus:border-teal"
+                          className="w-full px-4 py-3 rounded-xl glass-input text-sm text-navy"
                         />
                       </div>
                     </div>
@@ -376,7 +376,7 @@ export const ContactPage: React.FC = () => {
                           required
                           value={formData.country}
                           onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-bg-soft border border-slate-200 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-teal/50 focus:border-teal"
+                          className="w-full px-4 py-3 rounded-xl glass-input text-sm text-navy"
                         >
                           <option value="">Select your country</option>
                           <option value="Pakistan">Pakistan</option>
@@ -403,7 +403,7 @@ export const ContactPage: React.FC = () => {
                           required
                           value={formData.service}
                           onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-bg-soft border border-slate-200 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-teal/50 focus:border-teal"
+                          className="w-full px-4 py-3 rounded-xl glass-input text-sm text-navy"
                         >
                           <option value="">Select service required</option>
                           <option value="Google Review Policy Assessment">Google Review Policy Assessment</option>
@@ -460,7 +460,7 @@ export const ContactPage: React.FC = () => {
                         placeholder="Paste link(s) to the disputed review(s) here..."
                         value={formData.reviewUrls}
                         onChange={(e) => setFormData({ ...formData, reviewUrls: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-bg-soft border border-slate-200 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-teal/50 focus:border-teal"
+                        className="w-full px-4 py-3 rounded-xl glass-input text-sm text-navy"
                       />
                     </div>
 
@@ -479,7 +479,7 @@ export const ContactPage: React.FC = () => {
                         placeholder="Explain why you believe the review violates Google policy (e.g. competitor attack, former employee, fake non-patron, harassment)..."
                         value={formData.details}
                         onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-bg-soft border border-slate-200 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-teal/50 focus:border-teal"
+                        className="w-full px-4 py-3 rounded-xl glass-input text-sm text-navy"
                       />
                     </div>
 
@@ -488,6 +488,8 @@ export const ContactPage: React.FC = () => {
                       type="submit"
                       variant="teal"
                       size="lg"
+                      shine
+                      glow
                       disabled={isSubmitting}
                       className="w-full font-bold shadow-md shadow-teal/20"
                     >

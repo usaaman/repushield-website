@@ -98,7 +98,7 @@ export const PricingPage: React.FC = () => {
         <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16 lg:py-20">
           <div className="max-w-2xl lg:max-w-3xl space-y-6">
             <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm">
                 <Tag className="w-4 h-4 text-teal shrink-0" />
                 <span className="tracking-wide text-xs">
                   Transparent Pricing
@@ -130,6 +130,8 @@ export const PricingPage: React.FC = () => {
                 <Button
                   variant="teal"
                   size="lg"
+                  shine
+                  glow
                   to="/contact"
                   className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
                 >
@@ -173,7 +175,7 @@ export const PricingPage: React.FC = () => {
           >
             {quoteFactors.map((factor) => (
               <StaggerItem key={factor.title}>
-                <Card variant="white" hoverLift className="h-full p-8 border border-slate-200 shadow-sm space-y-4">
+                <Card variant="glass" hoverLift spotlight className="h-full p-8 space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
                     {factor.icon}
                   </div>
@@ -200,7 +202,7 @@ export const PricingPage: React.FC = () => {
 
           <div className="grid md:grid-cols-3 gap-8 mt-14">
             {steps.map((step) => (
-              <Card key={step.number} variant="white" hoverLift className="h-full p-8 border border-slate-200/90 shadow-sm space-y-4">
+              <Card key={step.number} variant="glass" hoverLift spotlight className="h-full p-8 space-y-4">
                 <span className="text-3xl font-extrabold text-teal font-mono">{step.number}</span>
                 <h3 className="text-xl font-bold text-navy">{step.title}</h3>
                 <p className="text-sm text-secondary leading-relaxed">{step.description}</p>
@@ -209,7 +211,7 @@ export const PricingPage: React.FC = () => {
           </div>
 
           <div className="mt-12 text-center">
-            <Button variant="primary" size="lg" to="/contact">
+            <Button variant="primary" size="lg" shine to="/contact">
               <span>Request Your Quote Today</span>
               <ArrowRight className="w-4 h-4 ml-1.5" />
             </Button>
@@ -222,7 +224,7 @@ export const PricingPage: React.FC = () => {
           ========================================================================= */}
       <SectionWrapper variant="white" className="py-20 sm:py-28">
         <Container size="lg">
-          <div className="bg-bg-soft rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm space-y-8">
+          <div className="glass-card-public rounded-3xl p-8 sm:p-12 space-y-8">
             <div className="space-y-3">
               <Badge variant="ocean">Complete Transparency</Badge>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-navy">
@@ -235,7 +237,7 @@ export const PricingPage: React.FC = () => {
 
             <div className="grid sm:grid-cols-2 gap-4">
               {includedItems.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/70">
+                <div key={idx} className="flex items-start gap-3 p-3.5 rounded-xl bg-white/90 border border-slate-200/70">
                   <CheckCircle2 className="w-4 h-4 text-teal shrink-0 mt-0.5" />
                   <span className="text-xs sm:text-sm text-secondary font-medium leading-snug">{item}</span>
                 </div>
@@ -247,7 +249,7 @@ export const PricingPage: React.FC = () => {
                 <ShieldCheck className="w-4 h-4 text-teal" />
                 <span>Zero fake reviews. Zero automated bots. Strictly official channels.</span>
               </div>
-              <Button variant="teal" size="sm" to="/contact">
+              <Button variant="teal" size="sm" shine glow to="/contact">
                 <span>Request a Quote</span>
               </Button>
             </div>
@@ -288,6 +290,8 @@ export const PricingPage: React.FC = () => {
               <Button
                 variant="teal"
                 size="lg"
+                shine
+                glow
                 to="/contact"
                 className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
               >

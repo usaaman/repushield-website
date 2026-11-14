@@ -147,7 +147,7 @@ export const FAQPage: React.FC = () => {
         <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16">
           <div className="max-w-2xl lg:max-w-3xl space-y-6">
             <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm">
                 <HelpCircle className="w-4 h-4 text-teal shrink-0" />
                 <span className="tracking-wide text-xs">
                   Knowledge Base
@@ -195,8 +195,8 @@ export const FAQPage: React.FC = () => {
                 onClick={() => setActiveCategory(tab.id as any)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                   activeCategory === tab.id
-                    ? 'bg-navy text-white shadow-xs'
-                    : 'bg-bg-soft text-secondary hover:text-navy hover:bg-slate-200'
+                    ? 'bg-navy text-white shadow-md shadow-navy/20'
+                    : 'glass-card-public text-secondary hover:text-navy hover:border-slate-300'
                 }`}
               >
                 {tab.label}
@@ -216,7 +216,7 @@ export const FAQPage: React.FC = () => {
           </div>
 
           {/* Additional Help Callout */}
-          <div className="mt-14 p-8 rounded-3xl bg-bg-soft border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="mt-14 p-8 rounded-3xl glass-card-public flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="space-y-1 text-center sm:text-left">
               <h3 className="text-lg font-bold text-navy">Have a Question Not Answered Here?</h3>
               <p className="text-xs sm:text-sm text-secondary">
@@ -224,7 +224,7 @@ export const FAQPage: React.FC = () => {
               </p>
             </div>
             <div className="flex gap-3">
-              <Button variant="teal" size="sm" to="/contact">
+              <Button variant="teal" size="sm" shine glow to="/contact">
                 <span>Contact Us</span>
               </Button>
               <Button variant="whatsapp" size="sm" href={whatsappUrl} isExternal>
