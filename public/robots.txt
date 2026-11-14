@@ -3,5 +3,5 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/*
 
-Sitemap: https://repushield.com/sitemap.xml
+Sitemap: https://riserepute.com/sitemap.xml
 

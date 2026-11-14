@@ -185,7 +185,7 @@ export const ServicesPage: React.FC = () => {
           transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
           style={{
-            backgroundImage: "url('/images/hero-executive-reputation.jpg')",
+            backgroundImage: "url('/images/hero-executive-reputation.webp'), url('/images/hero-executive-reputation.jpg')",
           }}
           aria-hidden="true"
         />

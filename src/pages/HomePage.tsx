@@ -269,7 +269,7 @@ export const HomePage: React.FC = () => {
           transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
           style={{
-            backgroundImage: "url('/images/hero-reputation-counsel.jpg')",
+            backgroundImage: "url('/images/hero-reputation-counsel.webp'), url('/images/hero-reputation-counsel.jpg')",
           }}
           aria-hidden="true"
         />
@@ -663,13 +663,19 @@ export const HomePage: React.FC = () => {
             {industries.map((ind) => (
               <Card key={ind.title} variant="white" hoverLift className="overflow-hidden p-0 border border-slate-200">
                 <div className="h-44 w-full relative overflow-hidden bg-navy-dark">
-                  <img
-                    src={ind.image}
-                    alt={ind.title}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/30 to-transparent" />
+                  <picture>
+                    <source srcSet={ind.image.replace('.jpg', '.webp')} type="image/webp" />
+                    <img
+                      src={ind.image}
+                      alt={`${ind.title} Google review protection and reputation assistance`}
+                      width="800"
+                      height="533"
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/30 to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-4 right-4 flex items-center gap-2 text-white">
                     <div className="w-8 h-8 rounded-lg bg-teal/20 backdrop-blur-md flex items-center justify-center border border-teal/40">
                       {ind.icon}

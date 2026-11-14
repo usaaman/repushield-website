@@ -123,7 +123,7 @@ export const AdminLoginPage: React.FC = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className="block w-full pl-10 pr-3 py-2.5 bg-[#07131B] border border-white/10 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-teal/50 transition-colors"
-                  placeholder="admin@repushield.com"
+                  placeholder="admin@riserepute.com"
                 />
               </div>
             </div>

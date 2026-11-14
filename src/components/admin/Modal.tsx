@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { X } from 'lucide-react'
 
 interface ModalProps {
@@ -32,7 +33,7 @@ export const Modal: React.FC<ModalProps> = ({
     }
   }, [isOpen, onClose])
 
-  if (!isOpen) return null
+  if (!isOpen || typeof document === 'undefined') return null
 
   const maxWMap = {
     sm: 'max-w-sm',
@@ -42,8 +43,8 @@ export const Modal: React.FC<ModalProps> = ({
     '2xl': 'max-w-2xl',
   }
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+  const modalElement = (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-[#07131B]/80 backdrop-blur-sm transition-opacity"
@@ -51,19 +52,22 @@ export const Modal: React.FC<ModalProps> = ({
         aria-hidden="true"
       />
 
-      {/* Modal Dialog */}
+      {/* Modal Dialog (Centered Horizontally & Vertically) */}
       <div
-        className={`relative w-full ${maxWMap[maxWidth]} rounded-3xl bg-[#0C1D27] border border-white/15 text-slate-100 shadow-2xl overflow-hidden my-8 z-10`}
+        className={`relative w-full ${maxWMap[maxWidth]} rounded-3xl bg-[#0C1D27] border border-white/15 text-slate-100 shadow-2xl overflow-hidden my-auto z-10 animate-in fade-in zoom-in-95 duration-200`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
       >
         {/* Header */}
         <div className="px-6 py-5 border-b border-white/10 flex items-start justify-between gap-4">
           <div>
-            <h3 className="text-lg font-bold text-white tracking-tight">{title}</h3>
+            <h3 id="modal-title" className="text-lg font-bold text-white tracking-tight">{title}</h3>
             {subtitle && <p className="text-xs text-slate-400 mt-0.5">{subtitle}</p>}
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/20"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -75,5 +79,7 @@ export const Modal: React.FC<ModalProps> = ({
       </div>
     </div>
   )
+
+  return createPortal(modalElement, document.body)
 }
 

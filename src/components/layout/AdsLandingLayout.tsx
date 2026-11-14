@@ -106,7 +106,7 @@ export const AdsLandingLayout: React.FC = () => {
       </header>
 
       {/* Main Landing Page Content */}
-      <main className="flex-1 pt-0">
+      <main id="main-content" tabIndex={-1} className="flex-1 pt-0 focus:outline-none">
         <Outlet />
       </main>
 

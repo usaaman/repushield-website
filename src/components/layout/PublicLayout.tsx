@@ -22,7 +22,7 @@ export const PublicLayout: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-bg-soft text-navy">
       <Navbar />
-      <main className={`flex-1 ${hasDarkHero ? 'pt-0' : 'pt-20'}`}>
+      <main id="main-content" tabIndex={-1} className={`flex-1 focus:outline-none ${hasDarkHero ? 'pt-0' : 'pt-20'}`}>
         <Outlet />
       </main>
       <Footer />

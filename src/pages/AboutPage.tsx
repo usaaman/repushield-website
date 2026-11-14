@@ -122,7 +122,7 @@ export const AboutPage: React.FC = () => {
           transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
           style={{
-            backgroundImage: "url('/images/hero-corporate-architecture.jpg')",
+            backgroundImage: "url('/images/hero-corporate-architecture.webp'), url('/images/hero-corporate-architecture.jpg')",
           }}
           aria-hidden="true"
         />

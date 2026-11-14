@@ -23,6 +23,7 @@ import {
   FadeIn,
   AmbientGlow,
 } from '@/components/common'
+import { leadService, isValidEmail } from '@/services/leadService'
 
 export const ContactPage: React.FC = () => {
   const whatsappUrl =
@@ -48,54 +49,69 @@ export const ContactPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [submissionNotice, setSubmissionNotice] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (isSubmitting) return
 
-    if (!formspreeEndpoint) {
-      setErrorMessage(
-        'Form submission endpoint is not configured yet. Please configure VITE_FORMSPREE_ENDPOINT in your environment or contact us directly on WhatsApp (+92 340 6523353) or email (usamahameedahmadani@gmail.com).'
-      )
+    // Client-side validation
+    if (
+      !formData.businessName.trim() ||
+      !formData.contactName.trim() ||
+      !formData.details.trim()
+    ) {
+      setErrorMessage('Please fill in all required fields marked with *.')
+      return
+    }
+
+    if (!formData.email.trim() || !isValidEmail(formData.email)) {
+      setErrorMessage('Please enter a valid email address (e.g. name@company.com).')
+      return
+    }
+
+    if (!formData.country.trim()) {
+      setErrorMessage('Please select your country.')
+      return
+    }
+
+    if (!formData.service.trim()) {
+      setErrorMessage('Please select the service required.')
       return
     }
 
     setIsSubmitting(true)
     setErrorMessage(null)
+    setSubmissionNotice(null)
 
     try {
-      const response = await fetch(formspreeEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
+      const result = await leadService.submitPublicLead(
+        {
           businessName: formData.businessName,
           contactName: formData.contactName,
           email: formData.email,
           country: formData.country,
-          service: formData.service,
+          serviceRequired: formData.service,
           profileUrl: formData.profileUrl,
           reviewCount: formData.reviewCount,
           reviewUrls: formData.reviewUrls,
           details: formData.details,
-          _subject: `New RepuShield Review Inquiry from ${formData.businessName || formData.contactName} (${formData.country || 'Not specified'})`,
-        }),
-      })
+          source: 'Website Contact',
+        },
+        formspreeEndpoint
+      )
 
-      if (response.ok) {
+      if (result.success) {
         setSubmitted(true)
+        if (result.warning) {
+          setSubmissionNotice(result.warning)
+        }
       } else {
-        const errorData = await response.json().catch(() => null)
-        const message =
-          errorData?.errors?.[0]?.message ||
-          errorData?.error ||
-          'Submission could not be completed. Please try again or reach out directly via WhatsApp or email.'
-        setErrorMessage(message)
+        setErrorMessage(result.message)
       }
-    } catch (err: any) {
+    } catch {
       setErrorMessage(
-        'Network error occurred while submitting. Please check your connection or reach out directly on WhatsApp (+92 340 6523353) or email (usamahameedahmadani@gmail.com).'
+        'A connection error occurred while submitting. Please check your network or reach out directly on WhatsApp (+92 340 6523353) or email (usamahameedahmadani@gmail.com).'
       )
     } finally {
       setIsSubmitting(false)
@@ -105,6 +121,7 @@ export const ContactPage: React.FC = () => {
   const handleReset = () => {
     setSubmitted(false)
     setErrorMessage(null)
+    setSubmissionNotice(null)
     setFormData({
       businessName: '',
       contactName: '',
@@ -247,6 +264,15 @@ export const ContactPage: React.FC = () => {
                     <p className="text-secondary text-sm max-w-md mx-auto leading-relaxed">
                       Thank you for submitting your review details. Our specialists will examine the disputed links against Google’s published guidelines and follow up at <strong className="text-navy">{formData.email}</strong> with an objective assessment.
                     </p>
+                    {submissionNotice && (
+                      <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 text-xs max-w-md mx-auto text-left flex items-start gap-2.5">
+                        <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-semibold text-amber-800">Dispatch Status</p>
+                          <p className="text-secondary leading-relaxed">{submissionNotice}</p>
+                        </div>
+                      </div>
+                    )}
                     <div className="pt-4 flex justify-center gap-4">
                       <Button variant="whatsapp" href={whatsappUrl} isExternal size="sm">
                         <MessageCircle className="w-4 h-4 mr-1.5" />
@@ -492,7 +518,10 @@ export const ContactPage: React.FC = () => {
                       className="w-full font-bold shadow-md shadow-teal/20"
                     >
                       {isSubmitting ? (
-                        <span>Submitting details...</span>
+                        <span className="flex items-center justify-center gap-2">
+                          <div className="w-4 h-4 border-2 border-navy border-t-transparent rounded-full animate-spin" />
+                          <span>Submitting review details...</span>
+                        </span>
                       ) : (
                         <>
                           <Send className="w-4 h-4 mr-2" />

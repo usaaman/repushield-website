@@ -24,6 +24,7 @@ import {
   AmbientGlow,
   Accordion,
 } from '@/components/common'
+import { leadService, isValidEmail } from '@/services/leadService'
 
 export const GoogleAdsLandingPage: React.FC = () => {
   const whatsappUrl =
@@ -75,6 +76,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [submissionNotice, setSubmissionNotice] = useState<string | null>(null)
 
   const scrollToForm = (e?: React.MouseEvent) => {
     if (e) e.preventDefault()
@@ -86,49 +88,49 @@ export const GoogleAdsLandingPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (isSubmitting) return
 
-    if (!formspreeEndpoint) {
-      setErrorMessage(
-        'Form submission endpoint is not configured yet. Please configure VITE_FORMSPREE_ENDPOINT in your environment or contact us directly on WhatsApp (+92 340 6523353) or email (usamahameedahmadani@gmail.com).'
-      )
+    // Client-side validation
+    if (!formData.businessName.trim() || !formData.contactName.trim() || !formData.details.trim()) {
+      setErrorMessage('Please fill in all required fields marked with *.')
+      return
+    }
+
+    if (!formData.email.trim() || !isValidEmail(formData.email)) {
+      setErrorMessage('Please enter a valid email address.')
       return
     }
 
     setIsSubmitting(true)
     setErrorMessage(null)
+    setSubmissionNotice(null)
 
     try {
-      const response = await fetch(formspreeEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          source: 'Google Ads Landing Page',
+      const result = await leadService.submitPublicLead(
+        {
           businessName: formData.businessName,
           contactName: formData.contactName,
           email: formData.email,
           profileUrl: formData.profileUrl,
           reviewCount: formData.reviewCount,
           details: formData.details,
-          _subject: `New Google Ads Review Inquiry from ${formData.businessName || formData.contactName}`,
-        }),
-      })
+          serviceRequired: 'Google Review Policy Assessment',
+          source: 'Google Ads Landing Page',
+        },
+        formspreeEndpoint
+      )
 
-      if (response.ok) {
+      if (result.success) {
         setSubmitted(true)
+        if (result.warning) {
+          setSubmissionNotice(result.warning)
+        }
       } else {
-        const errorData = await response.json().catch(() => null)
-        const message =
-          errorData?.errors?.[0]?.message ||
-          errorData?.error ||
-          'Submission could not be completed. Please try again or reach out directly via WhatsApp or email.'
-        setErrorMessage(message)
+        setErrorMessage(result.message)
       }
     } catch {
       setErrorMessage(
-        'Network error occurred while submitting. Please check your connection or reach out directly on WhatsApp (+92 340 6523353) or email (usamahameedahmadani@gmail.com).'
+        'A connection error occurred while submitting. Please check your network or reach out directly on WhatsApp (+92 340 6523353) or email (usamahameedahmadani@gmail.com).'
       )
     } finally {
       setIsSubmitting(false)
@@ -138,6 +140,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
   const handleReset = () => {
     setSubmitted(false)
     setErrorMessage(null)
+    setSubmissionNotice(null)
     setFormData({
       businessName: '',
       contactName: '',
@@ -234,6 +237,15 @@ export const GoogleAdsLandingPage: React.FC = () => {
                     <p className="text-xs text-secondary leading-relaxed">
                       Our review specialists will audit your disputed link(s) against published Google content policies.
                     </p>
+                    {submissionNotice && (
+                      <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-900 text-[11px] text-left flex items-start gap-2">
+                        <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-semibold text-amber-800">Dispatch Status</p>
+                          <p className="text-secondary leading-relaxed">{submissionNotice}</p>
+                        </div>
+                      </div>
+                    )}
                     <div className="pt-2 flex flex-col sm:flex-row gap-2">
                       <Button variant="whatsapp" size="sm" href={whatsappUrl} isExternal className="w-full">
                         <MessageCircle className="w-4 h-4 mr-1.5" />
@@ -364,7 +376,10 @@ export const GoogleAdsLandingPage: React.FC = () => {
                       className="w-full font-bold shadow-md shadow-teal/20 text-xs"
                     >
                       {isSubmitting ? (
-                        <span>Submitting details...</span>
+                        <span className="flex items-center justify-center gap-2">
+                          <div className="w-3.5 h-3.5 border-2 border-navy border-t-transparent rounded-full animate-spin" />
+                          <span>Submitting details...</span>
+                        </span>
                       ) : (
                         <>
                           <Send className="w-3.5 h-3.5 mr-1.5" />

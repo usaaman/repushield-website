@@ -57,6 +57,14 @@ export const Navbar: React.FC = () => {
           : 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs text-navy'
       }`}
     >
+      {/* Skip to Main Content Accessibility Link (WCAG 2.4.1) */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-teal focus:text-navy focus:font-bold focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-navy"
+      >
+        Skip to main content
+      </a>
+
       <Container size="xl">
         <div className="flex items-center justify-between h-20">
           {/* Brand Logo with Refined Typography & Shield Mark */}
@@ -164,6 +172,7 @@ export const Navbar: React.FC = () => {
             }`}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-drawer"
           >
             {mobileMenuOpen ? (
               <X className="w-6 h-6" />
@@ -177,6 +186,9 @@ export const Navbar: React.FC = () => {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
+              id="mobile-nav-drawer"
+              role="region"
+              aria-label="Mobile Navigation"
               initial={prefersReduced ? { opacity: 1 } : { opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
