@@ -14,7 +14,6 @@ import {
   MessageCircle,
   ShieldAlert,
 } from 'lucide-react'
-import { motion } from 'framer-motion'
 import {
   Container,
   Button,
@@ -26,16 +25,11 @@ import {
   FadeIn,
   StaggerContainer,
   StaggerItem,
-  TextReveal,
   AmbientGlow,
+  PageHeader,
 } from '@/components/common'
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
-import { useParallax } from '@/hooks/useParallax'
 
 export const ServicesPage: React.FC = () => {
-  const prefersReduced = usePrefersReducedMotion()
-  const { x: heroBgX, y: heroBgY } = useParallax(12)
-  const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20learn%20more%20about%20your%20Google%20review%20removal%20assistance.'
 
@@ -178,97 +172,48 @@ export const ServicesPage: React.FC = () => {
   return (
     <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
-          1. PAGE HERO — EXECUTIVE EDITORIAL VISUAL TREATMENT
+          1. COMPACT PAGE HEADER
           ========================================================================= */}
-      <section className="relative min-h-[75vh] lg:min-h-[82vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
-        {/* Full-Bleed Executive Background Photograph with Parallax */}
-        <motion.div
-          initial={prefersReduced ? { scale: 1, opacity: 0.85 } : { scale: 1.05, opacity: 0.7 }}
-          animate={{ scale: 1, opacity: 0.85 }}
-          style={{
-            x: heroBgX,
-            y: heroBgY,
-            backgroundImage: "url('/images/hero-executive-reputation.jpg')",
-          }}
-          transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
-          aria-hidden="true"
-        />
-
-        {/* Sophisticated Dark Navy Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#091722]/95 via-[#0F2C3D]/85 to-[#091722]/45 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/85 via-transparent to-[#07131B]/95 pointer-events-none" />
-
-        {/* Subtle Ambient Radial Lighting with Inverse Parallax */}
-        <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
-          <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-          <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
-        </motion.div>
-
-        {/* Tactile Noise Grain */}
-        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
-
-        {/* Hero Content Container */}
-        <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16 lg:py-20">
-          <div className="max-w-2xl lg:max-w-3xl space-y-6">
-            <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm">
-                <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
-                <span className="tracking-wide text-xs">
-                  RepuShield Review Services
-                </span>
-                <span className="text-white/40">•</span>
-                <span className="font-script text-base text-teal-light font-normal tracking-wide">
-                  Policy Focused
-                </span>
-              </div>
-            </FadeIn>
-
-            <TextReveal
-              lines={[
-                { text: 'Our Reputation' },
-                { text: 'Assistance Services.', highlight: true },
-              ]}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]"
-              delay={0.12}
-            />
-
-            <FadeIn direction="up" delay={0.25} duration={0.65}>
-              <p className="text-base sm:text-xl text-slate-200 font-normal leading-relaxed max-w-2xl">
-                Practical, transparent guidance for businesses reviewing potentially policy-violating Google reviews.
-              </p>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.35} duration={0.6}>
-              <div className="pt-2 flex flex-wrap gap-4 items-center">
-                <Button
-                  variant="teal"
-                  size="lg"
-                  shine
-                  glow
-                  to="/contact"
-                  className="px-7 py-3.5 text-sm font-bold shadow-lg shadow-teal/20"
-                >
-                  <span>Get Help With Negative Reviews</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Button>
-                <Button
-                  variant="luxury-ghost"
-                  size="lg"
-                  shine
-                  href="#services-list"
-                  className="px-7 py-3.5 text-sm font-semibold"
-                >
-                  <span>Explore All Services</span>
-                </Button>
-              </div>
-            </FadeIn>
+      <PageHeader
+        breadcrumbLabel="Services"
+        badge={
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-xs">
+            <ShieldCheck className="w-3.5 h-3.5 text-teal shrink-0" />
+            <span className="tracking-wide text-xs">RepuShield Review Services</span>
+            <span className="text-white/40">•</span>
+            <span className="font-script text-sm text-teal-light font-normal tracking-wide">
+              Policy Focused
+            </span>
           </div>
-        </Container>
-
-        {/* Smooth Organic Wave Transition into Section 2 */}
-        <CurvedHeroTransition fillColor="white" height={95} />
-      </section>
+        }
+        title={
+          <>
+            Our Reputation <span className="text-teal">Assistance Services.</span>
+          </>
+        }
+        subtitle="Practical, transparent guidance for businesses reviewing potentially policy-violating Google reviews."
+      >
+        <Button
+          variant="teal"
+          size="lg"
+          shine
+          glow
+          to="/contact"
+          className="px-6 py-3 text-sm font-bold shadow-lg shadow-teal/20"
+        >
+          <span>Get Help With Negative Reviews</span>
+          <ArrowRight className="w-4 h-4 ml-1.5" />
+        </Button>
+        <Button
+          variant="luxury-ghost"
+          size="lg"
+          shine
+          href="#services-list"
+          className="px-6 py-3 text-sm font-semibold"
+        >
+          <span>Explore All Services</span>
+        </Button>
+      </PageHeader>
 
       {/* =========================================================================
           2. MAIN SERVICES SECTION (DETAILED PROBLEM/SOLUTION SERVICE CARDS)

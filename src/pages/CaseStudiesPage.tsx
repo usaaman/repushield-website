@@ -16,15 +16,11 @@ import {
   SectionHeading,
   CurvedHeroTransition,
   FadeIn,
-  TextReveal,
   AmbientGlow,
+  PageHeader,
 } from '@/components/common'
 
-import { motion } from 'framer-motion'
-import { useParallax } from '@/hooks/useParallax'
-
 export const CaseStudiesPage: React.FC = () => {
-  const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20discuss%20a%20confidential%20Google%20review%20case.'
 
@@ -71,77 +67,50 @@ export const CaseStudiesPage: React.FC = () => {
   return (
     <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
-          1. PAGE HERO
+          1. COMPACT PAGE HEADER
           ========================================================================= */}
-      <section className="relative min-h-[70vh] lg:min-h-[78vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/95 via-navy/90 to-[#07131B]/95 pointer-events-none" />
-        <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
-          <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-          <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
-        </motion.div>
-        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
-
-        <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16 lg:py-20">
-          <div className="max-w-2xl lg:max-w-3xl space-y-6">
-            <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm">
-                <Lock className="w-4 h-4 text-teal shrink-0" />
-                <span className="tracking-wide text-xs">
-                  Strict Confidentiality
-                </span>
-                <span className="text-white/40">•</span>
-                <span className="font-script text-base text-teal-light font-normal tracking-wide">
-                  Verified Only
-                </span>
-              </div>
-            </FadeIn>
-
-            <TextReveal
-              lines={[
-                { text: 'Client Confidentiality &' },
-                { text: 'Verified Case Studies.', highlight: true },
-              ]}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]"
-              delay={0.12}
-            />
-
-            <FadeIn direction="up" delay={0.25} duration={0.65}>
-              <p className="text-base sm:text-xl text-slate-200 font-normal leading-relaxed max-w-2xl">
-                We treat every client reputation matter with absolute discretion. Verified case studies illustrating our policy appeal workflow will be published here with explicit client consent.
-              </p>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.35} duration={0.6}>
-              <div className="pt-2 flex flex-wrap gap-4 items-center">
-                <Button
-                  variant="teal"
-                  size="lg"
-                  shine
-                  glow
-                  to="/contact"
-                  className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
-                >
-                  <span>Discuss Your Case Confidentially</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Button>
-
-                <Button
-                  variant="whatsapp"
-                  size="lg"
-                  href={whatsappUrl}
-                  isExternal
-                  className="px-7 py-4 text-sm font-semibold flex items-center gap-2"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Chat on WhatsApp</span>
-                </Button>
-              </div>
-            </FadeIn>
+      <PageHeader
+        breadcrumbLabel="Case Studies"
+        badge={
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-xs">
+            <Lock className="w-3.5 h-3.5 text-teal shrink-0" />
+            <span className="tracking-wide text-xs">Strict Confidentiality</span>
+            <span className="text-white/40">•</span>
+            <span className="font-script text-sm text-teal-light font-normal tracking-wide">
+              Verified Only
+            </span>
           </div>
-        </Container>
+        }
+        title={
+          <>
+            Client Confidentiality & <span className="text-teal">Verified Case Studies.</span>
+          </>
+        }
+        subtitle="We treat every client reputation matter with absolute discretion. Verified case studies illustrating our policy appeal workflow will be published here with explicit client consent."
+      >
+        <Button
+          variant="teal"
+          size="lg"
+          shine
+          glow
+          to="/contact"
+          className="px-6 py-3 text-sm font-bold shadow-lg shadow-teal/20"
+        >
+          <span>Discuss Your Case Confidentially</span>
+          <ArrowRight className="w-4 h-4 ml-1.5" />
+        </Button>
 
-        <CurvedHeroTransition fillColor="white" height={95} />
-      </section>
+        <Button
+          variant="whatsapp"
+          size="lg"
+          href={whatsappUrl}
+          isExternal
+          className="px-6 py-3 text-sm font-semibold flex items-center gap-2"
+        >
+          <MessageCircle className="w-4 h-4" />
+          <span>Chat on WhatsApp</span>
+        </Button>
+      </PageHeader>
 
       {/* =========================================================================
           2. ETHICAL STANDARDS NOTICE
