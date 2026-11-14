@@ -579,9 +579,9 @@ export const HomePage: React.FC = () => {
       {/* =========================================================================
           5. HOW IT WORKS SECTION — GETTING HELP IS SIMPLE (DARK NAVY BAND)
           ========================================================================= */}
-      <div className="relative">
-        <CurvedHeroTransition position="top" fillColor="navy" height={75} />
-        <section className="bg-gradient-to-b from-[#0F2C3D] via-[#0B212E] to-[#07131B] text-white py-16 sm:py-24 relative overflow-hidden">
+      <div className="relative bg-gradient-to-b from-[#0F2C3D] via-[#0B212E] to-[#07131B]">
+        <CurvedHeroTransition position="top" fillColor="soft" height={75} />
+        <section className="text-white py-16 sm:py-24 relative overflow-hidden">
           <AmbientGlow className="absolute top-1/3 right-1/4 w-[500px] h-[350px] bg-ocean/20 opacity-50" />
           <Container size="xl" className="relative z-10">
             <SectionHeading
@@ -719,9 +719,9 @@ export const HomePage: React.FC = () => {
       {/* =========================================================================
           8. GOOGLE LLC INDEPENDENCE & TRUST SECTION
           ========================================================================= */}
-      <div className="relative">
-        <CurvedHeroTransition position="top" fillColor="navy" height={65} />
-        <section className="bg-navy text-white py-16 sm:py-24 overflow-hidden relative">
+      <div className="relative bg-navy">
+        <CurvedHeroTransition position="top" fillColor="soft" height={65} />
+        <section className="text-white py-16 sm:py-24 overflow-hidden relative">
           <AmbientGlow className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-teal/15 opacity-40" />
           <Container size="lg" className="relative z-10 text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-white border border-white/20 text-xs font-semibold mx-auto">

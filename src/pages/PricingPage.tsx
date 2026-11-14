@@ -167,9 +167,9 @@ export const PricingPage: React.FC = () => {
       {/* =========================================================================
           3. HOW TO GET A QUOTE (3 STEPS) — DARK NAVY BAND
           ========================================================================= */}
-      <div className="relative">
-        <CurvedHeroTransition position="top" fillColor="navy" height={75} />
-        <section className="bg-gradient-to-b from-[#0F2C3D] via-[#0B212E] to-[#07131B] text-white py-16 sm:py-24 relative overflow-hidden">
+      <div className="relative bg-gradient-to-b from-[#0F2C3D] via-[#0B212E] to-[#07131B]">
+        <CurvedHeroTransition position="top" fillColor="soft" height={75} />
+        <section className="text-white py-16 sm:py-24 relative overflow-hidden">
           <AmbientGlow className="absolute top-1/3 right-1/4 w-[500px] h-[350px] bg-ocean/20 opacity-50" />
           <Container size="xl" className="relative z-10">
             <SectionHeading
@@ -205,7 +205,7 @@ export const PricingPage: React.FC = () => {
             </div>
           </Container>
         </section>
-        <CurvedHeroTransition position="bottom" fillColor="#DCEFF0" height={75} />
+        <CurvedHeroTransition position="bottom" fillColor="soft" height={75} />
       </div>
 
       {/* =========================================================================

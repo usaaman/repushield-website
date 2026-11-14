@@ -23,7 +23,7 @@ export const CurvedHeroTransition: React.FC<CurvedHeroTransitionProps> = ({
 }) => {
   const fillHex =
     {
-      soft: '#EAF4F7',
+      soft: '#F6F8FA',
       mist: '#EAF4F7',
       white: '#FFFFFF',
       navy: '#0F2C3D',
@@ -34,8 +34,12 @@ export const CurvedHeroTransition: React.FC<CurvedHeroTransitionProps> = ({
 
   return (
     <div
-      className={`w-full overflow-hidden leading-none select-none pointer-events-none relative z-20 ${className}`}
-      style={{ height: `${height}px` }}
+      className={`w-full overflow-hidden leading-none select-none pointer-events-none relative z-20 block ${className}`}
+      style={{
+        height: `${height}px`,
+        marginTop: isBottom ? '-1px' : 0,
+        marginBottom: isBottom ? 0 : '-1px',
+      }}
       aria-hidden="true"
     >
       <svg
