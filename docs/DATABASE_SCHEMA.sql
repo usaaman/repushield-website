@@ -361,7 +361,30 @@ CREATE TABLE IF NOT EXISTS public.activity_logs (
 CREATE INDEX IF NOT EXISTS idx_activity_created_at ON public.activity_logs(created_at DESC);
 
 -- =============================================================================
--- 16. ROW LEVEL SECURITY (RLS) POLICIES
+-- 16. TABLE PRIVILEGES (GRANT & REVOKE - DEFENSE IN DEPTH)
+-- =============================================================================
+-- Ensure schema usage is permitted
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+
+-- Revoke all table-level privileges from anon on all existing tables in schema public
+REVOKE ALL ON ALL TABLES IN SCHEMA public FROM anon;
+
+-- Revoke default privileges from anon for any future tables and sequences created by postgres
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public
+REVOKE ALL ON TABLES FROM anon;
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public
+REVOKE ALL ON SEQUENCES FROM anon;
+
+-- Grant only INSERT on public.leads to anon (strictly for public website lead capture)
+GRANT INSERT ON TABLE public.leads TO anon;
+
+-- Grant table-level CRUD privileges to authenticated
+-- (Actual row-level access is strictly governed by Row Level Security policies below)
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO authenticated;
+
+-- =============================================================================
+-- 17. ROW LEVEL SECURITY (RLS) POLICIES
 -- =============================================================================
 
 -- Enable RLS on all 15 tables
@@ -383,12 +406,13 @@ ALTER TABLE public.activity_logs ENABLE ROW LEVEL SECURITY;
 
 -- -----------------------------------------------------------------------------
 -- LEADS POLICIES:
--- 1. Public Anonymous/Authenticated can INSERT incoming leads
--- 2. ONLY authorized admins can SELECT, UPDATE, DELETE leads
+-- 1. Public Anonymous users can INSERT incoming leads
+-- 2. ONLY authorized admins can SELECT, INSERT, UPDATE, DELETE leads
+-- 3. Unauthorized authenticated users CANNOT insert or access leads
 -- -----------------------------------------------------------------------------
 DROP POLICY IF EXISTS "Allow public website lead inserts" ON public.leads;
 CREATE POLICY "Allow public website lead inserts" ON public.leads
-  FOR INSERT TO anon, authenticated
+  FOR INSERT TO anon
   WITH CHECK (true);
 
 DROP POLICY IF EXISTS "Allow admin full access to leads" ON public.leads;
@@ -499,11 +523,11 @@ CREATE POLICY "Admin full access to activity_logs" ON public.activity_logs
   WITH CHECK ((select auth.jwt() ->> 'email') IN ('musmannazir97@gmail.com', 'usamahameedahmadani@gmail.com'));
 
 -- =============================================================================
--- 17. STORAGE BUCKET FOR EVIDENCE FILES
+-- 18. STORAGE BUCKET FOR EVIDENCE FILES
 -- =============================================================================
 INSERT INTO storage.buckets (id, name, public)
 VALUES ('case-evidence', 'case-evidence', false)
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO UPDATE SET public = false;
 
 DROP POLICY IF EXISTS "Admin full access to case-evidence storage" ON storage.objects;
 CREATE POLICY "Admin full access to case-evidence storage"

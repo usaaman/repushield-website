@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import type { User, Session } from '@supabase/supabase-js'
-import { supabase, isSupabaseConfigured } from '@/lib/supabase'
+import { supabase, isSupabaseConfigured, AUTHORIZED_ADMIN_EMAILS } from '@/lib/supabase'
 
 interface AdminAuthContextType {
   user: User | null
@@ -28,17 +28,39 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
     // Get current session
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-      setUser(session?.user ?? null)
+      const email = session?.user?.email?.toLowerCase() || ''
+      const isAuthorized = AUTHORIZED_ADMIN_EMAILS.some(
+        (adminEmail) => adminEmail.toLowerCase() === email
+      )
+
+      if (session?.user && !isAuthorized) {
+        supabase.auth.signOut()
+        setSession(null)
+        setUser(null)
+      } else {
+        setSession(session)
+        setUser(session?.user ?? null)
+      }
       setLoading(false)
     })
 
     // Listen to auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-      setUser(session?.user ?? null)
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      const email = session?.user?.email?.toLowerCase() || ''
+      const isAuthorized = AUTHORIZED_ADMIN_EMAILS.some(
+        (adminEmail) => adminEmail.toLowerCase() === email
+      )
+
+      if (session?.user && !isAuthorized) {
+        await supabase.auth.signOut()
+        setSession(null)
+        setUser(null)
+      } else {
+        setSession(session)
+        setUser(session?.user ?? null)
+      }
       setLoading(false)
     })
 
@@ -55,8 +77,32 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         ),
       }
     }
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-    return { error }
+
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+    if (error) {
+      return { error }
+    }
+
+    // Verify authenticated user's email against authorized allowlist
+    const authenticatedEmail = data.user?.email?.toLowerCase() || ''
+    const isAuthorized = AUTHORIZED_ADMIN_EMAILS.some(
+      (adminEmail) => adminEmail.toLowerCase() === authenticatedEmail
+    )
+
+    if (!isAuthorized) {
+      await supabase.auth.signOut()
+      setUser(null)
+      setSession(null)
+      return {
+        error: new Error(
+          `Access Denied: The account "${data.user?.email}" is not authorized to access the RepuShield Business Management System.`
+        ),
+      }
+    }
+
+    setUser(data.user)
+    setSession(data.session)
+    return { error: null }
   }
 
   const signOut = async () => {

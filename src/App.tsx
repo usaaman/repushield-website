@@ -1,10 +1,18 @@
 import React, { Suspense, lazy } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
 
 // Layouts
 import { PublicLayout } from '@/components/layout/PublicLayout'
 import { AdsLandingLayout } from '@/components/layout/AdsLandingLayout'
 import { AdminLayout } from '@/components/layout/AdminLayout'
+import { AdminAuthProvider } from '@/context/AdminAuthContext'
+
+// Scoped provider shell ensuring unified AdminAuthProvider across all admin views
+const AdminAuthScope: React.FC = () => (
+  <AdminAuthProvider>
+    <Outlet />
+  </AdminAuthProvider>
+)
 
 // Public Pages (Standard Eager Loading for Fast TTFB)
 import { HomePage } from '@/pages/HomePage'
@@ -60,98 +68,101 @@ export function App() {
           <Route path="/google-ads" element={<GoogleAdsLandingPage />} />
         </Route>
 
-        {/* Admin Authentication Routes (Independent Shell) */}
-        <Route
-          path="/admin/login"
-          element={
-            <Suspense fallback={<AdminLoader />}>
-              <AdminLoginPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/admin/forgot-password"
-          element={
-            <Suspense fallback={<AdminLoader />}>
-              <AdminForgotPasswordPage />
-            </Suspense>
-          }
-        />
+        {/* Admin Section (Unified AdminAuthProvider Scope) */}
+        <Route element={<AdminAuthScope />}>
+          {/* Admin Authentication Routes (Independent Shell) */}
+          <Route
+            path="/admin/login"
+            element={
+              <Suspense fallback={<AdminLoader />}>
+                <AdminLoginPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/admin/forgot-password"
+            element={
+              <Suspense fallback={<AdminLoader />}>
+                <AdminForgotPasswordPage />
+              </Suspense>
+            }
+          />
 
-        {/* Admin Business Management System (Protected Layout Shell) */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route
-            index
-            element={
-              <Suspense fallback={<AdminLoader />}>
-                <AdminOverviewPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="leads"
-            element={
-              <Suspense fallback={<AdminLoader />}>
-                <AdminLeadsPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="customers"
-            element={
-              <Suspense fallback={<AdminLoader />}>
-                <AdminCustomersPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="cases"
-            element={
-              <Suspense fallback={<AdminLoader />}>
-                <AdminCasesPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="tasks"
-            element={
-              <Suspense fallback={<AdminLoader />}>
-                <AdminTasksPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="communications"
-            element={
-              <Suspense fallback={<AdminLoader />}>
-                <AdminCommunicationsPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="invoices"
-            element={
-              <Suspense fallback={<AdminLoader />}>
-                <AdminInvoicesPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="reports"
-            element={
-              <Suspense fallback={<AdminLoader />}>
-                <AdminReportsPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="settings"
-            element={
-              <Suspense fallback={<AdminLoader />}>
-                <AdminSettingsPage />
-              </Suspense>
-            }
-          />
+          {/* Admin Business Management System (Protected Layout Shell) */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route
+              index
+              element={
+                <Suspense fallback={<AdminLoader />}>
+                  <AdminOverviewPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="leads"
+              element={
+                <Suspense fallback={<AdminLoader />}>
+                  <AdminLeadsPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="customers"
+              element={
+                <Suspense fallback={<AdminLoader />}>
+                  <AdminCustomersPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="cases"
+              element={
+                <Suspense fallback={<AdminLoader />}>
+                  <AdminCasesPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="tasks"
+              element={
+                <Suspense fallback={<AdminLoader />}>
+                  <AdminTasksPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="communications"
+              element={
+                <Suspense fallback={<AdminLoader />}>
+                  <AdminCommunicationsPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="invoices"
+              element={
+                <Suspense fallback={<AdminLoader />}>
+                  <AdminInvoicesPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="reports"
+              element={
+                <Suspense fallback={<AdminLoader />}>
+                  <AdminReportsPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="settings"
+              element={
+                <Suspense fallback={<AdminLoader />}>
+                  <AdminSettingsPage />
+                </Suspense>
+              }
+            />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

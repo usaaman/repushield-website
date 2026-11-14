@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { AdminSidebar } from '@/components/admin/AdminSidebar'
 import { AdminHeader } from '@/components/admin/AdminHeader'
-import { AdminAuthProvider, useAdminAuth } from '@/context/AdminAuthContext'
+import { useAdminAuth } from '@/context/AdminAuthContext'
 import { ProtectedRoute } from '@/components/admin/ProtectedRoute'
 import { usePageSEO } from '@/hooks/usePageSEO'
 import { AlertTriangle, KeyRound } from 'lucide-react'
@@ -52,10 +52,8 @@ const AdminLayoutInner: React.FC = () => {
 
 export const AdminLayout: React.FC = () => {
   return (
-    <AdminAuthProvider>
-      <ProtectedRoute>
-        <AdminLayoutInner />
-      </ProtectedRoute>
-    </AdminAuthProvider>
+    <ProtectedRoute>
+      <AdminLayoutInner />
+    </ProtectedRoute>
   )
 }

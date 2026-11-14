@@ -1,12 +1,10 @@
 import React from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
 import { useAdminAuth } from '@/context/AdminAuthContext'
+import { AUTHORIZED_ADMIN_EMAILS } from '@/lib/supabase'
 import { ShieldAlert, LogOut } from 'lucide-react'
 
-export const AUTHORIZED_ADMIN_EMAILS = [
-  'musmannazir97@gmail.com',
-  'usamahameedahmadani@gmail.com',
-]
+export { AUTHORIZED_ADMIN_EMAILS }
 
 export const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading, isConfigured, signOut } = useAdminAuth()
