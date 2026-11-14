@@ -12,7 +12,7 @@ export const AdsLandingLayout: React.FC = () => {
 
   const [isScrolled, setIsScrolled] = useState(false)
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20came%20from%20your%20Google%20Ad%20and%20need%20urgent%20help%20with%20negative%20reviews.'
+    'https://wa.me/923406523353?text=Hello%20RiseRepute.%20I%20came%20from%20your%20Google%20Ad%20and%20need%20urgent%20help%20with%20negative%20reviews.'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -175,7 +175,7 @@ export const AdsLandingLayout: React.FC = () => {
           </div>
 
           <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-dark-muted">
-            <p>© {new Date().getFullYear()} RepuShield. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} RiseRepute. All rights reserved.</p>
             <p className="text-center sm:text-right">
               Independent Policy-Focused Online Reputation Management Assistance.
             </p>

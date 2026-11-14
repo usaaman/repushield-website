@@ -168,7 +168,7 @@ export const AdminLoginPage: React.FC = () => {
                 disabled={loading}
                 className="w-full flex justify-center items-center py-3 px-4 rounded-xl shadow-lg shadow-teal/20 text-sm font-bold text-navy bg-teal hover:bg-teal-light focus:outline-none transition-all disabled:opacity-50"
               >
-                {loading ? 'Authenticating...' : 'Sign In to RepuShield BMS'}
+                {loading ? 'Authenticating...' : 'Sign In to RiseRepute BMS'}
               </button>
             </div>
           </form>

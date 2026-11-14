@@ -3,7 +3,7 @@ import type { BusinessSettings } from '@/types/database.types'
 
 export const defaultSettings: BusinessSettings = {
   id: 'default_settings',
-  business_name: 'RepuShield',
+  business_name: 'RiseRepute',
   contact_email: 'usamahameedahmadani@gmail.com',
   whatsapp_number: '+92 340 6523353',
   address: 'USA, Canada & Pakistan Operations',

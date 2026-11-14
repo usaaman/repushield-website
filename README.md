@@ -1,10 +1,10 @@
-# RepuShield Website
+# RiseRepute Website
 
-Premium, responsive business website for RepuShield, an independent online reputation management assistance service.
+Premium, responsive business website for RiseRepute, an independent online reputation management assistance service.
 
 ## Project goals
 
-- Present RepuShield's services professionally to audiences in the USA, Canada, and Pakistan.
+- Present RiseRepute's services professionally to audiences in the USA, Canada, and Pakistan.
 - Explain policy-focused Google review reporting and appeal assistance transparently.
 - Generate genuine customer inquiries through WhatsApp, email, and a contact form.
 - Provide a separate Google Ads landing page.
@@ -12,7 +12,7 @@ Premium, responsive business website for RepuShield, an independent online reput
 
 ## Important business and compliance rules
 
-- RepuShield is independent and is not affiliated with Google.
+- RiseRepute is independent and is not affiliated with Google.
 - Google makes the final decision about whether a review violates its policies and whether it is removed.
 - Never promise guaranteed review removal.
 - Never suggest that genuine negative reviews can simply be removed.

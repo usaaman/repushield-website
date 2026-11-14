@@ -94,7 +94,7 @@ export const AdminSettingsPage: React.FC = () => {
       {saveSuccess && (
         <div className="p-4 rounded-xl bg-teal/10 border border-teal/30 text-teal-light text-sm flex items-center gap-2">
           <CheckCircle2 className="w-5 h-5 text-teal shrink-0" />
-          <span>Settings saved successfully to RepuShield business records.</span>
+          <span>Settings saved successfully to RiseRepute business records.</span>
         </div>
       )}
 
@@ -363,7 +363,7 @@ export const AdminSettingsPage: React.FC = () => {
 
         <div className="text-xs text-slate-400 space-y-2">
           <p>
-            The RepuShield BMS is architected for PostgreSQL on Supabase with 15 normalized tables, foreign keys,
+            The RiseRepute BMS is architected for PostgreSQL on Supabase with 15 normalized tables, foreign keys,
             and Row Level Security (RLS) policies.
           </p>
           <p>

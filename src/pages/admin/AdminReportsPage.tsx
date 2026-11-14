@@ -120,7 +120,7 @@ export const AdminReportsPage: React.FC = () => {
       l.status,
       l.created_at,
     ])
-    downloadCSV('repushield_leads', headers, rows)
+    downloadCSV('riserepute_leads', headers, rows)
   }
 
   const exportCasesCSV = () => {
@@ -133,7 +133,7 @@ export const AdminReportsPage: React.FC = () => {
       c.violation_category || '',
       c.created_at,
     ])
-    downloadCSV('repushield_cases', headers, rows)
+    downloadCSV('riserepute_cases', headers, rows)
   }
 
   const exportInvoicesCSV = () => {
@@ -147,7 +147,7 @@ export const AdminReportsPage: React.FC = () => {
       inv.due_date,
       inv.created_at,
     ])
-    downloadCSV('repushield_invoices', headers, rows)
+    downloadCSV('riserepute_invoices', headers, rows)
   }
 
   return (

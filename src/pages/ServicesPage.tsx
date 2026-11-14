@@ -31,7 +31,7 @@ import {
 
 export const ServicesPage: React.FC = () => {
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20learn%20more%20about%20your%20Google%20review%20removal%20assistance.'
+    'https://wa.me/923406523353?text=Hello%20RiseRepute.%20I%20would%20like%20to%20learn%20more%20about%20your%20Google%20review%20removal%20assistance.'
 
   // Section 2: Five Core Negative Review Services
   const mainServices = [
@@ -180,7 +180,7 @@ export const ServicesPage: React.FC = () => {
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-card-light-page text-xs font-semibold text-ocean shadow-xs">
             <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
             <span className="tracking-wide text-xs">
-              RepuShield Review Services
+              RiseRepute Review Services
             </span>
             <span className="text-ocean/40">•</span>
             <span className="font-script text-base text-ocean font-normal tracking-wide">
@@ -260,7 +260,7 @@ export const ServicesPage: React.FC = () => {
                   className="p-8 sm:p-10"
                 >
                   <div className="grid lg:grid-cols-12 gap-8 items-start">
-                    {/* Left Column: Problem & RepuShield Solution */}
+                    {/* Left Column: Problem & RiseRepute Solution */}
                     <div className="lg:col-span-7 space-y-4">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center icon-floating">
@@ -289,7 +289,7 @@ export const ServicesPage: React.FC = () => {
                       <div className="space-y-2">
                         <p className="text-xs font-bold uppercase tracking-wider text-ocean flex items-center gap-1.5">
                           <ShieldCheck className="w-3.5 h-3.5 text-teal" />
-                          How RepuShield Helps
+                          How RiseRepute Helps
                         </p>
                         <p className="text-sm text-secondary leading-relaxed">
                           {service.howWeHelp}
@@ -397,7 +397,7 @@ export const ServicesPage: React.FC = () => {
             <FadeIn direction="up" delay={0.4}>
               <div className="mt-10 p-4 rounded-2xl bg-white/5 border border-white/15 text-center max-w-2xl mx-auto">
                 <p className="text-xs text-slate-300">
-                  <strong className="text-white font-semibold">Important note:</strong> RepuShield does not control Google’s internal decision-making or guarantee review removals. All reporting and appeals are evaluated independently by Google LLC.
+                  <strong className="text-white font-semibold">Important note:</strong> RiseRepute does not control Google’s internal decision-making or guarantee review removals. All reporting and appeals are evaluated independently by Google LLC.
                 </p>
               </div>
             </FadeIn>
@@ -517,7 +517,7 @@ export const ServicesPage: React.FC = () => {
                   </h3>
 
                   <p className="text-base text-secondary leading-relaxed">
-                    <strong className="text-navy font-semibold">RepuShield</strong> is an independent service provider and is <strong className="text-navy font-semibold">not affiliated with, endorsed by, or officially connected to Google LLC</strong>. Google independently determines whether reported reviews violate its policies and whether any action is taken.
+                    <strong className="text-navy font-semibold">RiseRepute</strong> is an independent service provider and is <strong className="text-navy font-semibold">not affiliated with, endorsed by, or officially connected to Google LLC</strong>. Google independently determines whether reported reviews violate its policies and whether any action is taken.
                   </p>
 
                   <p className="text-sm text-secondary leading-relaxed">

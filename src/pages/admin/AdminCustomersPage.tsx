@@ -307,7 +307,7 @@ export const AdminCustomersPage: React.FC = () => {
           isOpen={isAddModalOpen}
           onClose={() => setIsAddModalOpen(false)}
           title="Register New Customer"
-          subtitle="Add an active customer to RepuShield BMS"
+          subtitle="Add an active customer to RiseRepute BMS"
           maxWidth="lg"
         >
           <form onSubmit={handleCreateCustomer} className="space-y-4 text-xs">

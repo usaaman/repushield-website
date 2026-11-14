@@ -37,7 +37,7 @@ export const AboutPage: React.FC = () => {
   const prefersReduced = usePrefersReducedMotion()
   const { x: heroBgX, y: heroBgY } = useParallax(12)
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20learn%20more%20about%20your%20Google%20review%20removal%20assistance.'
+    'https://wa.me/923406523353?text=Hello%20RiseRepute.%20I%20would%20like%20to%20learn%20more%20about%20your%20Google%20review%20removal%20assistance.'
 
   // Section 3: Three Approach Pillars
   const approachPillars = [
@@ -122,7 +122,7 @@ export const AboutPage: React.FC = () => {
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-card-light-page text-xs font-semibold text-ocean shadow-xs">
             <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
             <span className="tracking-wide text-xs">
-              About RepuShield
+              About RiseRepute
             </span>
             <span className="text-ocean/40">•</span>
             <span className="font-script text-base text-ocean font-normal tracking-wide">
@@ -132,7 +132,7 @@ export const AboutPage: React.FC = () => {
         }
         title={
           <>
-            About <span className="text-ocean">RepuShield.</span>
+            About <span className="text-ocean">RiseRepute.</span>
           </>
         }
         subtitle="A transparent, policy-focused approach to negative Google review assistance."
@@ -241,7 +241,7 @@ export const AboutPage: React.FC = () => {
 
               <FadeIn direction="up" delay={0.18}>
                 <p className="text-base sm:text-lg text-secondary leading-relaxed font-normal">
-                  RepuShield provides independent online reputation management assistance to businesses dealing with reviews they believe may violate platform policies. Our approach focuses on understanding the concern, reviewing available information and guiding businesses through appropriate reporting and appeal processes.
+                  RiseRepute provides independent online reputation management assistance to businesses dealing with reviews they believe may violate platform policies. Our approach focuses on understanding the concern, reviewing available information and guiding businesses through appropriate reporting and appeal processes.
                 </p>
               </FadeIn>
 
@@ -507,11 +507,11 @@ export const AboutPage: React.FC = () => {
                   </h3>
 
                   <p className="text-base text-secondary leading-relaxed">
-                    <strong className="text-navy font-semibold">RepuShield</strong> is an independent service provider and is <strong className="text-navy font-semibold">not affiliated with, endorsed by, or officially connected to Google LLC</strong>. Google Maps, Google Business Profile, and Google Reviews are registered trademarks of Google LLC.
+                    <strong className="text-navy font-semibold">RiseRepute</strong> is an independent service provider and is <strong className="text-navy font-semibold">not affiliated with, endorsed by, or officially connected to Google LLC</strong>. Google Maps, Google Business Profile, and Google Reviews are registered trademarks of Google LLC.
                   </p>
 
                   <p className="text-sm text-secondary leading-relaxed">
-                    Google LLC independently determines whether reported content violates its policies and whether any action is taken. RepuShield does not possess internal access to Google moderation systems, does not control appeal timelines, and cannot guarantee the removal of any review.
+                    Google LLC independently determines whether reported content violates its policies and whether any action is taken. RiseRepute does not possess internal access to Google moderation systems, does not control appeal timelines, and cannot guarantee the removal of any review.
                   </p>
 
                   <div className="pt-2 flex items-center gap-2 text-xs font-semibold text-ocean">

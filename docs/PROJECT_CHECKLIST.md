@@ -1,10 +1,10 @@
-# RepuShield Project Checklist
+# RiseRepute Project Checklist
 
 Complete phases in order. Do not skip verification.
 
 ## Phase 0 — Before coding
 
-- [ ] Create a dedicated project folder, e.g. `RepuShield`.
+- [ ] Create a dedicated project folder, e.g. `RiseRepute`.
 - [ ] Open the folder in Antigravity.
 - [ ] Add this starter documentation to the project root.
 - [ ] Confirm whether Lovable's generated project will be used as a visual/code reference or whether development starts fresh.

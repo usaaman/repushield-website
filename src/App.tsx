@@ -42,7 +42,7 @@ const AdminForgotPasswordPage = lazy(() => import('@/pages/admin/AdminForgotPass
 const AdminLoader: React.FC = () => (
   <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-4 text-slate-300">
     <div className="w-10 h-10 border-4 border-teal border-t-transparent rounded-full animate-spin" />
-    <p className="text-sm font-medium">Loading RepuShield BMS Module...</p>
+    <p className="text-sm font-medium">Loading RiseRepute BMS Module...</p>
     <span className="text-xs text-slate-500 font-mono">Single Admin Business System</span>
   </div>
 )

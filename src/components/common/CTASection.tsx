@@ -24,7 +24,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
   className = '',
 }) => {
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hi%20RepuShield%2C%20I%20would%20like%20assistance%20with%20a%20Google%20review%20policy%20assessment.'
+    'https://wa.me/923406523353?text=Hi%20RiseRepute%2C%20I%20would%20like%20assistance%20with%20a%20Google%20review%20policy%20assessment.'
 
   return (
     <section className={`py-16 sm:py-24 relative overflow-hidden ${className}`}>
@@ -69,7 +69,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
               <div className="pt-6 border-t border-white/10 text-xs text-dark-muted flex items-start gap-2 max-w-xl">
                 <span className="text-teal font-semibold shrink-0">Note:</span>
                 <span>
-                  RepuShield is independent and not affiliated with Google LLC. Google retains sole authority over review determinations and removals under its published content policies.
+                  RiseRepute is independent and not affiliated with Google LLC. Google retains sole authority over review determinations and removals under its published content policies.
                 </span>
               </div>
             )}

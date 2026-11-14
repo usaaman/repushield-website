@@ -26,7 +26,7 @@ import { useParallax } from '@/hooks/useParallax'
 export const CaseStudiesPage: React.FC = () => {
   const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20discuss%20a%20confidential%20Google%20review%20case.'
+    'https://wa.me/923406523353?text=Hello%20RiseRepute.%20I%20would%20like%20to%20discuss%20a%20confidential%20Google%20review%20case.'
 
   // Educational Policy Framework Scenarios (How policies apply in real life without inventing client names)
   const policyFrameworks = [
@@ -165,7 +165,7 @@ export const CaseStudiesPage: React.FC = () => {
 
             <div className="space-y-4 text-sm sm:text-base text-secondary leading-relaxed">
               <p>
-                Many reputation agencies publish simulated before-and-after star rating meters, generic stock photo testimonials, or invented customer logos. <strong className="text-navy font-semibold">RepuShield strictly rejects these deceptive practices.</strong>
+                Many reputation agencies publish simulated before-and-after star rating meters, generic stock photo testimonials, or invented customer logos. <strong className="text-navy font-semibold">RiseRepute strictly rejects these deceptive practices.</strong>
               </p>
               <p>
                 When a business owner comes to us with disputed reviews, they trust us with sensitive operational realities. We never broadcast client disputes or expose businesses to retaliatory attacks. Verified, client-authorized case briefs will be published as formal documentation clearances are granted.
@@ -319,7 +319,7 @@ export const CaseStudiesPage: React.FC = () => {
 
           <FadeIn direction="up" delay={0.4}>
             <p className="text-[11px] text-slate-400 max-w-md mx-auto pt-2">
-              RepuShield is an independent provider not affiliated with Google LLC. Google independently decides on review removals.
+              RiseRepute is an independent provider not affiliated with Google LLC. Google independently decides on review removals.
             </p>
           </FadeIn>
         </Container>

@@ -3,7 +3,7 @@ import React from 'react'
 export interface CurvedHeroTransitionProps {
   /**
    * Target fill color for the bottom area.
-   * Defaults to RepuShield's soft page background #F6F8FA ('soft').
+   * Defaults to RiseRepute's soft page background #F6F8FA ('soft').
    */
   fillColor?: 'soft' | 'white' | 'navy' | string
   /**

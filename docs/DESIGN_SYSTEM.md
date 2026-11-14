@@ -1,4 +1,4 @@
-# RepuShield Design System
+# RiseRepute Design System
 
 This is the approved starting design system. It is a consistent direction, not permission to sacrifice usability for decoration.
 

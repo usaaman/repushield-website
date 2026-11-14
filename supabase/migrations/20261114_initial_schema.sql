@@ -1,5 +1,5 @@
 -- =============================================================================
--- RepuShield Business Management System (BMS)
+-- RiseRepute Business Management System (BMS)
 -- Database Migration: 20261114_initial_schema.sql
 -- Standalone, Idempotent PostgreSQL 15+ / Supabase Migration
 -- =============================================================================
@@ -332,7 +332,7 @@ CREATE INDEX IF NOT EXISTS idx_payments_date ON public.payments(payment_date DES
 -- =============================================================================
 CREATE TABLE IF NOT EXISTS public.business_settings (
   id TEXT PRIMARY KEY DEFAULT 'default_settings',
-  business_name TEXT NOT NULL DEFAULT 'RepuShield',
+  business_name TEXT NOT NULL DEFAULT 'RiseRepute',
   contact_email TEXT NOT NULL DEFAULT 'usamahameedahmadani@gmail.com',
   whatsapp_number TEXT NOT NULL DEFAULT '+92 340 6523353',
   address TEXT NOT NULL DEFAULT 'USA, Canada & Pakistan Operations',

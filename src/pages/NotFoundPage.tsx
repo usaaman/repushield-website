@@ -19,7 +19,7 @@ export const NotFoundPage: React.FC = () => {
               Page Not Found
             </h1>
             <p className="text-secondary text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-              The page you are looking for does not exist or may have been moved. Return to the homepage to explore RepuShield's policy-focused assistance.
+              The page you are looking for does not exist or may have been moved. Return to the homepage to explore RiseRepute's policy-focused assistance.
             </p>
           </div>
 

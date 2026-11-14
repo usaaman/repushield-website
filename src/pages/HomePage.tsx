@@ -48,7 +48,7 @@ export const HomePage: React.FC = () => {
   const { x: glowX, y: glowY } = useParallax(-16)
 
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20need%20help%20with%20negative%20Google%20reviews%20affecting%20my%20business.'
+    'https://wa.me/923406523353?text=Hello%20RiseRepute.%20I%20need%20help%20with%20negative%20Google%20reviews%20affecting%20my%20business.'
 
   // Core Services Data (5 Targeted Services)
   const services = [
@@ -146,7 +146,7 @@ export const HomePage: React.FC = () => {
     },
   ]
 
-  // Why Choose RepuShield Data
+  // Why Choose RiseRepute Data
   const whyChoosePoints = [
     {
       icon: <ShieldCheck className="w-6 h-6 text-teal" />,
@@ -253,7 +253,7 @@ export const HomePage: React.FC = () => {
         'If an initial automated report is denied, an official appeal option is often available through the Google Business Profile management portal. We assist in preparing a secondary appeal dossier citing specific policy clauses and verifiable facts for human re-evaluation.',
     },
     {
-      question: 'How do I get started with RepuShield?',
+      question: 'How do I get started with RiseRepute?',
       answer:
         'Simply share the disputed review link and business details through our contact form or directly on WhatsApp. We provide an initial policy assessment and explain the available reporting options.',
     },
@@ -318,7 +318,7 @@ export const HomePage: React.FC = () => {
             {/* Supporting Copy */}
             <FadeIn direction="up" delay={0.25} duration={0.65}>
               <p className="text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-2xl">
-                Don't let suspicious or policy-violating reviews damage the trust you've built. RepuShield helps businesses identify and report eligible negative Google reviews through official policy-based reporting and appeal processes.
+                Don't let suspicious or policy-violating reviews damage the trust you've built. RiseRepute helps businesses identify and report eligible negative Google reviews through official policy-based reporting and appeal processes.
               </p>
             </FadeIn>
 
@@ -454,7 +454,7 @@ export const HomePage: React.FC = () => {
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-7 space-y-6">
               <Badge variant="teal" scriptNote="Legitimate Relief">
-                The RepuShield Solution
+                The RiseRepute Solution
               </Badge>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-navy leading-tight">
                 Your Business Deserves a{' '}
@@ -464,7 +464,7 @@ export const HomePage: React.FC = () => {
                 You’ve invested years delivering exceptional products and services. When an illegitimate, fake, or policy-breaching review appears, you don't have to simply accept the damage.
               </p>
               <p className="text-sm sm:text-base text-secondary leading-relaxed">
-                RepuShield provides structured, professional assistance to evaluate disputed reviews against Google’s published guidelines, build verifiable documentation dossiers, and guide your business through official reporting and appeal pathways.
+                RiseRepute provides structured, professional assistance to evaluate disputed reviews against Google’s published guidelines, build verifiable documentation dossiers, and guide your business through official reporting and appeal pathways.
               </p>
               <div className="pt-2 flex flex-wrap gap-4">
                 <Button variant="primary" size="md" to="/contact">
@@ -626,7 +626,7 @@ export const HomePage: React.FC = () => {
 
             <div className="mt-10 p-4 rounded-2xl bg-white/5 border border-white/15 text-center max-w-2xl mx-auto">
               <p className="text-xs text-slate-300">
-                <strong className="text-white font-semibold">Important:</strong> RepuShield does not control Google’s internal moderation systems or guarantee outcomes. All reports and appeals are independently decided by Google LLC.
+                <strong className="text-white font-semibold">Important:</strong> RiseRepute does not control Google’s internal moderation systems or guarantee outcomes. All reports and appeals are independently decided by Google LLC.
               </p>
             </div>
           </Container>
@@ -635,14 +635,14 @@ export const HomePage: React.FC = () => {
       </div>
 
       {/* =========================================================================
-          6. WHY CHOOSE REPUSHIELD SECTION
+          6. WHY CHOOSE RISEREPUTE SECTION
           ========================================================================= */}
       <SectionWrapper variant="soft" className="py-20 sm:py-28">
         <Container size="xl">
           <SectionHeading
             badge={<Badge variant="teal">Our Commitments</Badge>}
             title="Why Businesses Trust"
-            accent="RepuShield"
+            accent="RiseRepute"
             subtitle="Genuine business value grounded in published policies, transparent communication, and ethical practices."
           />
 
@@ -735,7 +735,7 @@ export const HomePage: React.FC = () => {
 
           <div className="max-w-3xl mx-auto space-y-4 text-dark-muted text-sm sm:text-base leading-relaxed">
             <p>
-              <strong className="text-white">RepuShield is an independent service provider and is not affiliated with, endorsed by, or officially connected to Google LLC.</strong> Google Maps, Google Business Profile, and Google Reviews are trademarks of Google LLC.
+              <strong className="text-white">RiseRepute is an independent service provider and is not affiliated with, endorsed by, or officially connected to Google LLC.</strong> Google Maps, Google Business Profile, and Google Reviews are trademarks of Google LLC.
             </p>
             <p>
               Google independently determines whether reported reviews violate its policies and whether any action is taken. We assist business owners with policy-compliant evidence documentation and official dispute routing. We do not claim guaranteed removals or proprietary deletion tools.

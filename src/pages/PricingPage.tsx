@@ -27,7 +27,7 @@ import {
 
 export const PricingPage: React.FC = () => {
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20request%20a%20quote%20for%20Google%20review%20assistance.'
+    'https://wa.me/923406523353?text=Hello%20RiseRepute.%20I%20would%20like%20to%20request%20a%20quote%20for%20Google%20review%20assistance.'
 
   // Factors that determine custom quotes
   const quoteFactors = [
@@ -217,7 +217,7 @@ export const PricingPage: React.FC = () => {
             <div className="space-y-3">
               <Badge variant="ocean">Complete Transparency</Badge>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-navy">
-                What Every RepuShield Engagement Includes
+                What Every RiseRepute Engagement Includes
               </h2>
               <p className="text-sm sm:text-base text-secondary">
                 We don’t cut corners or rely on automated scripts. Every quoted engagement provides comprehensive procedural support:
@@ -303,7 +303,7 @@ export const PricingPage: React.FC = () => {
 
           <FadeIn direction="up" delay={0.4}>
             <p className="text-[11px] text-slate-400 max-w-md mx-auto pt-2">
-              RepuShield is an independent provider not affiliated with Google LLC. Google independently decides on review removals.
+              RiseRepute is an independent provider not affiliated with Google LLC. Google independently decides on review removals.
             </p>
           </FadeIn>
         </Container>

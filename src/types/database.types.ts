@@ -1,5 +1,5 @@
 /**
- * RepuShield Business Management System (BMS)
+ * RiseRepute Business Management System (BMS)
  * Database Types & Schema Model
  */
 

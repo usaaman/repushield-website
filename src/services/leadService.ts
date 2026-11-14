@@ -217,7 +217,7 @@ export const leadService = {
             reviewCount: input.reviewCount?.trim() || '1',
             reviewUrls: input.reviewUrls?.trim() || 'Not provided',
             details: cleanDetails,
-            _subject: `New RepuShield Review Inquiry from ${cleanBusiness} (${input.country?.trim() || input.source})`,
+            _subject: `New RiseRepute Review Inquiry from ${cleanBusiness} (${input.country?.trim() || input.source})`,
           }),
         })
 

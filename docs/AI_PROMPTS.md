@@ -1,10 +1,10 @@
-# RepuShield — Antigravity Prompt Library
+# RiseRepute — Antigravity Prompt Library
 
 Use one prompt at a time. Review the output before moving to the next prompt. Never ask an agent to rewrite the entire project without a specific reason.
 
 ## Prompt 1 — Inspect only (first prompt)
 
-You are the senior engineer responsible for the RepuShield website project.
+You are the senior engineer responsible for the RiseRepute website project.
 
 First inspect the currently open project folder, files, installed tools, and environment. Do not create, edit, delete, rename, or install anything yet.
 
@@ -19,11 +19,11 @@ Report:
 6. Any risks or conflicts.
 7. A recommended step-by-step implementation plan.
 
-The project must follow the RepuShield design system. The admin dashboard is a frontend prototype only. Do not change anything until I approve your plan.
+The project must follow the RiseRepute design system. The admin dashboard is a frontend prototype only. Do not change anything until I approve your plan.
 
 ## Prompt 2 — Project setup (use only after approving inspection)
 
-Set up the RepuShield frontend foundation based on the approved inspection report.
+Set up the RiseRepute frontend foundation based on the approved inspection report.
 
 Requirements:
 - Use React + Vite + TypeScript unless the existing project has a suitable working alternative.
@@ -43,7 +43,7 @@ Do not overwrite working configuration without explaining why. After setup, run 
 
 ## Prompt 3 — Design system and shared components
 
-Implement the RepuShield design system from `docs/DESIGN_SYSTEM.md`.
+Implement the RiseRepute design system from `docs/DESIGN_SYSTEM.md`.
 
 Create reusable:
 - Site container and section wrappers.
@@ -68,7 +68,7 @@ Do not use fake testimonials or fake statistics. Test desktop and mobile. Run bu
 
 ## Prompt 4 — Homepage
 
-Build the complete RepuShield homepage using the approved shared design system.
+Build the complete RiseRepute homepage using the approved shared design system.
 
 Include:
 - Premium responsive navigation.
@@ -81,7 +81,7 @@ Include:
 - Floating glass information badge/cards where appropriate.
 - Service overview.
 - How it works.
-- Why choose RepuShield.
+- Why choose RiseRepute.
 - Industries served, without unsupported claims.
 - Transparency section.
 - FAQ preview.
@@ -144,7 +144,7 @@ Contact form fields:
 
 For now, build proper frontend validation and clear loading/success/error UI. Do not pretend form data is stored or emailed until a real form provider/backend is configured.
 
-FAQ should explain what RepuShield does, eligible review concerns, reporting and appeal assistance, realistic expectations, timelines (without inventing guarantees), and how to contact the business.
+FAQ should explain what RiseRepute does, eligible review concerns, reporting and appeal assistance, realistic expectations, timelines (without inventing guarantees), and how to contact the business.
 
 ## Prompt 8 — Google Ads landing page
 

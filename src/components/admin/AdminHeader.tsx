@@ -115,7 +115,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ onToggleMobileMenu }) 
             </div>
             <div className="space-y-1.5 pt-0.5">
               <p className="text-sm font-medium text-slate-200 leading-relaxed">
-                Are you sure you want to sign out of your RepuShield admin account?
+                Are you sure you want to sign out of your RiseRepute admin account?
               </p>
               {user?.email && (
                 <p className="text-xs text-slate-400">

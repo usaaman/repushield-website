@@ -19,7 +19,7 @@ const ORGANIZATION_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   '@id': `${SITE_URL}/#organization`,
-  name: 'RepuShield',
+  name: 'RiseRepute',
   url: `${SITE_URL}/`,
   logo: `${SITE_URL}/favicon.svg`,
   image: DEFAULT_IMAGE,
@@ -47,7 +47,7 @@ const WEBSITE_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${SITE_URL}/#website`,
-  name: 'RepuShield',
+  name: 'RiseRepute',
   url: `${SITE_URL}/`,
   publisher: {
     '@id': `${SITE_URL}/#organization`,
@@ -111,10 +111,10 @@ const FAQ_SCHEMA = {
     },
     {
       '@type': 'Question',
-      name: 'Is RepuShield officially affiliated with Google?',
+      name: 'Is RiseRepute officially affiliated with Google?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. RepuShield is an independent service provider and is not affiliated with, endorsed by, or connected to Google LLC. We assist business owners in understanding and utilizing Google’s own publicly published review reporting and appeal channels effectively.',
+        text: 'No. RiseRepute is an independent service provider and is not affiliated with, endorsed by, or connected to Google LLC. We assist business owners in understanding and utilizing Google’s own publicly published review reporting and appeal channels effectively.',
       },
     },
   ],
@@ -126,10 +126,10 @@ const ADS_FAQ_SCHEMA = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Can RepuShield guarantee that a Google review will be removed?',
+      name: 'Can RiseRepute guarantee that a Google review will be removed?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'No. RepuShield does not and cannot guarantee review removal. Google LLC holds exclusive authority over content on Google Maps and Google Business Profiles. Our role is strictly advisory: we audit disputed reviews against Google’s published guidelines, build factual evidence dossiers, and guide your business through official reporting and appeal mechanisms.',
+        text: 'No. RiseRepute does not and cannot guarantee review removal. Google LLC holds exclusive authority over content on Google Maps and Google Business Profiles. Our role is strictly advisory: we audit disputed reviews against Google’s published guidelines, build factual evidence dossiers, and guide your business through official reporting and appeal mechanisms.',
       },
     },
     {
@@ -153,7 +153,7 @@ const ADS_FAQ_SCHEMA = {
 
 export const SEO_MAP: Record<string, RouteSEO> = {
   '/': {
-    title: 'RepuShield — Negative Google Review Removal Assistance & Reputation Protection',
+    title: 'RiseRepute — Negative Google Review Removal Assistance & Reputation Protection',
     description:
       'Professional negative Google review removal assistance for businesses. We help identify, document, and report fake, 1-star, and policy-violating Google reviews through official reporting and appeal channels.',
     keywords:
@@ -162,10 +162,10 @@ export const SEO_MAP: Record<string, RouteSEO> = {
     structuredData: [ORGANIZATION_SCHEMA, WEBSITE_SCHEMA],
   },
   '/about': {
-    title: 'About RepuShield — Policy-Focused Online Reputation Assistance',
+    title: 'About RiseRepute — Policy-Focused Online Reputation Assistance',
     description:
-      'Learn about RepuShield’s principled approach to negative Google review assessment, factual dossier assembly, and business reputation protection.',
-    keywords: 'about RepuShield, reputation counsel, Google review policy specialists, business review assistance',
+      'Learn about RiseRepute’s principled approach to negative Google review assessment, factual dossier assembly, and business reputation protection.',
+    keywords: 'about RiseRepute, reputation counsel, Google review policy specialists, business review assistance',
     breadcrumbName: 'About Us',
     structuredData: [
       ORGANIZATION_SCHEMA,
@@ -176,7 +176,7 @@ export const SEO_MAP: Record<string, RouteSEO> = {
     ],
   },
   '/services': {
-    title: 'Services — 1-Star, Fake & Negative Google Review Removal | RepuShield',
+    title: 'Services — 1-Star, Fake & Negative Google Review Removal | RiseRepute',
     description:
       'Specialized Google review assistance: 1-star review audits, fake review reporting, policy violation checks, and official appeal escalation.',
     keywords:
@@ -191,7 +191,7 @@ export const SEO_MAP: Record<string, RouteSEO> = {
     ],
   },
   '/pricing': {
-    title: 'Pricing & Custom Quotes — Transparent Review Assessment | RepuShield',
+    title: 'Pricing & Custom Quotes — Transparent Review Assessment | RiseRepute',
     description:
       'Every review dispute is unique. Request a transparent, quote-based evaluation for negative Google review removal and appeal guidance.',
     keywords: 'Google review assistance pricing, custom quote reputation management, review removal evaluation cost',
@@ -205,7 +205,7 @@ export const SEO_MAP: Record<string, RouteSEO> = {
     ],
   },
   '/case-studies': {
-    title: 'Case Studies & Policy Frameworks — Client Confidentiality | RepuShield',
+    title: 'Case Studies & Policy Frameworks — Client Confidentiality | RiseRepute',
     description:
       'Discover how Google review policies apply to real-world disputes including competitor attacks, former employee conflicts, and off-topic spam.',
     keywords: 'Google review case studies, review policy frameworks, review disputes real world, competitor attack removal',
@@ -219,10 +219,10 @@ export const SEO_MAP: Record<string, RouteSEO> = {
     ],
   },
   '/contact': {
-    title: 'Contact Us — Get Help With Negative Google Reviews | RepuShield',
+    title: 'Contact Us — Get Help With Negative Google Reviews | RiseRepute',
     description:
       'Submit your disputed Google review details or contact us directly on WhatsApp for an objective, confidential policy evaluation.',
-    keywords: 'contact RepuShield, submit review for evaluation, negative Google review consultation, WhatsApp reputation help',
+    keywords: 'contact RiseRepute, submit review for evaluation, negative Google review consultation, WhatsApp reputation help',
     breadcrumbName: 'Contact',
     structuredData: [
       ORGANIZATION_SCHEMA,
@@ -233,7 +233,7 @@ export const SEO_MAP: Record<string, RouteSEO> = {
     ],
   },
   '/faq': {
-    title: 'FAQ — Google Review Removal & Appeal Questions Answered | RepuShield',
+    title: 'FAQ — Google Review Removal & Appeal Questions Answered | RiseRepute',
     description:
       'Honest, straightforward answers about negative Google reviews, 1-star ratings, policy qualification, timelines, and appeal procedures.',
     keywords: 'Google review FAQ, can you remove 1-star reviews, fake review questions, how long does Google review appeal take',
@@ -247,7 +247,7 @@ export const SEO_MAP: Record<string, RouteSEO> = {
     ],
   },
   '/google-ads': {
-    title: 'Negative Google Reviews Hurting Your Business? Get Expert Help | RepuShield',
+    title: 'Negative Google Reviews Hurting Your Business? Get Expert Help | RiseRepute',
     description:
       'Fast, policy-compliant assistance for businesses facing fake, spam, or 1-star Google reviews. Submit your case for review today.',
     keywords: 'negative Google reviews help, remove fake review fast, Google Ads reputation assessment',
@@ -262,18 +262,18 @@ export const SEO_MAP: Record<string, RouteSEO> = {
   },
   // Private Admin Routes (Strictly noindex, nofollow)
   '/admin': {
-    title: 'RepuShield BMS — Business Management System & Operations',
-    description: 'Internal business management system for RepuShield administrators.',
+    title: 'RiseRepute BMS — Business Management System & Operations',
+    description: 'Internal business management system for RiseRepute administrators.',
     noindex: true,
   },
   '/admin/login': {
-    title: 'Admin Sign In | RepuShield Business Management System',
-    description: 'Secure authentication portal for RepuShield administrators.',
+    title: 'Admin Sign In | RiseRepute Business Management System',
+    description: 'Secure authentication portal for RiseRepute administrators.',
     noindex: true,
   },
   '/admin/forgot-password': {
-    title: 'Password Recovery | RepuShield Business Management System',
-    description: 'Administrative password recovery for RepuShield.',
+    title: 'Password Recovery | RiseRepute Business Management System',
+    description: 'Administrative password recovery for RiseRepute.',
     noindex: true,
   },
 }
@@ -286,10 +286,10 @@ export function usePageSEO(): void {
 
     const seo: RouteSEO = SEO_MAP[location.pathname] || {
       title: isUnderAdmin
-        ? 'RepuShield BMS — Business Management System'
-        : 'Page Not Found (404) | RepuShield',
+        ? 'RiseRepute BMS — Business Management System'
+        : 'Page Not Found (404) | RiseRepute',
       description: isUnderAdmin
-        ? 'Internal administrative portal for RepuShield operations.'
+        ? 'Internal administrative portal for RiseRepute operations.'
         : 'The requested page could not be found.',
       noindex: isUnderAdmin,
     }
@@ -331,7 +331,7 @@ export function usePageSEO(): void {
     canonicalLink.setAttribute('href', canonicalUrl)
 
     // 6. Open Graph Tags
-    setMeta('property', 'og:site_name', 'RepuShield')
+    setMeta('property', 'og:site_name', 'RiseRepute')
     setMeta('property', 'og:type', seo.ogType || 'website')
     setMeta('property', 'og:title', seo.title)
     setMeta('property', 'og:description', seo.description)
@@ -345,11 +345,11 @@ export function usePageSEO(): void {
     setMeta('name', 'twitter:image', seo.ogImage || DEFAULT_IMAGE)
 
     // 8. JSON-LD Structured Data
-    let scriptTag = document.getElementById('repushield-schema-jsonld') as HTMLScriptElement | null
+    let scriptTag = document.getElementById('riserepute-schema-jsonld') as HTMLScriptElement | null
     if (seo.structuredData && !shouldNoindex) {
       if (!scriptTag) {
         scriptTag = document.createElement('script')
-        scriptTag.id = 'repushield-schema-jsonld'
+        scriptTag.id = 'riserepute-schema-jsonld'
         scriptTag.type = 'application/ld+json'
         document.head.appendChild(scriptTag)
       }

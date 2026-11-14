@@ -30,7 +30,7 @@ import { useParallax } from '@/hooks/useParallax'
 export const ContactPage: React.FC = () => {
   const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20request%20assistance%20with%20negative%20Google%20reviews.'
+    'https://wa.me/923406523353?text=Hello%20RiseRepute.%20I%20would%20like%20to%20request%20assistance%20with%20negative%20Google%20reviews.'
 
   const formspreeEndpoint =
     import.meta.env.VITE_FORMSPREE_ENDPOINT ||
@@ -554,7 +554,7 @@ export const ContactPage: React.FC = () => {
       <section className="bg-navy text-white py-14 border-t border-slate-800">
         <Container size="lg" className="text-center space-y-4">
           <p className="text-xs text-dark-muted max-w-2xl mx-auto leading-relaxed">
-            <strong className="text-white">RepuShield</strong> is an independent service provider and is not affiliated with, endorsed by, or officially connected to Google LLC. Google independently determines whether reported reviews violate its policies and whether any action is taken.
+            <strong className="text-white">RiseRepute</strong> is an independent service provider and is not affiliated with, endorsed by, or officially connected to Google LLC. Google independently determines whether reported reviews violate its policies and whether any action is taken.
           </p>
         </Container>
       </section>

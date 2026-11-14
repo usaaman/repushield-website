@@ -31,7 +31,7 @@ import { useParallax } from '@/hooks/useParallax'
 export const GoogleAdsLandingPage: React.FC = () => {
   const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20came%20from%20your%20Google%20Ad%20and%20need%20urgent%20help%20with%20negative%20reviews.'
+    'https://wa.me/923406523353?text=Hello%20RiseRepute.%20I%20came%20from%20your%20Google%20Ad%20and%20need%20urgent%20help%20with%20negative%20reviews.'
 
   const formspreeEndpoint =
     import.meta.env.VITE_FORMSPREE_ENDPOINT ||
@@ -41,9 +41,9 @@ export const GoogleAdsLandingPage: React.FC = () => {
   // FAQ Data tailored specifically for Google Ads high-intent traffic
   const adsFaqData = [
     {
-      question: 'Can RepuShield guarantee that a Google review will be removed?',
+      question: 'Can RiseRepute guarantee that a Google review will be removed?',
       answer:
-        'No. RepuShield does not and cannot guarantee review removal. Google LLC holds exclusive authority over content on Google Maps and Google Business Profiles. Our role is strictly advisory: we audit disputed reviews against Google’s published guidelines, build factual evidence dossiers, and guide your business through official reporting and appeal mechanisms.',
+        'No. RiseRepute does not and cannot guarantee review removal. Google LLC holds exclusive authority over content on Google Maps and Google Business Profiles. Our role is strictly advisory: we audit disputed reviews against Google’s published guidelines, build factual evidence dossiers, and guide your business through official reporting and appeal mechanisms.',
     },
     {
       question: 'Which types of Google reviews can be reported?',
@@ -61,9 +61,9 @@ export const GoogleAdsLandingPage: React.FC = () => {
         'To begin, simply provide your business name, Google Business Profile or Maps link, the specific URL(s) of the disputed reviews, and a brief description explaining why you believe the review violates Google policy (such as no record of customer transaction, employee conflict, or promotional spam).',
     },
     {
-      question: 'Is RepuShield officially affiliated with Google?',
+      question: 'Is RiseRepute officially affiliated with Google?',
       answer:
-        'No. RepuShield is an independent service provider and is not affiliated with, endorsed by, or connected to Google LLC. We assist business owners in understanding and utilizing Google’s own publicly published review reporting and appeal channels effectively.',
+        'No. RiseRepute is an independent service provider and is not affiliated with, endorsed by, or connected to Google LLC. We assist business owners in understanding and utilizing Google’s own publicly published review reporting and appeal channels effectively.',
     },
   ]
 
@@ -187,7 +187,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
 
               <FadeIn direction="up" delay={0.2}>
                 <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-xl font-normal">
-                  RepuShield helps businesses assess and report fake, spam and other potentially policy-violating Google reviews through official reporting and appeal channels.
+                  RiseRepute helps businesses assess and report fake, spam and other potentially policy-violating Google reviews through official reporting and appeal channels.
                 </p>
               </FadeIn>
 
@@ -543,7 +543,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
       <section className="bg-[#091722] text-white py-12 border-t border-slate-800">
         <Container size="lg" className="text-center space-y-3">
           <p className="text-xs text-dark-muted max-w-2xl mx-auto leading-relaxed">
-            <strong className="text-white">RepuShield</strong> is an independent service provider and is not affiliated with, endorsed by, or officially connected to Google LLC. Google independently determines whether reported reviews violate its policies and whether any action is taken.
+            <strong className="text-white">RiseRepute</strong> is an independent service provider and is not affiliated with, endorsed by, or officially connected to Google LLC. Google independently determines whether reported reviews violate its policies and whether any action is taken.
           </p>
         </Container>
       </section>

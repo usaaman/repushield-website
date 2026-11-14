@@ -18,10 +18,10 @@ import { useParallax } from '@/hooks/useParallax'
 export const FAQPage: React.FC = () => {
   const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
-    'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20have%20questions%20about%20a%20Google%20review%20issue.'
+    'https://wa.me/923406523353?text=Hello%20RiseRepute.%20I%20have%20questions%20about%20a%20Google%20review%20issue.'
 
   // Category Filter State
-  const [activeCategory, setActiveCategory] = useState<'all' | 'basics' | 'fake' | 'policies' | 'appeals' | 'repushield'>('all')
+  const [activeCategory, setActiveCategory] = useState<'all' | 'basics' | 'fake' | 'policies' | 'appeals' | 'riserepute'>('all')
 
   const faqData = [
     // Category: basics
@@ -61,7 +61,7 @@ export const FAQPage: React.FC = () => {
       category: 'fake',
       question: 'What should I do if my business listing is hit by a sudden review bomb?',
       answer:
-        'Do not panic and do not respond aggressively in public comments. Document every review timestamp, screenshot the accounts, and avoid purchasing fake positive reviews to counteract the rating. Contact RepuShield immediately so we can compile a coordinated spam pattern dossier for submission through Google’s official business support channels.',
+        'Do not panic and do not respond aggressively in public comments. Document every review timestamp, screenshot the accounts, and avoid purchasing fake positive reviews to counteract the rating. Contact RiseRepute immediately so we can compile a coordinated spam pattern dossier for submission through Google’s official business support channels.',
     },
 
     // Category: policies
@@ -104,28 +104,28 @@ export const FAQPage: React.FC = () => {
         'Our initial case assessment is completed promptly after receiving your review links. Once a structured report or appeal dossier is submitted through official Google Business Profile channels, Google’s internal moderation queues generally take between 3 and 14 business days to evaluate and render a decision.',
     },
 
-    // Category: repushield
+    // Category: riserepute
     {
-      category: 'repushield',
-      question: 'Does RepuShield guarantee review removal?',
+      category: 'riserepute',
+      question: 'Does RiseRepute guarantee review removal?',
       answer:
         'No. We do not and cannot guarantee review removal. Google LLC holds exclusive legal authority over content hosted on Google Maps and Google Business Profiles. Our role is strictly advisory: we identify legitimate policy breaches, assemble objective evidence files, and guide you through formal platform reporting mechanisms.',
     },
     {
-      category: 'repushield',
-      question: 'How does RepuShield’s pricing work?',
+      category: 'riserepute',
+      question: 'How does RiseRepute’s pricing work?',
       answer:
         'We operate on a transparent, quote-based model. Because every situation differs in terms of the number of reviews, violation categories, and procedural history, we assess your reviews first and provide a clear, itemized quote with no hidden fees or false promises.',
     },
     {
-      category: 'repushield',
-      question: 'Is RepuShield affiliated with Google LLC?',
+      category: 'riserepute',
+      question: 'Is RiseRepute affiliated with Google LLC?',
       answer:
-        'No. RepuShield is an independent service provider and is not affiliated with, endorsed by, or connected to Google LLC. We assist business owners in properly understanding and utilizing Google’s own publicly published review reporting and appeal channels.',
+        'No. RiseRepute is an independent service provider and is not affiliated with, endorsed by, or connected to Google LLC. We assist business owners in properly understanding and utilizing Google’s own publicly published review reporting and appeal channels.',
     },
     {
-      category: 'repushield',
-      question: 'How do I get started with RepuShield?',
+      category: 'riserepute',
+      question: 'How do I get started with RiseRepute?',
       answer:
         'Simply share your disputed review link and business details through our contact form or send a message on WhatsApp. We will perform an initial review against Google policies and explain your options.',
     },
@@ -193,7 +193,7 @@ export const FAQPage: React.FC = () => {
               { id: 'fake', label: 'Fake & Spam Reviews' },
               { id: 'policies', label: 'Google Review Policies' },
               { id: 'appeals', label: 'Appeals & Timelines' },
-              { id: 'repushield', label: 'Working With RepuShield' },
+              { id: 'riserepute', label: 'Working With RiseRepute' },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -248,7 +248,7 @@ export const FAQPage: React.FC = () => {
       <section className="bg-navy text-white py-14 border-t border-slate-800">
         <Container size="lg" className="text-center space-y-4">
           <p className="text-xs text-dark-muted max-w-2xl mx-auto leading-relaxed">
-            <strong className="text-white">RepuShield</strong> is an independent service provider and is not affiliated with, endorsed by, or officially connected to Google LLC. Google independently determines whether reported reviews violate its policies and whether any action is taken.
+            <strong className="text-white">RiseRepute</strong> is an independent service provider and is not affiliated with, endorsed by, or officially connected to Google LLC. Google independently determines whether reported reviews violate its policies and whether any action is taken.
           </p>
         </Container>
       </section>

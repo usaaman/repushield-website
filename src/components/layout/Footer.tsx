@@ -89,14 +89,14 @@ export const Footer: React.FC = () => {
           <div className="flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-teal shrink-0 mt-0.5" />
             <p className="text-xs text-dark-muted leading-relaxed">
-              <strong className="text-white font-semibold">Important Disclaimer:</strong> RepuShield is an independent reputation assistance consultancy and is not affiliated with, endorsed by, or partnered with Google LLC or Alphabet Inc. All product names, trademarks, and registered trademarks are property of their respective owners. Google solely holds final authority over review determinations and removal actions under its policies.
+              <strong className="text-white font-semibold">Important Disclaimer:</strong> RiseRepute is an independent reputation assistance consultancy and is not affiliated with, endorsed by, or partnered with Google LLC or Alphabet Inc. All product names, trademarks, and registered trademarks are property of their respective owners. Google solely holds final authority over review determinations and removal actions under its policies.
             </p>
           </div>
         </div>
 
         {/* Copyright */}
         <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-dark-muted">
-          <p>© {new Date().getFullYear()} RepuShield. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} RiseRepute. All rights reserved.</p>
           <p className="text-center sm:text-right">
             Independent Policy-Focused Online Reputation Management Assistance.
           </p>

@@ -95,7 +95,7 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       setSession(null)
       return {
         error: new Error(
-          `Access Denied: The account "${data.user?.email}" is not authorized to access the RepuShield Business Management System.`
+          `Access Denied: The account "${data.user?.email}" is not authorized to access the RiseRepute Business Management System.`
         ),
       }
     }
