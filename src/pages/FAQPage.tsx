@@ -12,8 +12,11 @@ import {
   FadeIn,
   AmbientGlow,
 } from '@/components/common'
+import { motion } from 'framer-motion'
+import { useParallax } from '@/hooks/useParallax'
 
 export const FAQPage: React.FC = () => {
+  const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20have%20questions%20about%20a%20Google%20review%20issue.'
 
@@ -134,14 +137,16 @@ export const FAQPage: React.FC = () => {
       : faqData.filter((item) => item.category === activeCategory)
 
   return (
-    <div className="flex flex-col bg-bg-soft text-navy selection:bg-teal selection:text-white">
+    <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
           1. PAGE HERO
           ========================================================================= */}
       <section className="relative min-h-[60vh] lg:min-h-[68vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/95 via-navy/90 to-[#07131B]/95 pointer-events-none" />
-        <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-        <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
+          <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
+          <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        </motion.div>
         <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
 
         <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16">
@@ -215,15 +220,16 @@ export const FAQPage: React.FC = () => {
             />
           </div>
 
-          {/* Additional Help Callout */}
-          <div className="mt-14 p-8 rounded-3xl glass-card-public flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="space-y-1 text-center sm:text-left">
-              <h3 className="text-lg font-bold text-navy">Have a Question Not Answered Here?</h3>
-              <p className="text-xs sm:text-sm text-secondary">
+          {/* Additional Help Callout — Dark Navy Gradient Card */}
+          <div className="mt-14 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#0F2C3D] via-[#0B212E] to-[#07131B] text-white border border-white/15 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden">
+            <AmbientGlow className="absolute -top-12 -right-12 w-48 h-48 bg-teal/20" />
+            <div className="space-y-1 text-center sm:text-left relative z-10">
+              <h3 className="text-xl font-bold text-white">Have a Question Not Answered Here?</h3>
+              <p className="text-xs sm:text-sm text-slate-300">
                 Speak directly with our team on WhatsApp or send us your disputed review links.
               </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-3 relative z-10">
               <Button variant="teal" size="sm" shine glow to="/contact">
                 <span>Contact Us</span>
               </Button>

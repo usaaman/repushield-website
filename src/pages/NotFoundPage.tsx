@@ -9,7 +9,7 @@ export const NotFoundPage: React.FC = () => {
     <div className="py-24 sm:py-32 flex items-center justify-center min-h-[70vh]">
       <Container size="sm">
         <div className="glass-card-public rounded-3xl p-8 sm:p-14 text-center space-y-6">
-          <div className="w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center mx-auto">
+          <div className="w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center mx-auto icon-floating">
             <ShieldAlert className="w-8 h-8" />
           </div>
 
@@ -24,7 +24,7 @@ export const NotFoundPage: React.FC = () => {
           </div>
 
           <div className="pt-4 flex flex-wrap justify-center gap-3">
-            <Button variant="primary" to="/">
+            <Button variant="primary" to="/" shine>
               <Home className="w-4 h-4" />
               <span>Back to Homepage</span>
             </Button>

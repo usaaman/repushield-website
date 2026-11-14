@@ -23,8 +23,11 @@ import {
   FadeIn,
   AmbientGlow,
 } from '@/components/common'
+import { motion } from 'framer-motion'
+import { useParallax } from '@/hooks/useParallax'
 
 export const ContactPage: React.FC = () => {
+  const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20request%20assistance%20with%20negative%20Google%20reviews.'
 
@@ -119,14 +122,16 @@ export const ContactPage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col bg-bg-soft text-navy selection:bg-teal selection:text-white">
+    <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
           1. PAGE HERO
           ========================================================================= */}
       <section className="relative min-h-[60vh] lg:min-h-[68vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/95 via-navy/90 to-[#07131B]/95 pointer-events-none" />
-        <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-        <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
+          <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
+          <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        </motion.div>
         <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
 
         <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16">

@@ -31,9 +31,12 @@ import {
   AmbientGlow,
 } from '@/components/common'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { useParallax } from '@/hooks/useParallax'
 
 export const AboutPage: React.FC = () => {
   const prefersReduced = usePrefersReducedMotion()
+  const { x: heroBgX, y: heroBgY } = useParallax(12)
+  const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20learn%20more%20about%20your%20Google%20review%20removal%20assistance.'
 
@@ -110,20 +113,22 @@ export const AboutPage: React.FC = () => {
   ]
 
   return (
-    <div className="flex flex-col bg-bg-soft text-navy selection:bg-teal selection:text-white">
+    <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
           1. PAGE HERO — EDITORIAL ARCHITECTURAL BACKGROUND
           ========================================================================= */}
       <section className="relative min-h-[75vh] lg:min-h-[82vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
-        {/* Full-Bleed Corporate Architectural Background Photograph */}
+        {/* Full-Bleed Corporate Architectural Background Photograph with Parallax */}
         <motion.div
           initial={prefersReduced ? { scale: 1, opacity: 0.85 } : { scale: 1.05, opacity: 0.7 }}
           animate={{ scale: 1, opacity: 0.85 }}
-          transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
           style={{
+            x: heroBgX,
+            y: heroBgY,
             backgroundImage: "url('/images/hero-corporate-architecture.jpg')",
           }}
+          transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
           aria-hidden="true"
         />
 
@@ -131,9 +136,11 @@ export const AboutPage: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-[#091722]/95 via-[#0F2C3D]/85 to-[#091722]/45 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/85 via-transparent to-[#07131B]/95 pointer-events-none" />
 
-        {/* Subtle Ambient Glows */}
-        <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-        <AmbientGlow className="absolute bottom-1/3 left-10 w-[400px] h-[400px] bg-teal/15 opacity-50" />
+        {/* Subtle Ambient Glows with Inverse Parallax */}
+        <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
+          <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
+          <AmbientGlow className="absolute bottom-1/3 left-10 w-[400px] h-[400px] bg-teal/15 opacity-50" />
+        </motion.div>
 
         {/* Tactile Noise Grain */}
         <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
@@ -256,7 +263,7 @@ export const AboutPage: React.FC = () => {
             {/* Right Architectural Summary Card */}
             <div className="lg:col-span-5">
               <FadeIn direction="up" delay={0.2}>
-                <div className="bg-bg-soft rounded-3xl p-8 sm:p-9 border border-slate-200 shadow-sm space-y-6">
+                <div className="glass-card-public rounded-3xl p-8 sm:p-9 space-y-6">
                   <div className="flex items-center gap-3 border-b border-slate-200 pb-5">
                     <div className="w-12 h-12 rounded-2xl bg-navy text-teal flex items-center justify-center shadow-xs">
                       <ShieldAlert className="w-6 h-6 stroke-[2.2]" />
@@ -332,76 +339,83 @@ export const AboutPage: React.FC = () => {
       </SectionWrapper>
 
       {/* =========================================================================
-          3. OUR APPROACH SECTION (THREE PILLARS)
+          3. OUR APPROACH SECTION (THREE PILLARS) — DARK NAVY BAND
           ========================================================================= */}
-      <SectionWrapper variant="soft" className="py-20 sm:py-28">
-        <Container size="xl">
-          <SectionHeading
-            badge={
-              <Badge variant="ocean" scriptNote="Three Pillars">
-                Our Methodology
-              </Badge>
-            }
-            title="A Principled, Three-Pillar Approach to"
-            accent="Review Assistance"
-            subtitle="We provide clear, honest guidance built on published platform policies. We never promise guaranteed removals or cut corners with dishonest methods."
-          />
+      <div className="relative">
+        <CurvedHeroTransition position="top" fillColor="navy" height={75} />
+        <section className="bg-gradient-to-b from-[#0F2C3D] via-[#0B212E] to-[#07131B] text-white py-16 sm:py-24 relative overflow-hidden">
+          <AmbientGlow className="absolute top-1/3 left-1/4 w-[500px] h-[350px] bg-ocean/20 opacity-50" />
+          <Container size="xl" className="relative z-10">
+            <SectionHeading
+              badge={
+                <Badge variant="teal" scriptNote="Three Pillars">
+                  Our Methodology
+                </Badge>
+              }
+              title="A Principled, Three-Pillar Approach to"
+              accent="Review Assistance"
+              subtitle="We provide clear, honest guidance built on published platform policies. We never promise guaranteed removals or cut corners with dishonest methods."
+              className="[&_h2]:text-white [&_p]:text-slate-300"
+            />
 
-          <StaggerContainer
-            className="grid md:grid-cols-3 gap-8 mt-14"
-            staggerChildren={0.15}
-          >
-            {approachPillars.map((pillar) => (
-              <StaggerItem key={pillar.number}>
-                <Card
-                  variant="glass"
-                  hoverLift
-                  spotlight
-                  className="h-full flex flex-col justify-between p-8 sm:p-9"
-                >
-                  <div className="space-y-5">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                      <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
-                        {pillar.icon}
-                      </div>
-                      <span className="text-2xl font-extrabold text-slate-300 font-mono">
-                        {pillar.number}
-                      </span>
-                    </div>
-
-                    <h3 className="text-xl font-bold text-navy tracking-tight">
-                      {pillar.title}
-                    </h3>
-
-                    <p className="text-sm text-secondary leading-relaxed">
-                      {pillar.description}
-                    </p>
-
-                    <div className="space-y-2.5 pt-2 border-t border-slate-100">
-                      {pillar.details.map((detail, idx) => (
-                        <div key={idx} className="flex items-start gap-2 text-xs text-secondary">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-teal shrink-0 mt-0.5" />
-                          <span>{detail}</span>
+            <StaggerContainer
+              className="grid md:grid-cols-3 gap-8 mt-14"
+              staggerChildren={0.15}
+            >
+              {approachPillars.map((pillar) => (
+                <StaggerItem key={pillar.number}>
+                  <Card
+                    variant="glass"
+                    hoverLift
+                    spotlight
+                    tilt
+                    className="glass-card-dark h-full flex flex-col justify-between p-8 sm:p-9 text-white"
+                  >
+                    <div className="space-y-5">
+                      <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                        <div className="w-12 h-12 rounded-2xl bg-white/10 text-teal flex items-center justify-center border border-white/15 icon-floating">
+                          {pillar.icon}
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                        <span className="text-3xl font-extrabold text-teal font-mono">
+                          {pillar.number}
+                        </span>
+                      </div>
 
-                  <div className="pt-6 mt-6 border-t border-slate-100">
-                    <Link
-                      to="/services"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-ocean hover:text-navy transition-colors"
-                    >
-                      <span>View related service options</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-                </Card>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </Container>
-      </SectionWrapper>
+                      <h3 className="text-xl font-bold text-white tracking-tight">
+                        {pillar.title}
+                      </h3>
+
+                      <p className="text-sm text-slate-300 leading-relaxed">
+                        {pillar.description}
+                      </p>
+
+                      <div className="space-y-2.5 pt-2 border-t border-white/10">
+                        {pillar.details.map((detail, idx) => (
+                          <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-teal shrink-0 mt-0.5" />
+                            <span>{detail}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="pt-6 mt-6 border-t border-white/10">
+                      <Link
+                        to="/services"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-teal hover:text-white transition-colors"
+                      >
+                        <span>View related service options</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </Card>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </Container>
+        </section>
+        <CurvedHeroTransition position="bottom" fillColor="soft" height={75} />
+      </div>
 
       {/* =========================================================================
           4. WHAT WE STAND FOR SECTION (FOUR PRINCIPLES)
@@ -429,11 +443,12 @@ export const AboutPage: React.FC = () => {
                   variant="glass"
                   hoverLift
                   spotlight
+                  tilt
                   className="h-full p-8 sm:p-9 flex flex-col justify-between"
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center icon-floating">
                         {principle.icon}
                       </div>
                       <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-bg-soft text-slate-600 border border-slate-200">
@@ -462,7 +477,7 @@ export const AboutPage: React.FC = () => {
       <SectionWrapper variant="soft" className="py-16 sm:py-24">
         <Container size="lg">
           <FadeIn direction="up">
-            <div className="bg-white rounded-3xl p-8 sm:p-12 lg:p-14 border border-slate-200 shadow-md relative overflow-hidden">
+            <div className="glass-card-public rounded-3xl p-8 sm:p-12 lg:p-14 relative overflow-hidden">
               <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-ocean via-teal to-ocean" />
 
               <div className="flex flex-col sm:flex-row items-start gap-6">

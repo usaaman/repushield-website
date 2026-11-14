@@ -9,6 +9,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   padding?: 'sm' | 'md' | 'lg' | 'none'
   hoverLift?: boolean
   spotlight?: boolean
+  tilt?: boolean
   className?: string
 }
 
@@ -18,24 +19,50 @@ export const Card: React.FC<CardProps> = ({
   padding = 'lg',
   hoverLift = false,
   spotlight = false,
+  tilt = false,
   className = '',
+  style,
   onMouseMove,
   onMouseLeave,
   ...props
 }) => {
   const prefersReduced = usePrefersReducedMotion()
   const [coords, setCoords] = useState<{ x: number; y: number } | null>(null)
+  const [tiltStyle, setTiltStyle] = useState<React.CSSProperties>({})
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (spotlight && !prefersReduced) {
-      const rect = e.currentTarget.getBoundingClientRect()
+    const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 768
+    const rect = e.currentTarget.getBoundingClientRect()
+
+    if (spotlight && !prefersReduced && isDesktop) {
       setCoords({ x: e.clientX - rect.left, y: e.clientY - rect.top })
     }
+
+    if (tilt && !prefersReduced && isDesktop) {
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
+      const rotateX = ((y - centerY) / centerY) * -5.5
+      const rotateY = ((x - centerX) / centerX) * 5.5
+
+      setTiltStyle({
+        transform: `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`,
+        transition: 'transform 0.1s ease-out',
+      })
+    }
+
     if (onMouseMove) onMouseMove(e)
   }
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     if (spotlight) setCoords(null)
+    if (tilt) {
+      setTiltStyle({
+        transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)',
+        transition: 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)',
+      })
+    }
     if (onMouseLeave) onMouseLeave(e)
   }
 
@@ -53,13 +80,14 @@ export const Card: React.FC<CardProps> = ({
     lg: 'p-7 sm:p-9',
   }[padding]
 
-  const hoverStyles = hoverLift
+  const hoverStyles = hoverLift && !tilt
     ? 'glass-card-hover'
     : 'transition-all duration-200'
 
   return (
     <div
       className={`rounded-3xl ${spotlight ? 'relative overflow-hidden' : ''} ${variantStyles} ${paddingStyles} ${hoverStyles} ${className}`}
+      style={{ ...tiltStyle, ...style }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       {...props}
@@ -68,7 +96,7 @@ export const Card: React.FC<CardProps> = ({
         <div
           className="pointer-events-none absolute inset-0 rounded-3xl transition-opacity duration-300 hidden md:block z-0"
           style={{
-            background: `radial-gradient(380px circle at ${coords.x}px ${coords.y}px, rgba(20, 184, 166, 0.12), transparent 75%)`,
+            background: `radial-gradient(380px circle at ${coords.x}px ${coords.y}px, rgba(20, 184, 166, 0.14), transparent 75%)`,
           }}
           aria-hidden="true"
         />
@@ -87,6 +115,7 @@ export interface FeatureCardProps {
   linkText?: string
   variant?: 'white' | 'navy' | 'glass'
   spotlight?: boolean
+  tilt?: boolean
   className?: string
 }
 
@@ -99,12 +128,19 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
   linkText = 'Learn more',
   variant = 'white',
   spotlight = false,
+  tilt = false,
   className = '',
 }) => {
   const isNavy = variant === 'navy'
 
   return (
-    <Card variant={variant} hoverLift spotlight={spotlight} className={`flex flex-col justify-between ${className}`}>
+    <Card
+      variant={variant}
+      hoverLift
+      spotlight={spotlight}
+      tilt={tilt}
+      className={`flex flex-col justify-between ${className}`}
+    >
       <div className="space-y-4">
         <div
           className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-sm ${
@@ -172,7 +208,9 @@ export interface StepCardProps {
   title: string
   description: string
   icon?: React.ReactNode
+  variant?: 'white' | 'soft' | 'navy' | 'glass'
   spotlight?: boolean
+  tilt?: boolean
   className?: string
 }
 
@@ -181,27 +219,57 @@ export const StepCard: React.FC<StepCardProps> = ({
   title,
   description,
   icon,
+  variant = 'white',
   spotlight = false,
+  tilt = false,
   className = '',
 }) => {
+  const isDark = variant === 'navy'
   return (
-    <Card variant="white" hoverLift spotlight={spotlight} className={`relative overflow-hidden ${className}`}>
+    <Card
+      variant={variant}
+      hoverLift
+      spotlight={spotlight}
+      tilt={tilt}
+      className={`relative overflow-hidden ${className}`}
+    >
       <div className="flex items-start justify-between mb-4">
-        <span className="font-mono text-3xl font-extrabold text-ocean/20 tracking-tighter">
+        <span
+          className={`font-mono text-3xl font-extrabold tracking-tighter ${
+            isDark ? 'text-teal/40' : 'text-ocean/20'
+          }`}
+        >
           {typeof stepNumber === 'number' && stepNumber < 10
             ? `0${stepNumber}`
             : stepNumber}
         </span>
         {icon && (
-          <div className="w-10 h-10 rounded-xl bg-teal/15 text-navy flex items-center justify-center">
+          <div
+            className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+              isDark
+                ? 'bg-white/10 text-teal border border-white/15'
+                : 'bg-teal/15 text-navy'
+            }`}
+          >
             {icon}
           </div>
         )}
       </div>
 
-      <h3 className="text-lg font-bold text-navy mb-2 tracking-tight">{title}</h3>
-      <p className="text-sm text-secondary leading-relaxed">{description}</p>
+      <h3
+        className={`text-lg font-bold mb-2 tracking-tight ${
+          isDark ? 'text-white' : 'text-navy'
+        }`}
+      >
+        {title}
+      </h3>
+      <p
+        className={`text-sm leading-relaxed ${
+          isDark ? 'text-slate-300' : 'text-secondary'
+        }`}
+      >
+        {description}
+      </p>
     </Card>
   )
 }
-

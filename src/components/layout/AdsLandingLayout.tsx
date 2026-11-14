@@ -32,7 +32,16 @@ export const AdsLandingLayout: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-bg-soft text-navy selection:bg-teal selection:text-white" id="top">
+    <div className="flex flex-col min-h-screen relative text-navy selection:bg-teal selection:text-white" id="top">
+      {/* Fixed Ambient Background Canvas Layer */}
+      <div
+        className="fixed inset-0 pointer-events-none -z-10 overflow-hidden bg-gradient-to-b from-[#EAF4F7] via-[#F4F9FA] to-[#E3F0F4]"
+        aria-hidden="true"
+      >
+        <div className="ambient-orb ambient-orb-1 absolute -top-[12%] -right-[8%] w-[50vw] max-w-[680px] h-[50vw] max-h-[680px] rounded-full bg-[#0A789B]/24 blur-[110px]" />
+        <div className="ambient-orb ambient-orb-2 absolute top-[36%] -left-[12%] w-[52vw] max-w-[720px] h-[52vw] max-h-[720px] rounded-full bg-[#14B8A6]/20 blur-[115px]" />
+        <div className="ambient-orb ambient-orb-3 absolute -bottom-[10%] right-[6%] w-[42vw] max-w-[620px] h-[42vw] max-h-[620px] rounded-full bg-[#0F2C3D]/14 blur-[125px]" />
+      </div>
       {/* =========================================================================
           SIMPLIFIED ADS HEADER (FOCUSED, ZERO DISTRACTIONS)
           ========================================================================= */}

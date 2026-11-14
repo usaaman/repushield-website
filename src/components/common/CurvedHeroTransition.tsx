@@ -23,9 +23,11 @@ export const CurvedHeroTransition: React.FC<CurvedHeroTransitionProps> = ({
 }) => {
   const fillHex =
     {
-      soft: '#F6F8FA',
+      soft: '#EAF4F7',
+      mist: '#EAF4F7',
       white: '#FFFFFF',
       navy: '#0F2C3D',
+      transparent: 'transparent',
     }[fillColor] || fillColor
 
   const isBottom = position === 'bottom'

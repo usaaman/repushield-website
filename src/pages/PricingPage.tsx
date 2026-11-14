@@ -25,7 +25,11 @@ import {
   AmbientGlow,
 } from '@/components/common'
 
+import { motion } from 'framer-motion'
+import { useParallax } from '@/hooks/useParallax'
+
 export const PricingPage: React.FC = () => {
+  const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20request%20a%20quote%20for%20Google%20review%20assistance.'
 
@@ -84,15 +88,17 @@ export const PricingPage: React.FC = () => {
   ]
 
   return (
-    <div className="flex flex-col bg-bg-soft text-navy selection:bg-teal selection:text-white">
+    <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
           1. PAGE HERO
           ========================================================================= */}
       <section className="relative min-h-[70vh] lg:min-h-[78vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
-        {/* Subtle Ambient Radial Lighting & Grain */}
+        {/* Subtle Ambient Radial Lighting with Parallax & Grain */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/95 via-navy/90 to-[#07131B]/95 pointer-events-none" />
-        <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-        <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
+          <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
+          <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        </motion.div>
         <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
 
         <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16 lg:py-20">
@@ -175,8 +181,8 @@ export const PricingPage: React.FC = () => {
           >
             {quoteFactors.map((factor) => (
               <StaggerItem key={factor.title}>
-                <Card variant="glass" hoverLift spotlight className="h-full p-8 space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
+                <Card variant="glass" hoverLift spotlight tilt className="h-full p-8 space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center icon-floating">
                     {factor.icon}
                   </div>
                   <h3 className="text-xl font-bold text-navy tracking-tight">{factor.title}</h3>
@@ -189,35 +195,48 @@ export const PricingPage: React.FC = () => {
       </SectionWrapper>
 
       {/* =========================================================================
-          3. HOW TO GET A QUOTE (3 STEPS)
+          3. HOW TO GET A QUOTE (3 STEPS) — DARK NAVY BAND
           ========================================================================= */}
-      <SectionWrapper variant="soft" className="py-20 sm:py-28">
-        <Container size="xl">
-          <SectionHeading
-            badge={<Badge variant="teal">Simple Process</Badge>}
-            title="How to Get"
-            accent="Your Custom Quote"
-            subtitle="Fast, straightforward, and completely confidential. Here is how we evaluate your case."
-          />
+      <div className="relative">
+        <CurvedHeroTransition position="top" fillColor="navy" height={75} />
+        <section className="bg-gradient-to-b from-[#0F2C3D] via-[#0B212E] to-[#07131B] text-white py-16 sm:py-24 relative overflow-hidden">
+          <AmbientGlow className="absolute top-1/3 right-1/4 w-[500px] h-[350px] bg-ocean/20 opacity-50" />
+          <Container size="xl" className="relative z-10">
+            <SectionHeading
+              badge={<Badge variant="teal">Simple Process</Badge>}
+              title="How to Get"
+              accent="Your Custom Quote"
+              subtitle="Fast, straightforward, and completely confidential. Here is how we evaluate your case."
+              className="[&_h2]:text-white [&_p]:text-slate-300"
+            />
 
-          <div className="grid md:grid-cols-3 gap-8 mt-14">
-            {steps.map((step) => (
-              <Card key={step.number} variant="glass" hoverLift spotlight className="h-full p-8 space-y-4">
-                <span className="text-3xl font-extrabold text-teal font-mono">{step.number}</span>
-                <h3 className="text-xl font-bold text-navy">{step.title}</h3>
-                <p className="text-sm text-secondary leading-relaxed">{step.description}</p>
-              </Card>
-            ))}
-          </div>
+            <div className="grid md:grid-cols-3 gap-8 mt-14">
+              {steps.map((step) => (
+                <Card
+                  key={step.number}
+                  variant="glass"
+                  hoverLift
+                  spotlight
+                  tilt
+                  className="glass-card-dark h-full p-8 space-y-4 text-white"
+                >
+                  <span className="text-3xl font-extrabold text-teal font-mono">{step.number}</span>
+                  <h3 className="text-xl font-bold text-white">{step.title}</h3>
+                  <p className="text-sm text-slate-300 leading-relaxed">{step.description}</p>
+                </Card>
+              ))}
+            </div>
 
-          <div className="mt-12 text-center">
-            <Button variant="primary" size="lg" shine to="/contact">
-              <span>Request Your Quote Today</span>
-              <ArrowRight className="w-4 h-4 ml-1.5" />
-            </Button>
-          </div>
-        </Container>
-      </SectionWrapper>
+            <div className="mt-12 text-center">
+              <Button variant="teal" size="lg" shine glow to="/contact">
+                <span>Request Your Quote Today</span>
+                <ArrowRight className="w-4 h-4 ml-1.5" />
+              </Button>
+            </div>
+          </Container>
+        </section>
+        <CurvedHeroTransition position="bottom" fillColor="soft" height={75} />
+      </div>
 
       {/* =========================================================================
           4. WHAT EVERY QUOTE INCLUDES

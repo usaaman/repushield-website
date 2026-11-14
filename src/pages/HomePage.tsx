@@ -40,9 +40,12 @@ import {
   AmbientGlow,
 } from '@/components/common'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { useParallax } from '@/hooks/useParallax'
 
 export const HomePage: React.FC = () => {
   const prefersReduced = usePrefersReducedMotion()
+  const { x: heroBgX, y: heroBgY } = useParallax(12)
+  const { x: glowX, y: glowY } = useParallax(-16)
 
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20need%20help%20with%20negative%20Google%20reviews%20affecting%20my%20business.'
@@ -257,20 +260,22 @@ export const HomePage: React.FC = () => {
   ]
 
   return (
-    <div className="flex flex-col bg-bg-soft text-navy selection:bg-teal selection:text-white">
+    <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
           1. HERO SECTION — HIGH-CONVERSION FULL BACKGROUND PHOTOGRAPHY
           ========================================================================= */}
       <section className="relative min-h-[90vh] lg:min-h-[94vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
-        {/* Full-Bleed High-Quality Background Photograph */}
+        {/* Full-Bleed High-Quality Background Photograph with Desktop Parallax */}
         <motion.div
           initial={prefersReduced ? { scale: 1, opacity: 0.85 } : { scale: 1.05, opacity: 0.7 }}
           animate={{ scale: 1, opacity: 0.85 }}
-          transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
           style={{
+            x: heroBgX,
+            y: heroBgY,
             backgroundImage: "url('/images/hero-reputation-counsel.jpg')",
           }}
+          transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
           aria-hidden="true"
         />
 
@@ -278,9 +283,11 @@ export const HomePage: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-[#091722]/95 via-[#0F2C3D]/80 to-[#091722]/40 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/85 via-transparent to-[#07131B]/95 pointer-events-none" />
 
-        {/* Subtle Ambient Radial Lighting */}
-        <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-        <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        {/* Subtle Ambient Radial Lighting with Inverse Parallax */}
+        <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
+          <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
+          <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        </motion.div>
 
         {/* Tactile Fine Film Grain */}
         <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
@@ -396,8 +403,8 @@ export const HomePage: React.FC = () => {
           />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
-            <Card variant="glass" hoverLift spotlight className="h-full space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center">
+            <Card variant="glass" hoverLift spotlight tilt className="h-full space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center icon-floating">
                 <ShieldAlert className="w-6 h-6 stroke-[2]" />
               </div>
               <h3 className="text-lg font-bold text-navy">1-Star Rating Attacks</h3>
@@ -406,8 +413,8 @@ export const HomePage: React.FC = () => {
               </p>
             </Card>
 
-            <Card variant="glass" hoverLift spotlight className="h-full space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center">
+            <Card variant="glass" hoverLift spotlight tilt className="h-full space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center icon-floating">
                 <FileSearch className="w-6 h-6 stroke-[2]" />
               </div>
               <h3 className="text-lg font-bold text-navy">Fake & Spam Reviews</h3>
@@ -416,8 +423,8 @@ export const HomePage: React.FC = () => {
               </p>
             </Card>
 
-            <Card variant="glass" hoverLift spotlight className="h-full space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
+            <Card variant="glass" hoverLift spotlight tilt className="h-full space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center icon-floating">
                 <Scale className="w-6 h-6 stroke-[2]" />
               </div>
               <h3 className="text-lg font-bold text-navy">Conflict of Interest</h3>
@@ -426,8 +433,8 @@ export const HomePage: React.FC = () => {
               </p>
             </Card>
 
-            <Card variant="glass" hoverLift spotlight className="h-full space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center">
+            <Card variant="glass" hoverLift spotlight tilt className="h-full space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center icon-floating">
                 <HelpCircle className="w-6 h-6 stroke-[2]" />
               </div>
               <h3 className="text-lg font-bold text-navy">Procedural Confusion</h3>
@@ -471,7 +478,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="bg-bg-soft rounded-3xl p-8 border border-slate-200 shadow-sm space-y-5">
+              <div className="glass-card-public rounded-3xl p-8 space-y-5">
                 <h3 className="text-lg font-bold text-navy border-b border-slate-200 pb-4">
                   What We Provide
                 </h3>
@@ -537,9 +544,9 @@ export const HomePage: React.FC = () => {
           >
             {services.map((service, index) => (
               <StaggerItem key={service.title} className={index === 4 ? 'sm:col-span-2 lg:col-span-1' : ''}>
-                <Card variant="glass" hoverLift spotlight className="h-full flex flex-col justify-between p-8">
+                <Card variant="glass" hoverLift spotlight tilt className="h-full flex flex-col justify-between p-8">
                   <div className="space-y-4">
-                    <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center icon-floating">
                       {service.icon}
                     </div>
                     <h3 className="text-xl font-bold text-navy tracking-tight">{service.title}</h3>
@@ -570,50 +577,62 @@ export const HomePage: React.FC = () => {
       </SectionWrapper>
 
       {/* =========================================================================
-          5. HOW IT WORKS SECTION — GETTING HELP IS SIMPLE
+          5. HOW IT WORKS SECTION — GETTING HELP IS SIMPLE (DARK NAVY BAND)
           ========================================================================= */}
-      <SectionWrapper variant="white" className="py-20 sm:py-28">
-        <Container size="xl">
-          <SectionHeading
-            badge={
-              <Badge variant="ocean" scriptNote="Structured Workflow">
-                How It Works
-              </Badge>
-            }
-            title="Getting Help Is"
-            accent="Simple."
-            subtitle="Four straightforward steps to assess, document, and report disputed Google reviews through official channels."
-          />
+      <div className="relative">
+        <CurvedHeroTransition position="top" fillColor="navy" height={75} />
+        <section className="bg-gradient-to-b from-[#0F2C3D] via-[#0B212E] to-[#07131B] text-white py-16 sm:py-24 relative overflow-hidden">
+          <AmbientGlow className="absolute top-1/3 right-1/4 w-[500px] h-[350px] bg-ocean/20 opacity-50" />
+          <Container size="xl" className="relative z-10">
+            <SectionHeading
+              badge={
+                <Badge variant="teal" scriptNote="Structured Workflow">
+                  How It Works
+                </Badge>
+              }
+              title="Getting Help Is"
+              accent="Simple."
+              subtitle="Four straightforward steps to assess, document, and report disputed Google reviews through official channels."
+              className="[&_h2]:text-white [&_p]:text-slate-300"
+            />
 
-          <StaggerContainer
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14"
-            staggerChildren={0.12}
-          >
-            {steps.map((step) => (
-              <StaggerItem key={step.number}>
-                <Card variant="glass" hoverLift spotlight className="h-full flex flex-col justify-between p-7">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                      <span className="text-3xl font-extrabold text-teal font-mono">{step.number}</span>
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-bg-soft text-slate-600 border border-slate-200">
-                        {step.tag}
-                      </span>
+            <StaggerContainer
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14"
+              staggerChildren={0.12}
+            >
+              {steps.map((step) => (
+                <StaggerItem key={step.number}>
+                  <Card
+                    variant="glass"
+                    hoverLift
+                    spotlight
+                    tilt
+                    className="glass-card-dark h-full flex flex-col justify-between p-7 text-white"
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                        <span className="text-3xl font-extrabold text-teal font-mono">{step.number}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/10 text-teal-light border border-white/15">
+                          {step.tag}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-white">{step.title}</h3>
+                      <p className="text-sm text-slate-300 leading-relaxed">{step.description}</p>
                     </div>
-                    <h3 className="text-lg font-bold text-navy">{step.title}</h3>
-                    <p className="text-sm text-secondary leading-relaxed">{step.description}</p>
-                  </div>
-                </Card>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                  </Card>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
 
-          <div className="mt-10 p-4 rounded-2xl bg-bg-soft border border-slate-200 text-center max-w-2xl mx-auto">
-            <p className="text-xs text-secondary">
-              <strong className="text-navy font-semibold">Important:</strong> RepuShield does not control Google’s internal moderation systems or guarantee outcomes. All reports and appeals are independently decided by Google LLC.
-            </p>
-          </div>
-        </Container>
-      </SectionWrapper>
+            <div className="mt-10 p-4 rounded-2xl bg-white/5 border border-white/15 text-center max-w-2xl mx-auto">
+              <p className="text-xs text-slate-300">
+                <strong className="text-white font-semibold">Important:</strong> RepuShield does not control Google’s internal moderation systems or guarantee outcomes. All reports and appeals are independently decided by Google LLC.
+              </p>
+            </div>
+          </Container>
+        </section>
+        <CurvedHeroTransition position="bottom" fillColor="soft" height={75} />
+      </div>
 
       {/* =========================================================================
           6. WHY CHOOSE REPUSHIELD SECTION
@@ -633,8 +652,8 @@ export const HomePage: React.FC = () => {
           >
             {whyChoosePoints.map((point) => (
               <StaggerItem key={point.title}>
-                <Card variant="glass" hoverLift spotlight className="h-full p-8 space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center">
+                <Card variant="glass" hoverLift spotlight tilt className="h-full p-8 space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center icon-floating">
                     {point.icon}
                   </div>
                   <h3 className="text-lg font-bold text-navy">{point.title}</h3>
@@ -664,7 +683,7 @@ export const HomePage: React.FC = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
             {industries.map((ind) => (
-              <Card key={ind.title} variant="glass" hoverLift spotlight className="overflow-hidden p-0">
+              <Card key={ind.title} variant="glass" hoverLift spotlight tilt className="overflow-hidden p-0">
                 <div className="h-44 w-full relative overflow-hidden bg-navy-dark">
                   <img
                     src={ind.image}
@@ -694,9 +713,11 @@ export const HomePage: React.FC = () => {
       {/* =========================================================================
           8. GOOGLE LLC INDEPENDENCE & TRUST SECTION
           ========================================================================= */}
-      <SectionWrapper variant="navy" className="py-20 sm:py-28 overflow-hidden">
-        <AmbientGlow className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-teal/15 opacity-40" />
-        <Container size="lg" className="relative z-10 text-center space-y-6">
+      <div className="relative">
+        <CurvedHeroTransition position="top" fillColor="navy" height={65} />
+        <section className="bg-navy text-white py-16 sm:py-24 overflow-hidden relative">
+          <AmbientGlow className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-teal/15 opacity-40" />
+          <Container size="lg" className="relative z-10 text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-white border border-white/20 text-xs font-semibold mx-auto">
             <AlertTriangle className="w-4 h-4 text-teal" />
             <span>Platform Independence Notice</span>
@@ -715,7 +736,9 @@ export const HomePage: React.FC = () => {
             </p>
           </div>
         </Container>
-      </SectionWrapper>
+      </section>
+      <CurvedHeroTransition position="bottom" fillColor="soft" height={65} />
+    </div>
 
       {/* =========================================================================
           9. FREQUENTLY ASKED QUESTIONS PREVIEW

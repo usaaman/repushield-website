@@ -51,8 +51,8 @@ export const Accordion: React.FC<AccordionProps> = ({
             key={item.id || index}
             className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
               isOpen
-                ? 'bg-white/95 backdrop-blur-md border-ocean/40 shadow-sm shadow-ocean/5'
-                : 'bg-white/75 backdrop-blur-sm border-slate-200/80 hover:border-slate-300 hover:bg-white/90'
+                ? 'glass-card-public border-ocean/40 shadow-md shadow-ocean/5'
+                : 'glass-card-public border-white/60 hover:border-slate-300/90'
             }`}
           >
             <h3>

@@ -54,7 +54,7 @@ export const Navbar: React.FC = () => {
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         isOverHero
           ? 'bg-[#091722]/55 backdrop-blur-md border-b border-white/15 text-white shadow-xs'
-          : 'bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-xs text-navy'
+          : 'bg-white/70 backdrop-blur-xl border-b border-white/60 shadow-xs text-navy'
       }`}
     >
       <Container size="xl">

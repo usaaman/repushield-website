@@ -30,9 +30,12 @@ import {
   AmbientGlow,
 } from '@/components/common'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { useParallax } from '@/hooks/useParallax'
 
 export const ServicesPage: React.FC = () => {
   const prefersReduced = usePrefersReducedMotion()
+  const { x: heroBgX, y: heroBgY } = useParallax(12)
+  const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20learn%20more%20about%20your%20Google%20review%20removal%20assistance.'
 
@@ -173,20 +176,22 @@ export const ServicesPage: React.FC = () => {
   ]
 
   return (
-    <div className="flex flex-col bg-bg-soft text-navy selection:bg-teal selection:text-white">
+    <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
           1. PAGE HERO — EXECUTIVE EDITORIAL VISUAL TREATMENT
           ========================================================================= */}
       <section className="relative min-h-[75vh] lg:min-h-[82vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
-        {/* Full-Bleed Executive Background Photograph */}
+        {/* Full-Bleed Executive Background Photograph with Parallax */}
         <motion.div
           initial={prefersReduced ? { scale: 1, opacity: 0.85 } : { scale: 1.05, opacity: 0.7 }}
           animate={{ scale: 1, opacity: 0.85 }}
-          transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
           style={{
+            x: heroBgX,
+            y: heroBgY,
             backgroundImage: "url('/images/hero-executive-reputation.jpg')",
           }}
+          transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
           aria-hidden="true"
         />
 
@@ -194,9 +199,11 @@ export const ServicesPage: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-[#091722]/95 via-[#0F2C3D]/85 to-[#091722]/45 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/85 via-transparent to-[#07131B]/95 pointer-events-none" />
 
-        {/* Subtle Ambient Radial Lighting */}
-        <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-        <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        {/* Subtle Ambient Radial Lighting with Inverse Parallax */}
+        <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
+          <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
+          <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        </motion.div>
 
         {/* Tactile Noise Grain */}
         <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
@@ -286,13 +293,14 @@ export const ServicesPage: React.FC = () => {
                 variant="glass"
                 hoverLift
                 spotlight
+                tilt
                 className="p-8 sm:p-10"
               >
                 <div className="grid lg:grid-cols-12 gap-8 items-start">
                   {/* Left Column: Problem & RepuShield Solution */}
                   <div className="lg:col-span-7 space-y-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center icon-floating">
                         {service.icon}
                       </div>
                       <div>
@@ -327,7 +335,7 @@ export const ServicesPage: React.FC = () => {
                   </div>
 
                   {/* Right Column: Service Inclusions & Realistic Expectations */}
-                  <div className="lg:col-span-5 bg-bg-soft p-6 rounded-2xl border border-slate-200/90 space-y-4 flex flex-col justify-between h-full">
+                  <div className="lg:col-span-5 glass-card-public p-6 rounded-2xl space-y-4 flex flex-col justify-between h-full">
                     <div className="space-y-3">
                       <p className="text-xs uppercase font-bold text-navy tracking-wider">
                         What This Service Involves:
@@ -367,65 +375,72 @@ export const ServicesPage: React.FC = () => {
       </SectionWrapper>
 
       {/* =========================================================================
-          3. HOW OUR SERVICE WORKS (FOUR-STEP PROCESS)
+          3. HOW OUR SERVICE WORKS (FOUR-STEP PROCESS) — DARK NAVY BAND
           ========================================================================= */}
-      <SectionWrapper variant="soft" className="py-20 sm:py-28">
-        <Container size="xl">
-          <SectionHeading
-            badge={
-              <Badge variant="ocean" scriptNote="Clear Workflow">
-                How It Works
-              </Badge>
-            }
-            title="A Systematic Four-Step"
-            accent="Service Process"
-            subtitle="We maintain an organized, step-by-step workflow so you always understand where your case stands and what actions are taking place."
-          />
+      <div className="relative">
+        <CurvedHeroTransition position="top" fillColor="navy" height={75} />
+        <section className="bg-gradient-to-b from-[#0F2C3D] via-[#0B212E] to-[#07131B] text-white py-16 sm:py-24 relative overflow-hidden">
+          <AmbientGlow className="absolute top-1/3 right-1/4 w-[500px] h-[350px] bg-ocean/20 opacity-50" />
+          <Container size="xl" className="relative z-10">
+            <SectionHeading
+              badge={
+                <Badge variant="teal" scriptNote="Clear Workflow">
+                  How It Works
+                </Badge>
+              }
+              title="A Systematic Four-Step"
+              accent="Service Process"
+              subtitle="We maintain an organized, step-by-step workflow so you always understand where your case stands and what actions are taking place."
+              className="[&_h2]:text-white [&_p]:text-slate-300"
+            />
 
-          <StaggerContainer
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14"
-            staggerChildren={0.12}
-          >
-            {processSteps.map((step) => (
-              <StaggerItem key={step.step}>
-                <Card
-                  variant="glass"
-                  hoverLift
-                  spotlight
-                  className="h-full p-7 sm:p-8 flex flex-col justify-between"
-                >
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                      <span className="text-3xl font-extrabold text-teal font-mono">
-                        {step.step}
-                      </span>
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-bg-soft text-slate-600 border border-slate-200">
-                        {step.tag}
-                      </span>
+            <StaggerContainer
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14"
+              staggerChildren={0.12}
+            >
+              {processSteps.map((step) => (
+                <StaggerItem key={step.step}>
+                  <Card
+                    variant="glass"
+                    hoverLift
+                    spotlight
+                    tilt
+                    className="glass-card-dark h-full p-7 sm:p-8 flex flex-col justify-between text-white"
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                        <span className="text-3xl font-extrabold text-teal font-mono">
+                          {step.step}
+                        </span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/10 text-teal-light border border-white/15">
+                          {step.tag}
+                        </span>
+                      </div>
+
+                      <h3 className="text-lg font-bold text-white tracking-tight">
+                        {step.title}
+                      </h3>
+
+                      <p className="text-sm text-slate-300 leading-relaxed">
+                        {step.description}
+                      </p>
                     </div>
+                  </Card>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
 
-                    <h3 className="text-lg font-bold text-navy tracking-tight">
-                      {step.title}
-                    </h3>
-
-                    <p className="text-sm text-secondary leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </Card>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-
-          <FadeIn direction="up" delay={0.4}>
-            <div className="mt-10 p-4 rounded-2xl bg-white border border-slate-200 text-center max-w-2xl mx-auto">
-              <p className="text-xs text-secondary">
-                <strong className="text-navy font-semibold">Important note:</strong> RepuShield does not control Google’s internal decision-making or guarantee review removals. All reporting and appeals are evaluated independently by Google LLC.
-              </p>
-            </div>
-          </FadeIn>
-        </Container>
-      </SectionWrapper>
+            <FadeIn direction="up" delay={0.4}>
+              <div className="mt-10 p-4 rounded-2xl bg-white/5 border border-white/15 text-center max-w-2xl mx-auto">
+                <p className="text-xs text-slate-300">
+                  <strong className="text-white font-semibold">Important note:</strong> RepuShield does not control Google’s internal decision-making or guarantee review removals. All reporting and appeals are evaluated independently by Google LLC.
+                </p>
+              </div>
+            </FadeIn>
+          </Container>
+        </section>
+        <CurvedHeroTransition position="bottom" fillColor="soft" height={75} />
+      </div>
 
       {/* =========================================================================
           4. WHAT WE CAN AND CANNOT DO (COMPARISON MATRIX)
@@ -446,7 +461,7 @@ export const ServicesPage: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-8 mt-14">
             {/* Column 1: What We Can Do */}
             <FadeIn direction="up" delay={0.1}>
-              <div className="h-full rounded-3xl bg-teal/5 border border-teal/20 p-8 sm:p-10 shadow-sm flex flex-col justify-between space-y-6">
+              <div className="h-full rounded-3xl glass-card-public border border-teal/30 p-8 sm:p-10 flex flex-col justify-between space-y-6">
                 <div className="space-y-5">
                   <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-teal/15 text-navy text-xs font-bold border border-teal/30">
                     <Check className="w-4 h-4 text-teal" />
@@ -479,7 +494,7 @@ export const ServicesPage: React.FC = () => {
 
             {/* Column 2: What We Cannot Guarantee */}
             <FadeIn direction="up" delay={0.2}>
-              <div className="h-full rounded-3xl bg-slate-50 border border-slate-200 p-8 sm:p-10 shadow-sm flex flex-col justify-between space-y-6">
+              <div className="h-full rounded-3xl glass-card-public border border-slate-300/80 p-8 sm:p-10 flex flex-col justify-between space-y-6">
                 <div className="space-y-5">
                   <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-200 text-slate-800 text-xs font-bold border border-slate-300">
                     <X className="w-4 h-4 text-slate-600" />
