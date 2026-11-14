@@ -147,11 +147,17 @@ export const AboutPage: React.FC = () => {
               <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-3xl glass-card-light-page border border-white/80 shadow-2xl flex flex-col items-center justify-center relative overflow-hidden p-6 [transform:translateZ(0px)]">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-transparent to-teal/10 pointer-events-none" />
                 
-                {/* Layer 2: Elevated Core Shield Badge (translateZ: 30px) */}
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-navy via-ocean to-navy text-white flex items-center justify-center shadow-xl shadow-ocean/25 relative border border-white/40 [transform:translateZ(30px)]">
-                  <ShieldCheck className="w-12 h-12 sm:w-14 sm:h-14 text-teal stroke-[2]" />
+                {/* Layer 2: Elevated Core Logo Tile (translateZ: 30px) */}
+                <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-2xl sm:rounded-3xl bg-white/85 backdrop-blur-md border border-white/90 shadow-xl shadow-ocean/15 flex items-center justify-center p-3 sm:p-4 relative [transform:translateZ(30px)]">
+                  <img
+                    src="/logo/riserepute-square-dark.png"
+                    alt=""
+                    width={144}
+                    height={144}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
-                <div className="mt-4 flex items-center gap-1.5 [transform:translateZ(20px)]">
+                <div className="mt-3 flex items-center gap-1.5 [transform:translateZ(20px)]">
                   <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
                   <span className="w-12 h-1 rounded-full bg-ocean/30" />
                 </div>

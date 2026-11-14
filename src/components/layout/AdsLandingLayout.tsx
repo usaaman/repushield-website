@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Outlet, Link } from 'react-router-dom'
-import { ShieldCheck, MessageCircle, ArrowRight } from 'lucide-react'
+import { MessageCircle, ArrowRight } from 'lucide-react'
 import { Container } from '../common/Container'
 import { Button } from '../common/Button'
 import { useScrollToTop } from '@/hooks/useScrollToTop'
@@ -54,35 +54,35 @@ export const AdsLandingLayout: React.FC = () => {
       >
         <Container size="xl">
           <div className="flex items-center justify-between h-20">
-            {/* Brand Logo with Shield Mark */}
-            <Link to="/" className="flex items-center gap-2.5 group">
-              <div
-                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 ${
-                  isScrolled
-                    ? 'bg-navy text-teal shadow-xs'
-                    : 'bg-white/10 border border-white/20 text-teal shadow-xs'
-                }`}
-              >
-                <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
-              </div>
-              <div className="flex flex-col">
-                <span
-                  className={`text-lg sm:text-xl font-extrabold tracking-tight transition-colors duration-200 ${
-                    isScrolled ? 'text-navy' : 'text-white'
+            {/* Brand Logo Link */}
+            <Link
+              to="/"
+              className="flex items-center group relative focus:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded-lg transition-transform duration-200 hover:opacity-95"
+              aria-label="RiseRepute Home"
+            >
+              <div className="relative h-10 sm:h-[44px] w-[180px] sm:w-[198px] flex items-center">
+                <img
+                  src="/logo/riserepute-horizontal-light.png"
+                  alt="RiseRepute"
+                  width={198}
+                  height={44}
+                  loading="eager"
+                  fetchPriority="high"
+                  className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-300 ${
+                    isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
                   }`}
-                >
-                  Repu
-                  <span className={isScrolled ? 'text-ocean' : 'text-teal'}>
-                    Shield
-                  </span>
-                </span>
-                <span
-                  className={`text-[9px] sm:text-[10px] uppercase font-bold tracking-wider -mt-1 transition-colors duration-200 ${
-                    isScrolled ? 'text-muted' : 'text-slate-300'
+                />
+                <img
+                  src="/logo/riserepute-horizontal-dark.png"
+                  alt="RiseRepute"
+                  width={198}
+                  height={44}
+                  loading="eager"
+                  fetchPriority="high"
+                  className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-300 ${
+                    isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'
                   }`}
-                >
-                  Review Advisory
-                </span>
+                />
               </div>
             </Link>
 
@@ -127,14 +127,20 @@ export const AdsLandingLayout: React.FC = () => {
       <footer className="bg-navy text-white py-12 border-t border-slate-800">
         <Container size="xl">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10 text-center md:text-left">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-ocean flex items-center justify-center text-white">
-                <ShieldCheck className="w-4 h-4 stroke-[2.2]" />
-              </div>
-              <span className="text-lg font-extrabold tracking-tight text-white">
-                Repu<span className="text-teal">Shield</span>
-              </span>
-            </div>
+            <Link
+              to="/"
+              className="inline-block group focus:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded-lg transition-transform duration-200 hover:opacity-95"
+              aria-label="RiseRepute Home"
+            >
+              <img
+                src="/logo/riserepute-stacked-light.png"
+                alt="RiseRepute"
+                width={160}
+                height={105}
+                loading="lazy"
+                className="w-[160px] h-auto object-contain transition-opacity duration-200 group-hover:opacity-90"
+              />
+            </Link>
 
             <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-dark-muted">
               <a

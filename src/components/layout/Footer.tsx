@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ShieldCheck, Mail, MessageCircle, AlertCircle, ArrowUpRight } from 'lucide-react'
+import { Mail, MessageCircle, AlertCircle, ArrowUpRight } from 'lucide-react'
 import { Container } from '../common/Container'
 
 export const Footer: React.FC = () => {
@@ -10,13 +10,19 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand & Mission */}
           <div className="lg:col-span-2 space-y-4">
-            <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-ocean flex items-center justify-center text-white">
-                <ShieldCheck className="w-5 h-5 stroke-[2.2]" />
-              </div>
-              <span className="text-xl font-extrabold tracking-tight text-white">
-                Repu<span className="text-teal">Shield</span>
-              </span>
+            <Link
+              to="/"
+              className="inline-block group focus:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded-lg transition-transform duration-200 hover:opacity-95"
+              aria-label="RiseRepute Home"
+            >
+              <img
+                src="/logo/riserepute-stacked-light.png"
+                alt="RiseRepute"
+                width={180}
+                height={119}
+                loading="lazy"
+                className="w-[180px] h-auto object-contain transition-opacity duration-200 group-hover:opacity-90"
+              />
             </Link>
             <p className="text-sm text-dark-muted leading-relaxed max-w-sm">
               Assisting legitimate businesses in the USA, Canada, and Pakistan with policy-focused Google review reporting and appeals.
