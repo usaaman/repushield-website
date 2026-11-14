@@ -8,6 +8,9 @@ import {
   Lock,
   Scale,
   FileSearch,
+  AlertTriangle,
+  ArrowRight,
+  Sparkles,
 } from 'lucide-react'
 import {
   Container,
@@ -19,11 +22,46 @@ import {
   CurvedHeroTransition,
   FadeIn,
   AmbientGlow,
+  Accordion,
 } from '@/components/common'
 
 export const GoogleAdsLandingPage: React.FC = () => {
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20came%20from%20your%20Google%20Ad%20and%20need%20urgent%20help%20with%20negative%20reviews.'
+
+  const formspreeEndpoint =
+    import.meta.env.VITE_FORMSPREE_ENDPOINT ||
+    import.meta.env.VITE_FORM_ENDPOINT_URL ||
+    ''
+
+  // FAQ Data tailored specifically for Google Ads high-intent traffic
+  const adsFaqData = [
+    {
+      question: 'Can RepuShield guarantee that a Google review will be removed?',
+      answer:
+        'No. RepuShield does not and cannot guarantee review removal. Google LLC holds exclusive authority over content on Google Maps and Google Business Profiles. Our role is strictly advisory: we audit disputed reviews against Google’s published guidelines, build factual evidence dossiers, and guide your business through official reporting and appeal mechanisms.',
+    },
+    {
+      question: 'Which types of Google reviews can be reported?',
+      answer:
+        'You can report reviews that violate Google’s published Prohibited and Restricted Content policies. Common qualifying issues include competitor attacks and former employee reviews (Conflicts of Interest), unverified non-customer ratings (Fake Content), automated spam or bot bursts, harassment of specific employees, and off-topic complaints regarding third-party couriers.',
+    },
+    {
+      question: 'How long does the review reporting or appeal process take?',
+      answer:
+        'We review your inquiry and assess eligibility promptly upon submission. Once a formal report or appeal dossier is lodged through official Google Business Profile channels, Google’s internal moderation queues typically take between 3 and 14 business days to examine the case and render an administrative decision.',
+    },
+    {
+      question: 'What information do I need to get started?',
+      answer:
+        'To begin, simply provide your business name, Google Business Profile or Maps link, the specific URL(s) of the disputed reviews, and a brief description explaining why you believe the review violates Google policy (such as no record of customer transaction, employee conflict, or promotional spam).',
+    },
+    {
+      question: 'Is RepuShield officially affiliated with Google?',
+      answer:
+        'No. RepuShield is an independent service provider and is not affiliated with, endorsed by, or connected to Google LLC. We assist business owners in understanding and utilizing Google’s own publicly published review reporting and appeal channels effectively.',
+    },
+  ]
 
   // Form State
   const [formData, setFormData] = useState({
@@ -36,14 +74,78 @@ export const GoogleAdsLandingPage: React.FC = () => {
   })
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const scrollToForm = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault()
+    const target = document.getElementById('lead-form')
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!formspreeEndpoint) {
+      setErrorMessage(
+        'Form submission endpoint is not configured yet. Please configure VITE_FORMSPREE_ENDPOINT in your environment or contact us directly on WhatsApp (+92 340 6523353) or email (usamahameedahmadani@gmail.com).'
+      )
+      return
+    }
+
     setIsSubmitting(true)
-    setTimeout(() => {
+    setErrorMessage(null)
+
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          source: 'Google Ads Landing Page',
+          businessName: formData.businessName,
+          contactName: formData.contactName,
+          email: formData.email,
+          profileUrl: formData.profileUrl,
+          reviewCount: formData.reviewCount,
+          details: formData.details,
+          _subject: `New Google Ads Review Inquiry from ${formData.businessName || formData.contactName}`,
+        }),
+      })
+
+      if (response.ok) {
+        setSubmitted(true)
+      } else {
+        const errorData = await response.json().catch(() => null)
+        const message =
+          errorData?.errors?.[0]?.message ||
+          errorData?.error ||
+          'Submission could not be completed. Please try again or reach out directly via WhatsApp or email.'
+        setErrorMessage(message)
+      }
+    } catch {
+      setErrorMessage(
+        'Network error occurred while submitting. Please check your connection or reach out directly on WhatsApp (+92 340 6523353) or email (usamahameedahmadani@gmail.com).'
+      )
+    } finally {
       setIsSubmitting(false)
-      setSubmitted(true)
-    }, 600)
+    }
+  }
+
+  const handleReset = () => {
+    setSubmitted(false)
+    setErrorMessage(null)
+    setFormData({
+      businessName: '',
+      contactName: '',
+      email: '',
+      profileUrl: '',
+      reviewCount: '1',
+      details: '',
+    })
   }
 
   return (
@@ -121,7 +223,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
             </div>
 
             {/* Right Column: High-Converting Compact Lead Form */}
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-5 scroll-mt-28" id="lead-form">
               <div className="bg-white rounded-3xl p-7 sm:p-9 text-navy shadow-2xl border border-slate-200 relative">
                 {submitted ? (
                   <div className="py-8 text-center space-y-4 animate-in fade-in duration-300">
@@ -132,10 +234,13 @@ export const GoogleAdsLandingPage: React.FC = () => {
                     <p className="text-xs text-secondary leading-relaxed">
                       Our review specialists will audit your disputed link(s) against published Google content policies.
                     </p>
-                    <div className="pt-2">
+                    <div className="pt-2 flex flex-col sm:flex-row gap-2">
                       <Button variant="whatsapp" size="sm" href={whatsappUrl} isExternal className="w-full">
                         <MessageCircle className="w-4 h-4 mr-1.5" />
                         <span>Chat With Us on WhatsApp</span>
+                      </Button>
+                      <Button variant="secondary" size="sm" onClick={handleReset} className="w-full text-xs">
+                        <span>Submit Another</span>
                       </Button>
                     </div>
                   </div>
@@ -148,11 +253,23 @@ export const GoogleAdsLandingPage: React.FC = () => {
                       </p>
                     </div>
 
+                    {/* Error Alert Display */}
+                    {errorMessage && (
+                      <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 text-xs flex items-start gap-2.5">
+                        <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                        <div className="space-y-0.5">
+                          <p className="font-semibold text-amber-800">Submission Notice</p>
+                          <p className="text-secondary leading-relaxed">{errorMessage}</p>
+                        </div>
+                      </div>
+                    )}
+
                     <div className="space-y-1">
-                      <label className="text-[11px] font-bold text-navy uppercase tracking-wider">
+                      <label htmlFor="ads-business-name" className="text-[11px] font-bold text-navy uppercase tracking-wider">
                         Business Name *
                       </label>
                       <input
+                        id="ads-business-name"
                         type="text"
                         required
                         placeholder="e.g. Metro Clinic"
@@ -164,10 +281,11 @@ export const GoogleAdsLandingPage: React.FC = () => {
 
                     <div className="grid grid-cols-2 gap-3">
                       <div className="space-y-1">
-                        <label className="text-[11px] font-bold text-navy uppercase tracking-wider">
+                        <label htmlFor="ads-contact-name" className="text-[11px] font-bold text-navy uppercase tracking-wider">
                           Your Name *
                         </label>
                         <input
+                          id="ads-contact-name"
                           type="text"
                           required
                           placeholder="Contact Name"
@@ -177,10 +295,11 @@ export const GoogleAdsLandingPage: React.FC = () => {
                         />
                       </div>
                       <div className="space-y-1">
-                        <label className="text-[11px] font-bold text-navy uppercase tracking-wider">
+                        <label htmlFor="ads-email" className="text-[11px] font-bold text-navy uppercase tracking-wider">
                           Email *
                         </label>
                         <input
+                          id="ads-email"
                           type="email"
                           required
                           placeholder="you@email.com"
@@ -192,10 +311,11 @@ export const GoogleAdsLandingPage: React.FC = () => {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-bold text-navy uppercase tracking-wider">
+                      <label htmlFor="ads-profile-url" className="text-[11px] font-bold text-navy uppercase tracking-wider">
                         Google Maps / Business Profile Link
                       </label>
                       <input
+                        id="ads-profile-url"
                         type="url"
                         placeholder="https://maps.google.com/..."
                         value={formData.profileUrl}
@@ -205,10 +325,11 @@ export const GoogleAdsLandingPage: React.FC = () => {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-bold text-navy uppercase tracking-wider">
+                      <label htmlFor="ads-review-count" className="text-[11px] font-bold text-navy uppercase tracking-wider">
                         Number of Reviews
                       </label>
                       <select
+                        id="ads-review-count"
                         value={formData.reviewCount}
                         onChange={(e) => setFormData({ ...formData, reviewCount: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-bg-soft border border-slate-200 text-xs text-navy focus:outline-none focus:ring-2 focus:ring-teal/50"
@@ -221,10 +342,11 @@ export const GoogleAdsLandingPage: React.FC = () => {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[11px] font-bold text-navy uppercase tracking-wider">
+                      <label htmlFor="ads-details" className="text-[11px] font-bold text-navy uppercase tracking-wider">
                         Brief Problem Description *
                       </label>
                       <textarea
+                        id="ads-details"
                         required
                         rows={3}
                         placeholder="Describe the issue (e.g. competitor attack, non-customer spam, harassment)..."
@@ -311,9 +433,90 @@ export const GoogleAdsLandingPage: React.FC = () => {
       </SectionWrapper>
 
       {/* =========================================================================
-          3. INDEPENDENCE NOTICE
+          3. HIGH-INTENT CAMPAIGN FAQ SECTION
           ========================================================================= */}
-      <section className="bg-navy text-white py-12 border-t border-slate-800">
+      <SectionWrapper variant="soft" className="py-16 sm:py-24">
+        <Container size="lg">
+          <SectionHeading
+            badge={<Badge variant="ocean">Quick Answers</Badge>}
+            title="Frequently Asked"
+            accent="Questions"
+            subtitle="Common questions regarding our policy-focused Google review assistance process."
+          />
+
+          <div className="mt-12">
+            <Accordion items={adsFaqData} defaultOpenIndex={0} />
+          </div>
+        </Container>
+      </SectionWrapper>
+
+      {/* =========================================================================
+          4. STRONG FINAL CONVERSION CTA SECTION
+          ========================================================================= */}
+      <section className="relative bg-navy text-white py-20 sm:py-28 overflow-hidden">
+        <AmbientGlow className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-teal/15 opacity-50" />
+        <AmbientGlow className="absolute top-1/4 right-1/4 w-[450px] h-[450px] bg-ocean/20 opacity-40" />
+        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-20" />
+
+        <Container size="lg" className="relative z-10 text-center space-y-7">
+          <FadeIn direction="up">
+            <Badge variant="glass" scriptNote="Take Action">
+              <Sparkles className="w-3.5 h-3.5 mr-1 text-teal" />
+              <span>Review Assessment</span>
+            </Badge>
+          </FadeIn>
+
+          <FadeIn direction="up" delay={0.1}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight max-w-3xl mx-auto leading-tight">
+              Ready to Take a Closer Look at Your{' '}
+              <span className="text-teal">Google Reviews?</span>
+            </h2>
+          </FadeIn>
+
+          <FadeIn direction="up" delay={0.2}>
+            <p className="text-base sm:text-lg text-dark-muted max-w-2xl mx-auto leading-relaxed">
+              Get professional guidance on identifying potential policy violations and understanding the appropriate reporting or appeal options.
+            </p>
+          </FadeIn>
+
+          <FadeIn direction="up" delay={0.3}>
+            <div className="pt-3 flex flex-wrap justify-center gap-4 sm:gap-5">
+              <Button
+                variant="teal"
+                size="lg"
+                href="#lead-form"
+                onClick={scrollToForm}
+                className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20 flex items-center gap-2"
+              >
+                <span>Request Assistance</span>
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+
+              <Button
+                variant="whatsapp"
+                size="lg"
+                href={whatsappUrl}
+                isExternal
+                className="px-7 py-4 text-sm font-semibold flex items-center gap-2 shadow-lg shadow-green-900/20"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>Chat on WhatsApp</span>
+              </Button>
+            </div>
+          </FadeIn>
+
+          <FadeIn direction="up" delay={0.4}>
+            <p className="text-[11px] text-slate-400 max-w-md mx-auto pt-2">
+              Strictly policy-compliant case assessment. We never make false guarantees.
+            </p>
+          </FadeIn>
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          5. INDEPENDENCE NOTICE
+          ========================================================================= */}
+      <section className="bg-[#091722] text-white py-12 border-t border-slate-800">
         <Container size="lg" className="text-center space-y-3">
           <p className="text-xs text-dark-muted max-w-2xl mx-auto leading-relaxed">
             <strong className="text-white">RepuShield</strong> is an independent service provider and is not affiliated with, endorsed by, or officially connected to Google LLC. Google independently determines whether reported reviews violate its policies and whether any action is taken.

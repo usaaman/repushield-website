@@ -3,9 +3,11 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
 import { useScrollToTop } from '@/hooks/useScrollToTop'
+import { usePageSEO } from '@/hooks/usePageSEO'
 
 export const PublicLayout: React.FC = () => {
   useScrollToTop()
+  usePageSEO()
   const location = useLocation()
   const hasDarkHero = [
     '/',
@@ -15,7 +17,6 @@ export const PublicLayout: React.FC = () => {
     '/case-studies',
     '/contact',
     '/faq',
-    '/google-ads',
   ].includes(location.pathname)
 
   return (

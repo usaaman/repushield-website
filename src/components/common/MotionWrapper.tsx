@@ -149,18 +149,20 @@ export interface TextRevealProps {
   }>
   className?: string
   delay?: number
+  as?: 'h1' | 'h2' | 'div'
 }
 
 export const TextReveal: React.FC<TextRevealProps> = ({
   lines,
   className = '',
   delay = 0.1,
+  as: Tag = 'h1',
 }) => {
   const prefersReduced = usePrefersReducedMotion()
 
   if (prefersReduced) {
     return (
-      <div className={className}>
+      <Tag className={className}>
         {lines.map((l, i) => (
           <span
             key={i}
@@ -173,12 +175,12 @@ export const TextReveal: React.FC<TextRevealProps> = ({
             {l.text}{' '}
           </span>
         ))}
-      </div>
+      </Tag>
     )
   }
 
   return (
-    <div className={`space-y-1 sm:space-y-2 ${className}`}>
+    <Tag className={`space-y-1 sm:space-y-2 block ${className}`}>
       {lines.map((line, idx) => (
         <div key={idx} className="overflow-hidden py-0.5 sm:py-1">
           <motion.div
@@ -205,7 +207,7 @@ export const TextReveal: React.FC<TextRevealProps> = ({
           </motion.div>
         </div>
       ))}
-    </div>
+    </Tag>
   )
 }
 

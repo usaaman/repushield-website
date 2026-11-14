@@ -10,6 +10,8 @@ import {
   Building,
   User,
   Layers,
+  AlertTriangle,
+  MapPin,
 } from 'lucide-react'
 import {
   Container,
@@ -26,11 +28,18 @@ export const ContactPage: React.FC = () => {
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20request%20assistance%20with%20negative%20Google%20reviews.'
 
+  const formspreeEndpoint =
+    import.meta.env.VITE_FORMSPREE_ENDPOINT ||
+    import.meta.env.VITE_FORM_ENDPOINT_URL ||
+    ''
+
   // Form State
   const [formData, setFormData] = useState({
     businessName: '',
     contactName: '',
     email: '',
+    country: '',
+    service: '',
     profileUrl: '',
     reviewCount: '1',
     reviewUrls: '',
@@ -38,16 +47,75 @@ export const ContactPage: React.FC = () => {
   })
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
 
-    // Simulate submission handling
-    setTimeout(() => {
+    if (!formspreeEndpoint) {
+      setErrorMessage(
+        'Form submission endpoint is not configured yet. Please configure VITE_FORMSPREE_ENDPOINT in your environment or contact us directly on WhatsApp (+92 340 6523353) or email (usamahameedahmadani@gmail.com).'
+      )
+      return
+    }
+
+    setIsSubmitting(true)
+    setErrorMessage(null)
+
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          businessName: formData.businessName,
+          contactName: formData.contactName,
+          email: formData.email,
+          country: formData.country,
+          service: formData.service,
+          profileUrl: formData.profileUrl,
+          reviewCount: formData.reviewCount,
+          reviewUrls: formData.reviewUrls,
+          details: formData.details,
+          _subject: `New RepuShield Review Inquiry from ${formData.businessName || formData.contactName} (${formData.country || 'Not specified'})`,
+        }),
+      })
+
+      if (response.ok) {
+        setSubmitted(true)
+      } else {
+        const errorData = await response.json().catch(() => null)
+        const message =
+          errorData?.errors?.[0]?.message ||
+          errorData?.error ||
+          'Submission could not be completed. Please try again or reach out directly via WhatsApp or email.'
+        setErrorMessage(message)
+      }
+    } catch (err: any) {
+      setErrorMessage(
+        'Network error occurred while submitting. Please check your connection or reach out directly on WhatsApp (+92 340 6523353) or email (usamahameedahmadani@gmail.com).'
+      )
+    } finally {
       setIsSubmitting(false)
-      setSubmitted(true)
-    }, 600)
+    }
+  }
+
+  const handleReset = () => {
+    setSubmitted(false)
+    setErrorMessage(null)
+    setFormData({
+      businessName: '',
+      contactName: '',
+      email: '',
+      country: '',
+      service: '',
+      profileUrl: '',
+      reviewCount: '1',
+      reviewUrls: '',
+      details: '',
+    })
   }
 
   return (
@@ -175,16 +243,16 @@ export const ContactPage: React.FC = () => {
                     <div className="w-16 h-16 rounded-full bg-teal/20 text-teal flex items-center justify-center mx-auto">
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
-                    <h3 className="text-2xl font-bold text-navy">Inquiry Received</h3>
+                    <h3 className="text-2xl font-bold text-navy">Inquiry Received Successfully</h3>
                     <p className="text-secondary text-sm max-w-md mx-auto leading-relaxed">
-                      Thank you for submitting your review details. Our specialists will examine the disputed links against Google’s published guidelines and follow up with an objective assessment.
+                      Thank you for submitting your review details. Our specialists will examine the disputed links against Google’s published guidelines and follow up at <strong className="text-navy">{formData.email}</strong> with an objective assessment.
                     </p>
                     <div className="pt-4 flex justify-center gap-4">
                       <Button variant="whatsapp" href={whatsappUrl} isExternal size="sm">
                         <MessageCircle className="w-4 h-4 mr-1.5" />
                         <span>Follow Up on WhatsApp</span>
                       </Button>
-                      <Button variant="secondary" size="sm" onClick={() => setSubmitted(false)}>
+                      <Button variant="secondary" size="sm" onClick={handleReset}>
                         <span>Submit Another Inquiry</span>
                       </Button>
                     </div>
@@ -198,14 +266,29 @@ export const ContactPage: React.FC = () => {
                       </p>
                     </div>
 
+                    {/* Error Alert Display */}
+                    {errorMessage && (
+                      <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 text-xs flex items-start gap-3">
+                        <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                        <div className="space-y-1">
+                          <p className="font-semibold text-amber-800">Submission Notice</p>
+                          <p className="text-secondary leading-relaxed">{errorMessage}</p>
+                        </div>
+                      </div>
+                    )}
+
                     <div className="grid sm:grid-cols-2 gap-5">
                       {/* Business Name */}
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5">
+                        <label
+                          htmlFor="contact-business-name"
+                          className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5"
+                        >
                           <Building className="w-3.5 h-3.5 text-ocean" />
                           Business Name *
                         </label>
                         <input
+                          id="contact-business-name"
                           type="text"
                           required
                           placeholder="e.g. Apex Dental Care"
@@ -217,11 +300,15 @@ export const ContactPage: React.FC = () => {
 
                       {/* Contact Name */}
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5">
+                        <label
+                          htmlFor="contact-name"
+                          className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5"
+                        >
                           <User className="w-3.5 h-3.5 text-ocean" />
                           Contact Name *
                         </label>
                         <input
+                          id="contact-name"
                           type="text"
                           required
                           placeholder="Your Name"
@@ -235,11 +322,15 @@ export const ContactPage: React.FC = () => {
                     <div className="grid sm:grid-cols-2 gap-5">
                       {/* Email Address */}
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5">
+                        <label
+                          htmlFor="contact-email"
+                          className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5"
+                        >
                           <Mail className="w-3.5 h-3.5 text-ocean" />
                           Email Address *
                         </label>
                         <input
+                          id="contact-email"
                           type="email"
                           required
                           placeholder="you@company.com"
@@ -251,11 +342,15 @@ export const ContactPage: React.FC = () => {
 
                       {/* Google Business Profile / Website */}
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5">
+                        <label
+                          htmlFor="contact-profile-url"
+                          className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5"
+                        >
                           <Globe className="w-3.5 h-3.5 text-ocean" />
                           Website or Google Maps URL
                         </label>
                         <input
+                          id="contact-profile-url"
                           type="url"
                           placeholder="https://maps.google.com/..."
                           value={formData.profileUrl}
@@ -265,13 +360,69 @@ export const ContactPage: React.FC = () => {
                       </div>
                     </div>
 
+                    {/* Country & Service Required */}
+                    <div className="grid sm:grid-cols-2 gap-5">
+                      {/* Country */}
+                      <div className="space-y-1.5">
+                        <label
+                          htmlFor="contact-country"
+                          className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5"
+                        >
+                          <MapPin className="w-3.5 h-3.5 text-ocean" />
+                          Country *
+                        </label>
+                        <select
+                          id="contact-country"
+                          required
+                          value={formData.country}
+                          onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl bg-bg-soft border border-slate-200 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-teal/50 focus:border-teal"
+                        >
+                          <option value="">Select your country</option>
+                          <option value="Pakistan">Pakistan</option>
+                          <option value="United States">United States</option>
+                          <option value="Canada">Canada</option>
+                          <option value="United Kingdom">United Kingdom</option>
+                          <option value="Australia">Australia</option>
+                          <option value="United Arab Emirates">United Arab Emirates</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+
+                      {/* Service Required */}
+                      <div className="space-y-1.5">
+                        <label
+                          htmlFor="contact-service"
+                          className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5"
+                        >
+                          <ShieldCheck className="w-3.5 h-3.5 text-ocean" />
+                          Service Required *
+                        </label>
+                        <select
+                          id="contact-service"
+                          required
+                          value={formData.service}
+                          onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl bg-bg-soft border border-slate-200 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-teal/50 focus:border-teal"
+                        >
+                          <option value="">Select service required</option>
+                          <option value="Google Review Policy Assessment">Google Review Policy Assessment</option>
+                          <option value="Fake & Spam Review Reporting">Fake & Spam Review Reporting</option>
+                          <option value="1-Star Review Assistance">1-Star Review Assistance</option>
+                          <option value="Google Review Appeal Guidance">Google Review Appeal Guidance</option>
+                          <option value="Online Reputation Consultation">Online Reputation Consultation</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+
                     {/* Number of Reviews */}
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5">
+                      <span id="contact-review-count-label" className="text-xs font-bold text-navy uppercase tracking-wider flex items-center gap-1.5">
                         <Layers className="w-3.5 h-3.5 text-ocean" />
                         Number of Reviews You Want Help With
-                      </label>
-                      <div className="grid grid-cols-4 gap-2.5">
+                      </span>
+                      <div className="grid grid-cols-4 gap-2.5" role="radiogroup" aria-labelledby="contact-review-count-label">
                         {['1 Review', '2–5 Reviews', '6–10 Reviews', '10+ Reviews'].map((count) => {
                           const value = count.split(' ')[0]
                           const isSelected = formData.reviewCount === value
@@ -279,6 +430,8 @@ export const ContactPage: React.FC = () => {
                             <button
                               type="button"
                               key={count}
+                              role="radio"
+                              aria-checked={isSelected}
                               onClick={() => setFormData({ ...formData, reviewCount: value })}
                               className={`py-2 px-2 text-xs font-semibold rounded-xl border text-center transition-all ${
                                 isSelected
@@ -295,10 +448,14 @@ export const ContactPage: React.FC = () => {
 
                     {/* Review URL(s) */}
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-navy uppercase tracking-wider">
+                      <label
+                        htmlFor="contact-review-urls"
+                        className="text-xs font-bold text-navy uppercase tracking-wider"
+                      >
                         Disputed Review Link(s)
                       </label>
                       <textarea
+                        id="contact-review-urls"
                         rows={2}
                         placeholder="Paste link(s) to the disputed review(s) here..."
                         value={formData.reviewUrls}
@@ -309,10 +466,14 @@ export const ContactPage: React.FC = () => {
 
                     {/* Message / Details */}
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-navy uppercase tracking-wider">
+                      <label
+                        htmlFor="contact-details"
+                        className="text-xs font-bold text-navy uppercase tracking-wider"
+                      >
                         Details of Your Concern *
                       </label>
                       <textarea
+                        id="contact-details"
                         required
                         rows={4}
                         placeholder="Explain why you believe the review violates Google policy (e.g. competitor attack, former employee, fake non-patron, harassment)..."
@@ -331,7 +492,7 @@ export const ContactPage: React.FC = () => {
                       className="w-full font-bold shadow-md shadow-teal/20"
                     >
                       {isSubmitting ? (
-                        <span>Evaluating submission...</span>
+                        <span>Submitting details...</span>
                       ) : (
                         <>
                           <Send className="w-4 h-4 mr-2" />
