@@ -43,7 +43,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ mobileOpen, onCloseM
           </div>
           <div className="flex flex-col">
             <span className="text-base font-extrabold tracking-tight text-white">
-              Repu<span className="text-teal">Shield</span>
+              Rise<span className="text-teal">Repute</span>
             </span>
             <span className="text-[10px] uppercase font-bold tracking-wider text-teal-light -mt-0.5">
               BMS Operations

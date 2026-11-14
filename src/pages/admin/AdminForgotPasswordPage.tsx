@@ -15,7 +15,7 @@ export const AdminForgotPasswordPage: React.FC = () => {
   usePageSEO()
 
   const { resetPassword, isConfigured } = useAdminAuth()
-  const [email, setEmail] = useState('musmannazir97@gmail.com')
+  const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -52,7 +52,7 @@ export const AdminForgotPasswordPage: React.FC = () => {
             </div>
             <div className="flex flex-col text-left">
               <span className="text-xl font-extrabold tracking-tight text-white">
-                Repu<span className="text-teal">Shield</span>
+                Rise<span className="text-teal">Repute</span>
               </span>
               <span className="text-[10px] uppercase font-bold tracking-widest text-teal-light -mt-0.5">
                 Password Recovery

@@ -22,7 +22,7 @@ export const AdminLoginPage: React.FC = () => {
   const location = useLocation()
   const from = (location.state as any)?.from?.pathname || '/admin'
 
-  const [email, setEmail] = useState('musmannazir97@gmail.com')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -61,7 +61,7 @@ export const AdminLoginPage: React.FC = () => {
             </div>
             <div className="flex flex-col text-left">
               <span className="text-xl font-extrabold tracking-tight text-white">
-                Repu<span className="text-teal">Shield</span>
+                Rise<span className="text-teal">Repute</span>
               </span>
               <span className="text-[10px] uppercase font-bold tracking-widest text-teal-light -mt-0.5">
                 Business Management System
@@ -85,19 +85,11 @@ export const AdminLoginPage: React.FC = () => {
             <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs space-y-1.5">
               <div className="flex items-center gap-2 font-bold text-amber-300">
                 <KeyRound className="w-4 h-4 shrink-0" />
-                <span>Database Checkpoint (Pending .env)</span>
+                <span>Backend Database Configuration Pending</span>
               </div>
               <p className="text-[11px] leading-relaxed text-amber-200/90">
-                Supabase credentials have not yet been placed in <code className="font-mono bg-black/20 px-1 py-0.5 rounded">.env</code>. Once configured, your secure admin login will be authenticated directly by Supabase Auth.
+                Supabase credentials must be configured in <code className="font-mono bg-black/20 px-1 py-0.5 rounded">.env</code> before administrator authentication can proceed.
               </p>
-              <div className="pt-1">
-                <Link
-                  to="/admin"
-                  className="text-teal hover:underline font-semibold text-[11px] inline-flex items-center gap-1"
-                >
-                  <span>Preview Admin Workspace Interface →</span>
-                </Link>
-              </div>
             </div>
           )}
 
