@@ -90,27 +90,28 @@ export const PricingPage: React.FC = () => {
   return (
     <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
-          1. PAGE HERO
+          1. PAGE OPENING — CENTER-ALIGNED VALUE-FIRST HEADER WITH DIRECT CTAS
           ========================================================================= */}
-      <section className="relative min-h-[70vh] lg:min-h-[78vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
-        {/* Subtle Ambient Radial Lighting with Parallax & Grain */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/95 via-navy/90 to-[#07131B]/95 pointer-events-none" />
-        <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
-          <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-          <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+      <section className="relative pt-8 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 overflow-hidden text-center">
+        {/* Subtle Ambient Radial Lighting with Parallax */}
+        <motion.div
+          style={{ x: glowX, y: glowY }}
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          aria-hidden="true"
+        >
+          <div className="w-[500px] h-[300px] rounded-full bg-teal/15 blur-3xl" />
         </motion.div>
-        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
 
-        <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16 lg:py-20">
-          <div className="max-w-2xl lg:max-w-3xl space-y-6">
+        <Container size="xl" className="relative z-10">
+          <div className="max-w-3xl mx-auto space-y-6">
             <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-ocean text-xs font-semibold text-ocean shadow-xs">
                 <Tag className="w-4 h-4 text-teal shrink-0" />
                 <span className="tracking-wide text-xs">
                   Transparent Pricing
                 </span>
-                <span className="text-white/40">•</span>
-                <span className="font-script text-base text-teal-light font-normal tracking-wide">
+                <span className="text-ocean/40">•</span>
+                <span className="font-script text-base text-ocean font-normal tracking-wide">
                   Quote-Based
                 </span>
               </div>
@@ -121,18 +122,18 @@ export const PricingPage: React.FC = () => {
                 { text: 'Every Review Situation' },
                 { text: 'Is Different.', highlight: true },
               ]}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy leading-[1.12]"
               delay={0.12}
             />
 
             <FadeIn direction="up" delay={0.25} duration={0.65}>
-              <p className="text-base sm:text-xl text-slate-200 font-normal leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-xl text-secondary font-normal leading-relaxed max-w-2xl mx-auto">
                 Share your review concerns with us to discuss the appropriate assistance for your business. We provide honest, custom quotes based on the specific circumstances of your case.
               </p>
             </FadeIn>
 
             <FadeIn direction="up" delay={0.35} duration={0.6}>
-              <div className="pt-2 flex flex-wrap gap-4 items-center">
+              <div className="pt-2 flex flex-wrap justify-center gap-4 items-center">
                 <Button
                   variant="teal"
                   size="lg"
@@ -159,14 +160,12 @@ export const PricingPage: React.FC = () => {
             </FadeIn>
           </div>
         </Container>
-
-        <CurvedHeroTransition fillColor="white" height={95} />
       </section>
 
       {/* =========================================================================
           2. WHY QUOTE-BASED PRICING MATTERS
           ========================================================================= */}
-      <SectionWrapper variant="white" className="py-20 sm:py-28">
+      <SectionWrapper variant="transparent" className="py-16 sm:py-24">
         <Container size="xl">
           <SectionHeading
             badge={<Badge variant="ocean" scriptNote="No Gimmicks">Honest Evaluation</Badge>}
@@ -241,7 +240,7 @@ export const PricingPage: React.FC = () => {
       {/* =========================================================================
           4. WHAT EVERY QUOTE INCLUDES
           ========================================================================= */}
-      <SectionWrapper variant="white" className="py-20 sm:py-28">
+      <SectionWrapper variant="transparent" className="py-20 sm:py-28">
         <Container size="lg">
           <div className="glass-card-public rounded-3xl p-8 sm:p-12 space-y-8">
             <div className="space-y-3">

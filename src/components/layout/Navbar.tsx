@@ -14,9 +14,6 @@ export const Navbar: React.FC = () => {
 
   const hasDarkHero = [
     '/',
-    '/about',
-    '/services',
-    '/pricing',
     '/case-studies',
     '/contact',
     '/faq',

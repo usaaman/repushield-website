@@ -14,7 +14,6 @@ import {
   MessageCircle,
   ShieldAlert,
 } from 'lucide-react'
-import { motion } from 'framer-motion'
 import {
   Container,
   Button,
@@ -29,13 +28,8 @@ import {
   TextReveal,
   AmbientGlow,
 } from '@/components/common'
-import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
-import { useParallax } from '@/hooks/useParallax'
 
 export const ServicesPage: React.FC = () => {
-  const prefersReduced = usePrefersReducedMotion()
-  const { x: heroBgX, y: heroBgY } = useParallax(12)
-  const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20learn%20more%20about%20your%20Google%20review%20removal%20assistance.'
 
@@ -178,47 +172,19 @@ export const ServicesPage: React.FC = () => {
   return (
     <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
-          1. PAGE HERO — EXECUTIVE EDITORIAL VISUAL TREATMENT
+          1. PAGE OPENING — SERVICE CATALOG HEADER WITH QUICK-JUMP ANCHORS
           ========================================================================= */}
-      <section className="relative min-h-[75vh] lg:min-h-[82vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
-        {/* Full-Bleed Executive Background Photograph with Parallax */}
-        <motion.div
-          initial={prefersReduced ? { scale: 1, opacity: 0.85 } : { scale: 1.05, opacity: 0.7 }}
-          animate={{ scale: 1, opacity: 0.85 }}
-          style={{
-            x: heroBgX,
-            y: heroBgY,
-            backgroundImage: "url('/images/hero-executive-reputation.jpg')",
-          }}
-          transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
-          aria-hidden="true"
-        />
-
-        {/* Sophisticated Dark Navy Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#091722]/95 via-[#0F2C3D]/85 to-[#091722]/45 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/85 via-transparent to-[#07131B]/95 pointer-events-none" />
-
-        {/* Subtle Ambient Radial Lighting with Inverse Parallax */}
-        <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
-          <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-          <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
-        </motion.div>
-
-        {/* Tactile Noise Grain */}
-        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
-
-        {/* Hero Content Container */}
-        <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16 lg:py-20">
-          <div className="max-w-2xl lg:max-w-3xl space-y-6">
+      <section className="relative pt-8 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 overflow-hidden">
+        <Container size="xl" className="relative z-10">
+          <div className="max-w-3xl space-y-6">
             <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-ocean text-xs font-semibold text-ocean shadow-xs">
                 <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
                 <span className="tracking-wide text-xs">
                   RepuShield Review Services
                 </span>
-                <span className="text-white/40">•</span>
-                <span className="font-script text-base text-teal-light font-normal tracking-wide">
+                <span className="text-ocean/40">•</span>
+                <span className="font-script text-base text-ocean font-normal tracking-wide">
                   Policy Focused
                 </span>
               </div>
@@ -229,12 +195,12 @@ export const ServicesPage: React.FC = () => {
                 { text: 'Our Reputation' },
                 { text: 'Assistance Services.', highlight: true },
               ]}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy leading-[1.12]"
               delay={0.12}
             />
 
             <FadeIn direction="up" delay={0.25} duration={0.65}>
-              <p className="text-base sm:text-xl text-slate-200 font-normal leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-xl text-secondary font-normal leading-relaxed max-w-2xl">
                 Practical, transparent guidance for businesses reviewing potentially policy-violating Google reviews.
               </p>
             </FadeIn>
@@ -253,27 +219,42 @@ export const ServicesPage: React.FC = () => {
                   <ArrowRight className="w-4 h-4 ml-1.5" />
                 </Button>
                 <Button
-                  variant="luxury-ghost"
+                  variant="secondary"
                   size="lg"
                   shine
                   href="#services-list"
-                  className="px-7 py-3.5 text-sm font-semibold"
+                  className="px-7 py-3.5 text-sm font-semibold glass-card-public border-white/80 text-navy hover:bg-white"
                 >
                   <span>Explore All Services</span>
                 </Button>
               </div>
             </FadeIn>
           </div>
-        </Container>
 
-        {/* Smooth Organic Wave Transition into Section 2 */}
-        <CurvedHeroTransition fillColor="white" height={95} />
+          {/* Quick-Jump Service Anchor Chips (Using exact service titles per Rule 6) */}
+          <FadeIn direction="up" delay={0.45} duration={0.6}>
+            <div className="mt-10 pt-6 border-t border-slate-200/70">
+              <div className="flex flex-wrap gap-2.5 items-center">
+                {mainServices.map((service) => (
+                  <a
+                    key={service.id}
+                    href={`#${service.id}`}
+                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold glass-card-public border-white/80 hover:border-ocean/40 text-navy hover:text-ocean transition-all duration-200 hover:shadow-xs group"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal group-hover:scale-125 transition-transform" />
+                    <span>{service.title}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        </Container>
       </section>
 
       {/* =========================================================================
           2. MAIN SERVICES SECTION (DETAILED PROBLEM/SOLUTION SERVICE CARDS)
           ========================================================================= */}
-      <SectionWrapper id="services-list" variant="white" className="py-20 sm:py-28">
+      <SectionWrapper id="services-list" variant="transparent" className="py-16 sm:py-24">
         <Container size="xl">
           <SectionHeading
             badge={
@@ -288,87 +269,88 @@ export const ServicesPage: React.FC = () => {
 
           <div className="space-y-8 mt-14">
             {mainServices.map((service) => (
-              <Card
-                key={service.id}
-                variant="glass"
-                hoverLift
-                spotlight
-                tilt
-                className="p-8 sm:p-10"
-              >
-                <div className="grid lg:grid-cols-12 gap-8 items-start">
-                  {/* Left Column: Problem & RepuShield Solution */}
-                  <div className="lg:col-span-7 space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center icon-floating">
-                        {service.icon}
+              <div key={service.id} id={service.id} className="scroll-mt-28">
+                <Card
+                  variant="glass"
+                  hoverLift
+                  spotlight
+                  tilt
+                  className="p-8 sm:p-10"
+                >
+                  <div className="grid lg:grid-cols-12 gap-8 items-start">
+                    {/* Left Column: Problem & RepuShield Solution */}
+                    <div className="lg:col-span-7 space-y-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center icon-floating">
+                          {service.icon}
+                        </div>
+                        <div>
+                          <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-bg-soft text-slate-700 border border-slate-200">
+                            {service.badge}
+                          </span>
+                          <h3 className="text-xl sm:text-2xl font-bold text-navy tracking-tight mt-1">
+                            {service.title}
+                          </h3>
+                        </div>
                       </div>
-                      <div>
-                        <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-bg-soft text-slate-700 border border-slate-200">
-                          {service.badge}
-                        </span>
-                        <h3 className="text-xl sm:text-2xl font-bold text-navy tracking-tight mt-1">
-                          {service.title}
-                        </h3>
+
+                      <div className="space-y-2 pt-2">
+                        <p className="text-xs font-bold uppercase tracking-wider text-amber-700 flex items-center gap-1.5">
+                          <AlertTriangle className="w-3.5 h-3.5" />
+                          The Problem
+                        </p>
+                        <p className="text-sm text-secondary leading-relaxed bg-amber-500/5 p-3.5 rounded-xl border border-amber-500/15">
+                          {service.problem}
+                        </p>
                       </div>
-                    </div>
 
-                    <div className="space-y-2 pt-2">
-                      <p className="text-xs font-bold uppercase tracking-wider text-amber-700 flex items-center gap-1.5">
-                        <AlertTriangle className="w-3.5 h-3.5" />
-                        The Problem
-                      </p>
-                      <p className="text-sm text-secondary leading-relaxed bg-amber-500/5 p-3.5 rounded-xl border border-amber-500/15">
-                        {service.problem}
-                      </p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <p className="text-xs font-bold uppercase tracking-wider text-ocean flex items-center gap-1.5">
-                        <ShieldCheck className="w-3.5 h-3.5 text-teal" />
-                        How RepuShield Helps
-                      </p>
-                      <p className="text-sm text-secondary leading-relaxed">
-                        {service.howWeHelp}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Right Column: Service Inclusions & Realistic Expectations */}
-                  <div className="lg:col-span-5 glass-card-public p-6 rounded-2xl space-y-4 flex flex-col justify-between h-full">
-                    <div className="space-y-3">
-                      <p className="text-xs uppercase font-bold text-navy tracking-wider">
-                        What This Service Involves:
-                      </p>
                       <div className="space-y-2">
-                        {service.involves.map((item, i) => (
-                          <div key={i} className="flex items-start gap-2 text-xs text-secondary">
-                            <Check className="w-3.5 h-3.5 text-teal shrink-0 mt-0.5" />
-                            <span>{item}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="pt-3 border-t border-slate-200">
-                        <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-1">
-                          Realistic Expectations:
+                        <p className="text-xs font-bold uppercase tracking-wider text-ocean flex items-center gap-1.5">
+                          <ShieldCheck className="w-3.5 h-3.5 text-teal" />
+                          How RepuShield Helps
                         </p>
-                        <p className="text-xs text-secondary leading-relaxed">
-                          {service.expectation}
+                        <p className="text-sm text-secondary leading-relaxed">
+                          {service.howWeHelp}
                         </p>
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
-                      <Button variant="teal" size="sm" to="/contact">
-                        <span>Request Assistance</span>
-                        <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                      </Button>
-                      <span className="text-[11px] text-muted">Policy Compliant</span>
+                    {/* Right Column: Service Inclusions & Realistic Expectations */}
+                    <div className="lg:col-span-5 glass-card-public p-6 rounded-2xl space-y-4 flex flex-col justify-between h-full">
+                      <div className="space-y-3">
+                        <p className="text-xs uppercase font-bold text-navy tracking-wider">
+                          What This Service Involves:
+                        </p>
+                        <div className="space-y-2">
+                          {service.involves.map((item, i) => (
+                            <div key={i} className="flex items-start gap-2 text-xs text-secondary">
+                              <Check className="w-3.5 h-3.5 text-teal shrink-0 mt-0.5" />
+                              <span>{item}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="pt-3 border-t border-slate-200">
+                          <p className="text-[11px] font-bold uppercase tracking-wider text-muted mb-1">
+                            Realistic Expectations:
+                          </p>
+                          <p className="text-xs text-secondary leading-relaxed">
+                            {service.expectation}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
+                        <Button variant="teal" size="sm" to="/contact">
+                          <span>Request Assistance</span>
+                          <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                        </Button>
+                        <span className="text-[11px] text-muted">Policy Compliant</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </div>
             ))}
           </div>
         </Container>
@@ -445,7 +427,7 @@ export const ServicesPage: React.FC = () => {
       {/* =========================================================================
           4. WHAT WE CAN AND CANNOT DO (COMPARISON MATRIX)
           ========================================================================= */}
-      <SectionWrapper variant="white" className="py-20 sm:py-28">
+      <SectionWrapper variant="transparent" className="py-20 sm:py-28">
         <Container size="xl">
           <SectionHeading
             badge={
