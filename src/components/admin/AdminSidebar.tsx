@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import {
   LayoutDashboard,
   Inbox,
@@ -13,6 +14,7 @@ import {
   ArrowLeft,
   X,
 } from 'lucide-react'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
 interface AdminSidebarProps {
   mobileOpen: boolean
@@ -20,6 +22,7 @@ interface AdminSidebarProps {
 }
 
 export const AdminSidebar: React.FC<AdminSidebarProps> = ({ mobileOpen, onCloseMobile }) => {
+  const prefersReduced = usePrefersReducedMotion()
   const navItems = [
     { label: 'Overview', to: '/admin', icon: LayoutDashboard, exact: true },
     { label: 'Leads & Inquiries', to: '/admin/leads', icon: Inbox },
@@ -73,15 +76,30 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ mobileOpen, onCloseM
             end={item.exact}
             onClick={onCloseMobile}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-2.5 rounded-full text-[11px] uppercase tracking-wider font-semibold transition-all duration-200 ${
+              `relative flex items-center gap-3 px-4 py-2.5 rounded-full text-xs uppercase tracking-wider font-semibold transition-colors duration-200 ${
                 isActive
-                  ? 'bg-teal text-navy-dark font-bold shadow-md shadow-teal/25'
-                  : 'text-slate-300 hover:text-white hover:bg-white/10 hover:translate-x-1'
+                  ? 'text-white font-bold bg-white/15'
+                  : 'text-slate-200 hover:text-white hover:bg-white/10'
               }`
             }
           >
-            <item.icon className="w-4 h-4 shrink-0" />
-            <span>{item.label}</span>
+            {({ isActive }) => (
+              <>
+                <item.icon className="w-4 h-4 shrink-0 text-teal" />
+                <span className="relative z-10">{item.label}</span>
+                {isActive && !prefersReduced && (
+                  <motion.div
+                    layoutId="activeAdminNavIndicator"
+                    className="absolute bottom-1 inset-x-4 h-[2px] bg-teal rounded-full"
+                    transition={{
+                      type: 'spring',
+                      stiffness: 400,
+                      damping: 32,
+                    }}
+                  />
+                )}
+              </>
+            )}
           </NavLink>
         ))}
       </nav>
@@ -90,7 +108,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ mobileOpen, onCloseM
       <div className="p-4 border-t border-white/10 space-y-2">
         <Link
           to="/"
-          className="flex items-center gap-2.5 px-4 py-2.5 rounded-full text-[11px] uppercase tracking-wider font-semibold text-slate-400 hover:text-white hover:bg-white/10 transition-all duration-200"
+          className="flex items-center gap-2.5 px-4 py-2.5 rounded-full text-xs uppercase tracking-wider font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-colors duration-200"
         >
           <ArrowLeft className="w-4 h-4 text-teal" />
           <span>Exit to Public Website</span>

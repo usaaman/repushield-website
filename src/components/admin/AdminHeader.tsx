@@ -52,7 +52,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ onToggleMobileMenu }) 
           <Menu className="w-5 h-5" />
         </button>
 
-        <div className="hidden sm:flex items-center gap-2 text-[11px] uppercase tracking-wider font-semibold text-slate-300">
+        <div className="hidden sm:flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-slate-300">
           <Calendar className="w-3.5 h-3.5 text-teal" />
           <span>{formattedDate}</span>
         </div>

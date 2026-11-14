@@ -17,9 +17,9 @@ const AdminLayoutInner: React.FC = () => {
 
       {/* Subtle Ambient Radial Lighting with Teal & Ocean Orbs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 rounded-full blur-[120px] opacity-60" />
-        <div className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 rounded-full blur-[120px] opacity-50" />
-        <div className="absolute -top-20 left-1/3 w-[400px] h-[400px] bg-teal/10 rounded-full blur-[100px] opacity-40" />
+        <div className="ambient-orb ambient-orb-1 absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 rounded-full blur-[120px] opacity-60" />
+        <div className="ambient-orb ambient-orb-2 absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 rounded-full blur-[120px] opacity-50" />
+        <div className="ambient-orb ambient-orb-3 absolute -top-20 left-1/3 w-[400px] h-[400px] bg-teal/10 rounded-full blur-[100px] opacity-40" />
         {/* Tactile Fine Film Grain */}
         <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
       </div>
