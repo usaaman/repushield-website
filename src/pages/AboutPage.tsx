@@ -27,13 +27,15 @@ import {
   FadeIn,
   StaggerContainer,
   StaggerItem,
-  TextReveal,
   AmbientGlow,
+  PageIntro,
 } from '@/components/common'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { useParallax } from '@/hooks/useParallax'
 
 export const AboutPage: React.FC = () => {
   const prefersReduced = usePrefersReducedMotion()
+  const { x: heroBgX, y: heroBgY } = useParallax(12)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20learn%20more%20about%20your%20Google%20review%20removal%20assistance.'
 
@@ -110,97 +112,116 @@ export const AboutPage: React.FC = () => {
   ]
 
   return (
-    <div className="flex flex-col bg-bg-soft text-navy selection:bg-teal selection:text-white">
+    <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
-          1. PAGE HERO — EDITORIAL ARCHITECTURAL BACKGROUND
+          1. PAGE INTRO — LIGHT TWO-COLUMN INTRO FLOW WITH 3D GLASS SHIELD SCENE
           ========================================================================= */}
-      <section className="relative min-h-[75vh] lg:min-h-[82vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
-        {/* Full-Bleed Corporate Architectural Background Photograph */}
-        <motion.div
-          initial={prefersReduced ? { scale: 1, opacity: 0.85 } : { scale: 1.05, opacity: 0.7 }}
-          animate={{ scale: 1, opacity: 0.85 }}
-          transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0 bg-cover bg-center lg:bg-right-center bg-no-repeat pointer-events-none"
-          style={{
-            backgroundImage: "url('/images/hero-corporate-architecture.jpg')",
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Sophisticated Dark Navy Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#091722]/95 via-[#0F2C3D]/85 to-[#091722]/45 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/85 via-transparent to-[#07131B]/95 pointer-events-none" />
-
-        {/* Subtle Ambient Glows */}
-        <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-        <AmbientGlow className="absolute bottom-1/3 left-10 w-[400px] h-[400px] bg-teal/15 opacity-50" />
-
-        {/* Tactile Noise Grain */}
-        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
-
-        {/* Hero Narrative Container */}
-        <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16 lg:py-20">
-          <div className="max-w-2xl lg:max-w-3xl space-y-6">
-            <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
-                <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
-                <span className="tracking-wide text-xs">
-                  About RepuShield
-                </span>
-                <span className="text-white/40">•</span>
-                <span className="font-script text-base text-teal-light font-normal tracking-wide">
-                  Policy Focused
-                </span>
-              </div>
-            </FadeIn>
-
-            <TextReveal
-              lines={[
-                { text: 'About' },
-                { text: 'RepuShield.', highlight: true },
-              ]}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]"
-              delay={0.12}
-            />
-
-            <FadeIn direction="up" delay={0.25} duration={0.65}>
-              <p className="text-base sm:text-xl text-slate-200 font-normal leading-relaxed max-w-2xl">
-                A transparent, policy-focused approach to negative Google review assistance.
-              </p>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.35} duration={0.6}>
-              <div className="pt-2 flex flex-wrap gap-4 items-center">
-                <Button
-                  variant="teal"
-                  size="lg"
-                  to="/contact"
-                  className="px-7 py-3.5 text-sm font-bold shadow-lg shadow-teal/20"
-                >
-                  <span>Get Help With Negative Reviews</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Button>
-                <Button
-                  variant="luxury-ghost"
-                  size="lg"
-                  to="/services"
-                  className="px-7 py-3.5 text-sm font-semibold"
-                >
-                  <span>Explore Our Services</span>
-                </Button>
-              </div>
-            </FadeIn>
+      <PageIntro
+        layout="split"
+        badge={
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-card-light-page text-xs font-semibold text-ocean shadow-xs">
+            <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
+            <span className="tracking-wide text-xs">
+              About RepuShield
+            </span>
+            <span className="text-ocean/40">•</span>
+            <span className="font-script text-base text-ocean font-normal tracking-wide">
+              Policy Focused
+            </span>
           </div>
-        </Container>
+        }
+        title={
+          <>
+            About <span className="text-ocean">RepuShield.</span>
+          </>
+        }
+        subtitle="A transparent, policy-focused approach to negative Google review assistance."
+        rightContent={
+          <div className="relative mx-auto max-w-sm w-full aspect-square flex items-center justify-center [perspective:1000px]">
+            {/* Multi-Layer Stacked 3D Glass Shield Scene with Perspective Rotation */}
+            <motion.div
+              style={prefersReduced ? undefined : { x: heroBgX, y: heroBgY, rotateX: heroBgY, rotateY: heroBgX }}
+              className="relative z-10 w-full h-full flex items-center justify-center [transform-style:preserve-3d]"
+            >
+              {/* Layer 1: Ambient Backdrop Glass Plate (translateZ: 0px) */}
+              <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-3xl glass-card-light-page border border-white/80 shadow-2xl flex flex-col items-center justify-center relative overflow-hidden p-6 [transform:translateZ(0px)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-transparent to-teal/10 pointer-events-none" />
+                
+                {/* Layer 2: Elevated Core Logo Tile (translateZ: 30px) */}
+                <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-2xl sm:rounded-3xl bg-white/85 backdrop-blur-md border border-white/90 shadow-xl shadow-ocean/15 flex items-center justify-center p-3 sm:p-4 relative [transform:translateZ(30px)]">
+                  <img
+                    src="/logo/riserepute-square-dark.png"
+                    alt=""
+                    width={144}
+                    height={144}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="mt-3 flex items-center gap-1.5 [transform:translateZ(20px)]">
+                  <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
+                  <span className="w-12 h-1 rounded-full bg-ocean/30" />
+                </div>
+              </div>
 
-        {/* Smooth Organic Wave Transition into Section 2 */}
-        <CurvedHeroTransition fillColor="white" height={95} />
-      </section>
+              {/* Layer 3: Floating Satellite Icon Tiles (translateZ: 50px) */}
+              {/* Tile 1: Scale */}
+              <div className="absolute top-2 left-2 sm:left-4 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card-light-page border border-white/90 shadow-lg flex items-center justify-center text-teal icon-floating [transform:translateZ(50px)]">
+                <Scale className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
+              </div>
+
+              {/* Tile 2: FileCheck */}
+              <div
+                className="absolute bottom-4 left-4 sm:left-6 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card-light-page border border-white/90 shadow-lg flex items-center justify-center text-ocean icon-floating [transform:translateZ(50px)]"
+                style={{ animationDelay: '1.2s' }}
+              >
+                <FileCheck className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
+              </div>
+
+              {/* Tile 3: Eye */}
+              <div
+                className="absolute top-4 right-2 sm:right-4 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card-light-page border border-white/90 shadow-lg flex items-center justify-center text-teal icon-floating [transform:translateZ(50px)]"
+                style={{ animationDelay: '2.4s' }}
+              >
+                <Eye className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
+              </div>
+
+              {/* Tile 4: Lock */}
+              <div
+                className="absolute bottom-4 right-4 sm:right-6 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card-light-page border border-white/90 shadow-lg flex items-center justify-center text-ocean icon-floating [transform:translateZ(50px)]"
+                style={{ animationDelay: '1.8s' }}
+              >
+                <Lock className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
+              </div>
+            </motion.div>
+          </div>
+        }
+      >
+        <Button
+          variant="teal"
+          size="lg"
+          shine
+          glow
+          to="/contact"
+          className="px-7 py-3.5 text-sm font-bold shadow-lg shadow-teal/20"
+        >
+          <span>Get Help With Negative Reviews</span>
+          <ArrowRight className="w-4 h-4 ml-1.5" />
+        </Button>
+        <Button
+          variant="secondary"
+          size="lg"
+          shine
+          to="/services"
+          className="px-7 py-3.5 text-sm font-semibold glass-card-light-page border-white/80 text-navy hover:bg-white"
+        >
+          <span>Explore Our Services</span>
+        </Button>
+      </PageIntro>
 
       {/* =========================================================================
           2. WHO WE ARE SECTION
           ========================================================================= */}
-      <SectionWrapper variant="white" className="py-20 sm:py-28">
+      <SectionWrapper variant="transparent" className="py-16 sm:py-24">
         <Container size="xl">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left Narrative Column */}
@@ -253,7 +274,7 @@ export const AboutPage: React.FC = () => {
             {/* Right Architectural Summary Card */}
             <div className="lg:col-span-5">
               <FadeIn direction="up" delay={0.2}>
-                <div className="bg-bg-soft rounded-3xl p-8 sm:p-9 border border-slate-200 shadow-sm space-y-6">
+                <div className="glass-card-public rounded-3xl p-8 sm:p-9 space-y-6">
                   <div className="flex items-center gap-3 border-b border-slate-200 pb-5">
                     <div className="w-12 h-12 rounded-2xl bg-navy text-teal flex items-center justify-center shadow-xs">
                       <ShieldAlert className="w-6 h-6 stroke-[2.2]" />
@@ -329,80 +350,88 @@ export const AboutPage: React.FC = () => {
       </SectionWrapper>
 
       {/* =========================================================================
-          3. OUR APPROACH SECTION (THREE PILLARS)
+          3. OUR APPROACH SECTION (THREE PILLARS) — DARK NAVY BAND
           ========================================================================= */}
-      <SectionWrapper variant="soft" className="py-20 sm:py-28">
-        <Container size="xl">
-          <SectionHeading
-            badge={
-              <Badge variant="ocean" scriptNote="Three Pillars">
-                Our Methodology
-              </Badge>
-            }
-            title="A Principled, Three-Pillar Approach to"
-            accent="Review Assistance"
-            subtitle="We provide clear, honest guidance built on published platform policies. We never promise guaranteed removals or cut corners with dishonest methods."
-          />
+      <div className="relative">
+        <CurvedHeroTransition position="top" fillColor="navy" height={75} />
+        <section className="bg-gradient-to-b from-[#0F2C3D] via-[#0B212E] to-[#07131B] text-white py-16 sm:py-24 relative overflow-hidden">
+          <AmbientGlow className="absolute top-1/3 left-1/4 w-[500px] h-[350px] bg-ocean/20 opacity-50" />
+          <Container size="xl" className="relative z-10">
+            <SectionHeading
+              badge={
+                <Badge variant="teal" scriptNote="Three Pillars">
+                  Our Methodology
+                </Badge>
+              }
+              title="A Principled, Three-Pillar Approach to"
+              accent="Review Assistance"
+              subtitle="We provide clear, honest guidance built on published platform policies. We never promise guaranteed removals or cut corners with dishonest methods."
+              className="[&_h2]:text-white [&_p]:text-slate-300"
+            />
 
-          <StaggerContainer
-            className="grid md:grid-cols-3 gap-8 mt-14"
-            staggerChildren={0.15}
-          >
-            {approachPillars.map((pillar) => (
-              <StaggerItem key={pillar.number}>
-                <Card
-                  variant="white"
-                  hoverLift
-                  className="h-full flex flex-col justify-between p-8 sm:p-9 border border-slate-200/90 shadow-sm"
-                >
-                  <div className="space-y-5">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                      <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
-                        {pillar.icon}
-                      </div>
-                      <span className="text-2xl font-extrabold text-slate-300 font-mono">
-                        {pillar.number}
-                      </span>
-                    </div>
-
-                    <h3 className="text-xl font-bold text-navy tracking-tight">
-                      {pillar.title}
-                    </h3>
-
-                    <p className="text-sm text-secondary leading-relaxed">
-                      {pillar.description}
-                    </p>
-
-                    <div className="space-y-2.5 pt-2 border-t border-slate-100">
-                      {pillar.details.map((detail, idx) => (
-                        <div key={idx} className="flex items-start gap-2 text-xs text-secondary">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-teal shrink-0 mt-0.5" />
-                          <span>{detail}</span>
+            <StaggerContainer
+              className="grid md:grid-cols-3 gap-8 mt-14"
+              staggerChildren={0.15}
+            >
+              {approachPillars.map((pillar) => (
+                <StaggerItem key={pillar.number}>
+                  <Card
+                    variant="glass"
+                    hoverLift
+                    spotlight
+                    tilt
+                    className="glass-card-dark h-full flex flex-col justify-between p-8 sm:p-9 text-white"
+                  >
+                    <div className="space-y-5">
+                      <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                        <div className="w-12 h-12 rounded-2xl bg-white/10 text-teal flex items-center justify-center border border-white/15 icon-floating">
+                          {pillar.icon}
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                        <span className="text-3xl font-extrabold text-teal font-mono">
+                          {pillar.number}
+                        </span>
+                      </div>
 
-                  <div className="pt-6 mt-6 border-t border-slate-100">
-                    <Link
-                      to="/services"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-ocean hover:text-navy transition-colors"
-                    >
-                      <span>View related service options</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-                </Card>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </Container>
-      </SectionWrapper>
+                      <h3 className="text-xl font-bold text-white tracking-tight">
+                        {pillar.title}
+                      </h3>
+
+                      <p className="text-sm text-slate-300 leading-relaxed">
+                        {pillar.description}
+                      </p>
+
+                      <div className="space-y-2.5 pt-2 border-t border-white/10">
+                        {pillar.details.map((detail, idx) => (
+                          <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-teal shrink-0 mt-0.5" />
+                            <span>{detail}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="pt-6 mt-6 border-t border-white/10">
+                      <Link
+                        to="/services"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-teal hover:text-white transition-colors"
+                      >
+                        <span>View related service options</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </Card>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </Container>
+        </section>
+        <CurvedHeroTransition position="bottom" fillColor="#DCEFF0" height={75} />
+      </div>
 
       {/* =========================================================================
           4. WHAT WE STAND FOR SECTION (FOUR PRINCIPLES)
           ========================================================================= */}
-      <SectionWrapper variant="white" className="py-20 sm:py-28">
+      <SectionWrapper variant="transparent" className="py-20 sm:py-28">
         <Container size="xl">
           <SectionHeading
             badge={
@@ -422,13 +451,15 @@ export const AboutPage: React.FC = () => {
             {principles.map((principle) => (
               <StaggerItem key={principle.title}>
                 <Card
-                  variant="white"
+                  variant="glass"
                   hoverLift
-                  className="h-full p-8 sm:p-9 border border-slate-200/80 shadow-sm flex flex-col justify-between"
+                  spotlight
+                  tilt
+                  className="h-full p-8 sm:p-9 flex flex-col justify-between"
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-2xl bg-ocean/10 text-ocean flex items-center justify-center icon-floating">
                         {principle.icon}
                       </div>
                       <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-bg-soft text-slate-600 border border-slate-200">
@@ -454,10 +485,10 @@ export const AboutPage: React.FC = () => {
       {/* =========================================================================
           5. INDEPENDENCE NOTICE SECTION
           ========================================================================= */}
-      <SectionWrapper variant="soft" className="py-16 sm:py-24">
+      <SectionWrapper variant="transparent" className="py-16 sm:py-24">
         <Container size="lg">
           <FadeIn direction="up">
-            <div className="bg-white rounded-3xl p-8 sm:p-12 lg:p-14 border border-slate-200 shadow-md relative overflow-hidden">
+            <div className="glass-card-public rounded-3xl p-8 sm:p-12 lg:p-14 relative overflow-hidden">
               <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-ocean via-teal to-ocean" />
 
               <div className="flex flex-col sm:flex-row items-start gap-6">
@@ -527,6 +558,8 @@ export const AboutPage: React.FC = () => {
               <Button
                 variant="teal"
                 size="lg"
+                shine
+                glow
                 to="/contact"
                 className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
               >

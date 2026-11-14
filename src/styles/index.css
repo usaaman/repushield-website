@@ -107,3 +107,207 @@ html {
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+/* =========================================================================
+   PUBLIC WEBSITE HIGH-CONTRAST VISIBLE GLASS UTILITIES
+   ========================================================================= */
+
+/* Visible Light Glass Card (over subtle gradient & ambient orbs) */
+.glass-card-public,
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.52);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 12px 36px -10px rgba(15, 44, 61, 0.08), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Scoped Light Page Visible Glass Card (About, Services, Pricing) */
+.glass-card-light-page {
+  background: rgba(255, 255, 255, 0.38);
+  backdrop-filter: blur(18px) saturate(190%);
+  -webkit-backdrop-filter: blur(18px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 
+    0 14px 38px -10px rgba(10, 120, 155, 0.12),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Visible Dark Glass Card (for dark navy sections) */
+.glass-card-dark {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 14px 40px -10px rgba(0, 0, 0, 0.35), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-card-hover {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(20, 184, 166, 0.45);
+  box-shadow: 0 18px 42px -12px rgba(15, 44, 61, 0.12), 0 0 24px -4px rgba(20, 184, 166, 0.22);
+}
+
+.glass-pill-hero {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Translucent Glass Input with Crisp Focus Ring */
+.glass-input {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(203, 213, 225, 0.85);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.glass-input:focus {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-color: #14B8A6;
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.18);
+  outline: none;
+}
+
+/* Floating Icon Animation */
+.icon-floating {
+  animation: float-icon 5s ease-in-out infinite;
+}
+
+@keyframes float-icon {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Subtle Button Sheen/Shine */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.btn-shine:hover::after {
+  transform: translateX(380%) rotate(25deg);
+}
+
+.btn-glow-teal:hover {
+  box-shadow: 0 6px 20px -4px rgba(20, 184, 166, 0.45);
+}
+
+/* =========================================================================
+   AMBIENT DRIFTING ORBS (MAX 3, WILL-CHANGE: TRANSFORM ONLY)
+   ========================================================================= */
+
+.ambient-orb {
+  will-change: transform;
+}
+
+.ambient-orb-1 {
+  animation: drift-orb-1 26s ease-in-out infinite alternate;
+}
+
+.ambient-orb-2 {
+  animation: drift-orb-2 32s ease-in-out infinite alternate;
+}
+
+.ambient-orb-3 {
+  animation: drift-orb-3 28s ease-in-out infinite alternate;
+}
+
+@keyframes drift-orb-1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-55px, 45px, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-25px, 90px, 0) scale(0.95);
+  }
+}
+
+@keyframes drift-orb-2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(65px, -35px, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(35px, 55px, 0) scale(0.92);
+  }
+}
+
+@keyframes drift-orb-3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-45px, -50px, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(25px, -25px, 0) scale(0.96);
+  }
+}
+
+/* =========================================================================
+   RESPONSIVE & ACCESSIBILITY OPTIMIZATIONS
+   ========================================================================= */
+
+@media (max-width: 767px) {
+  .ambient-orb {
+    animation: none !important;
+  }
+  .icon-floating {
+    animation: none !important;
+  }
+  .glass-card-public,
+  .glass-card-light,
+  .glass-card-dark,
+  .glass-luxury,
+  .glass-luxury-light,
+  .glass-nav,
+  .glass-pill-hero,
+  .glass-input {
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orb {
+    animation: none !important;
+  }
+  .icon-floating {
+    animation: none !important;
+  }
+}

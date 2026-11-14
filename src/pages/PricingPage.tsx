@@ -21,8 +21,8 @@ import {
   FadeIn,
   StaggerContainer,
   StaggerItem,
-  TextReveal,
   AmbientGlow,
+  PageIntro,
 } from '@/components/common'
 
 export const PricingPage: React.FC = () => {
@@ -84,81 +84,59 @@ export const PricingPage: React.FC = () => {
   ]
 
   return (
-    <div className="flex flex-col bg-bg-soft text-navy selection:bg-teal selection:text-white">
+    <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
-          1. PAGE HERO
+          1. PAGE INTRO — LIGHT CENTER-ALIGNED FLOATING CARD FLOW
           ========================================================================= */}
-      <section className="relative min-h-[70vh] lg:min-h-[78vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
-        {/* Subtle Ambient Radial Lighting & Grain */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/95 via-navy/90 to-[#07131B]/95 pointer-events-none" />
-        <AmbientGlow className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-ocean/20 opacity-60" />
-        <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
-        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
-
-        <Container size="xl" className="relative z-10 my-auto py-12 sm:py-16 lg:py-20">
-          <div className="max-w-2xl lg:max-w-3xl space-y-6">
-            <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold text-slate-200 shadow-sm">
-                <Tag className="w-4 h-4 text-teal shrink-0" />
-                <span className="tracking-wide text-xs">
-                  Transparent Pricing
-                </span>
-                <span className="text-white/40">•</span>
-                <span className="font-script text-base text-teal-light font-normal tracking-wide">
-                  Quote-Based
-                </span>
-              </div>
-            </FadeIn>
-
-            <TextReveal
-              lines={[
-                { text: 'Every Review Situation' },
-                { text: 'Is Different.', highlight: true },
-              ]}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]"
-              delay={0.12}
-            />
-
-            <FadeIn direction="up" delay={0.25} duration={0.65}>
-              <p className="text-base sm:text-xl text-slate-200 font-normal leading-relaxed max-w-2xl">
-                Share your review concerns with us to discuss the appropriate assistance for your business. We provide honest, custom quotes based on the specific circumstances of your case.
-              </p>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.35} duration={0.6}>
-              <div className="pt-2 flex flex-wrap gap-4 items-center">
-                <Button
-                  variant="teal"
-                  size="lg"
-                  to="/contact"
-                  className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
-                >
-                  <span>Request a Quote</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Button>
-
-                <Button
-                  variant="whatsapp"
-                  size="lg"
-                  href={whatsappUrl}
-                  isExternal
-                  className="px-7 py-4 text-sm font-semibold flex items-center gap-2"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Chat on WhatsApp</span>
-                </Button>
-              </div>
-            </FadeIn>
+      <PageIntro
+        layout="floating-card"
+        badge={
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-card-light-page text-xs font-semibold text-ocean shadow-xs">
+            <Tag className="w-4 h-4 text-teal shrink-0" />
+            <span className="tracking-wide text-xs">
+              Transparent Pricing
+            </span>
+            <span className="text-ocean/40">•</span>
+            <span className="font-script text-base text-ocean font-normal tracking-wide">
+              Quote-Based
+            </span>
           </div>
-        </Container>
+        }
+        title={
+          <>
+            Every Review Situation <span className="text-ocean">Is Different.</span>
+          </>
+        }
+        subtitle="Share your review concerns with us to discuss the appropriate assistance for your business. We provide honest, custom quotes based on the specific circumstances of your case."
+      >
+        <Button
+          variant="teal"
+          size="lg"
+          shine
+          glow
+          to="/contact"
+          className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
+        >
+          <span>Request a Quote</span>
+          <ArrowRight className="w-4 h-4 ml-1.5" />
+        </Button>
 
-        <CurvedHeroTransition fillColor="white" height={95} />
-      </section>
+        <Button
+          variant="whatsapp"
+          size="lg"
+          href={whatsappUrl}
+          isExternal
+          className="px-7 py-4 text-sm font-semibold flex items-center gap-2"
+        >
+          <MessageCircle className="w-4 h-4" />
+          <span>Chat on WhatsApp</span>
+        </Button>
+      </PageIntro>
 
       {/* =========================================================================
           2. WHY QUOTE-BASED PRICING MATTERS
           ========================================================================= */}
-      <SectionWrapper variant="white" className="py-20 sm:py-28">
+      <SectionWrapper variant="transparent" className="py-16 sm:py-24">
         <Container size="xl">
           <SectionHeading
             badge={<Badge variant="ocean" scriptNote="No Gimmicks">Honest Evaluation</Badge>}
@@ -173,8 +151,8 @@ export const PricingPage: React.FC = () => {
           >
             {quoteFactors.map((factor) => (
               <StaggerItem key={factor.title}>
-                <Card variant="white" hoverLift className="h-full p-8 border border-slate-200 shadow-sm space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center">
+                <Card variant="glass" hoverLift spotlight tilt className="h-full p-8 space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-teal/15 text-navy flex items-center justify-center icon-floating">
                     {factor.icon}
                   </div>
                   <h3 className="text-xl font-bold text-navy tracking-tight">{factor.title}</h3>
@@ -187,42 +165,55 @@ export const PricingPage: React.FC = () => {
       </SectionWrapper>
 
       {/* =========================================================================
-          3. HOW TO GET A QUOTE (3 STEPS)
+          3. HOW TO GET A QUOTE (3 STEPS) — DARK NAVY BAND
           ========================================================================= */}
-      <SectionWrapper variant="soft" className="py-20 sm:py-28">
-        <Container size="xl">
-          <SectionHeading
-            badge={<Badge variant="teal">Simple Process</Badge>}
-            title="How to Get"
-            accent="Your Custom Quote"
-            subtitle="Fast, straightforward, and completely confidential. Here is how we evaluate your case."
-          />
+      <div className="relative">
+        <CurvedHeroTransition position="top" fillColor="navy" height={75} />
+        <section className="bg-gradient-to-b from-[#0F2C3D] via-[#0B212E] to-[#07131B] text-white py-16 sm:py-24 relative overflow-hidden">
+          <AmbientGlow className="absolute top-1/3 right-1/4 w-[500px] h-[350px] bg-ocean/20 opacity-50" />
+          <Container size="xl" className="relative z-10">
+            <SectionHeading
+              badge={<Badge variant="teal">Simple Process</Badge>}
+              title="How to Get"
+              accent="Your Custom Quote"
+              subtitle="Fast, straightforward, and completely confidential. Here is how we evaluate your case."
+              className="[&_h2]:text-white [&_p]:text-slate-300"
+            />
 
-          <div className="grid md:grid-cols-3 gap-8 mt-14">
-            {steps.map((step) => (
-              <Card key={step.number} variant="white" hoverLift className="h-full p-8 border border-slate-200/90 shadow-sm space-y-4">
-                <span className="text-3xl font-extrabold text-teal font-mono">{step.number}</span>
-                <h3 className="text-xl font-bold text-navy">{step.title}</h3>
-                <p className="text-sm text-secondary leading-relaxed">{step.description}</p>
-              </Card>
-            ))}
-          </div>
+            <div className="grid md:grid-cols-3 gap-8 mt-14">
+              {steps.map((step) => (
+                <Card
+                  key={step.number}
+                  variant="glass"
+                  hoverLift
+                  spotlight
+                  tilt
+                  className="glass-card-dark h-full p-8 space-y-4 text-white"
+                >
+                  <span className="text-3xl font-extrabold text-teal font-mono">{step.number}</span>
+                  <h3 className="text-xl font-bold text-white">{step.title}</h3>
+                  <p className="text-sm text-slate-300 leading-relaxed">{step.description}</p>
+                </Card>
+              ))}
+            </div>
 
-          <div className="mt-12 text-center">
-            <Button variant="primary" size="lg" to="/contact">
-              <span>Request Your Quote Today</span>
-              <ArrowRight className="w-4 h-4 ml-1.5" />
-            </Button>
-          </div>
-        </Container>
-      </SectionWrapper>
+            <div className="mt-12 text-center">
+              <Button variant="teal" size="lg" shine glow to="/contact">
+                <span>Request Your Quote Today</span>
+                <ArrowRight className="w-4 h-4 ml-1.5" />
+              </Button>
+            </div>
+          </Container>
+        </section>
+        <CurvedHeroTransition position="bottom" fillColor="#DCEFF0" height={75} />
+      </div>
 
       {/* =========================================================================
           4. WHAT EVERY QUOTE INCLUDES
           ========================================================================= */}
-      <SectionWrapper variant="white" className="py-20 sm:py-28">
+      <SectionWrapper variant="transparent" className="py-20 sm:py-28">
         <Container size="lg">
-          <div className="bg-bg-soft rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm space-y-8">
+          <div className="glass-card-public rounded-3xl p-8 sm:p-12 space-y-8">
             <div className="space-y-3">
               <Badge variant="ocean">Complete Transparency</Badge>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-navy">
@@ -235,7 +226,7 @@ export const PricingPage: React.FC = () => {
 
             <div className="grid sm:grid-cols-2 gap-4">
               {includedItems.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/70">
+                <div key={idx} className="flex items-start gap-3 p-3.5 rounded-xl bg-white/90 border border-slate-200/70">
                   <CheckCircle2 className="w-4 h-4 text-teal shrink-0 mt-0.5" />
                   <span className="text-xs sm:text-sm text-secondary font-medium leading-snug">{item}</span>
                 </div>
@@ -247,7 +238,7 @@ export const PricingPage: React.FC = () => {
                 <ShieldCheck className="w-4 h-4 text-teal" />
                 <span>Zero fake reviews. Zero automated bots. Strictly official channels.</span>
               </div>
-              <Button variant="teal" size="sm" to="/contact">
+              <Button variant="teal" size="sm" shine glow to="/contact">
                 <span>Request a Quote</span>
               </Button>
             </div>
@@ -288,6 +279,8 @@ export const PricingPage: React.FC = () => {
               <Button
                 variant="teal"
                 size="lg"
+                shine
+                glow
                 to="/contact"
                 className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
               >

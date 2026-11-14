@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { ShieldCheck, Menu, X, ArrowUpRight } from 'lucide-react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Container } from '../common/Container'
 import { Button } from '../common/Button'
@@ -14,9 +14,6 @@ export const Navbar: React.FC = () => {
 
   const hasDarkHero = [
     '/',
-    '/about',
-    '/services',
-    '/pricing',
     '/case-studies',
     '/contact',
     '/faq',
@@ -53,41 +50,41 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         isOverHero
-          ? 'bg-[#091722]/35 backdrop-blur-md border-b border-white/10 text-white'
-          : 'bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs text-navy'
+          ? 'bg-[#091722]/55 backdrop-blur-md border-b border-white/15 text-white shadow-xs'
+          : 'bg-white/70 backdrop-blur-xl border-b border-white/60 shadow-xs text-navy'
       }`}
     >
       <Container size="xl">
         <div className="flex items-center justify-between h-20">
-          {/* Brand Logo with Refined Typography & Shield Mark */}
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div
-              className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 ${
-                isOverHero
-                  ? 'bg-white/10 border border-white/20 text-teal shadow-xs'
-                  : 'bg-navy text-teal shadow-xs'
-              }`}
-            >
-              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
-            </div>
-            <div className="flex flex-col">
-              <span
-                className={`text-lg sm:text-xl font-extrabold tracking-tight transition-colors duration-200 ${
-                  isOverHero ? 'text-white' : 'text-navy'
+          {/* Brand Logo Link */}
+          <Link
+            to="/"
+            className="flex items-center group relative focus:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded-lg transition-transform duration-200 hover:opacity-95"
+            aria-label="RiseRepute Home"
+          >
+            <div className="relative h-10 sm:h-[44px] w-[180px] sm:w-[198px] flex items-center">
+              <img
+                src="/logo/riserepute-horizontal-light.png"
+                alt="RiseRepute"
+                width={198}
+                height={44}
+                loading="eager"
+                fetchPriority="high"
+                className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-300 ${
+                  isOverHero ? 'opacity-100' : 'opacity-0 pointer-events-none'
                 }`}
-              >
-                Repu
-                <span className={isOverHero ? 'text-teal' : 'text-ocean'}>
-                  Shield
-                </span>
-              </span>
-              <span
-                className={`text-[9px] sm:text-[10px] uppercase font-bold tracking-wider -mt-1 transition-colors duration-200 ${
-                  isOverHero ? 'text-slate-300' : 'text-muted'
+              />
+              <img
+                src="/logo/riserepute-horizontal-dark.png"
+                alt="RiseRepute"
+                width={198}
+                height={44}
+                loading="eager"
+                fetchPriority="high"
+                className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-300 ${
+                  isOverHero ? 'opacity-0 pointer-events-none' : 'opacity-100'
                 }`}
-              >
-                Reputation Advisory
-              </span>
+              />
             </div>
           </Link>
 
@@ -147,6 +144,8 @@ export const Navbar: React.FC = () => {
             <Button
               variant={isOverHero ? 'teal' : 'primary'}
               size="sm"
+              shine
+              glow
               to="/contact"
               className="px-5 py-2.5 text-xs font-bold shadow-sm"
             >

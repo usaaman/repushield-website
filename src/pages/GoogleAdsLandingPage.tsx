@@ -24,8 +24,11 @@ import {
   AmbientGlow,
   Accordion,
 } from '@/components/common'
+import { motion } from 'framer-motion'
+import { useParallax } from '@/hooks/useParallax'
 
 export const GoogleAdsLandingPage: React.FC = () => {
+  const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20came%20from%20your%20Google%20Ad%20and%20need%20urgent%20help%20with%20negative%20reviews.'
 
@@ -149,14 +152,16 @@ export const GoogleAdsLandingPage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col bg-bg-soft text-navy selection:bg-teal selection:text-white">
+    <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
           1. HIGH-CONVERSION ADS HERO WITH EMBEDDED FORM
           ========================================================================= */}
       <section className="relative min-h-[85vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-12">
         <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/95 via-navy/90 to-[#07131B]/95 pointer-events-none" />
-        <AmbientGlow className="absolute top-1/4 right-1/4 w-[550px] h-[550px] bg-ocean/20 opacity-60" />
-        <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
+          <AmbientGlow className="absolute top-1/4 right-1/4 w-[550px] h-[550px] bg-ocean/20 opacity-60" />
+          <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
+        </motion.div>
         <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
 
         <Container size="xl" className="relative z-10 my-auto py-8">
@@ -164,8 +169,8 @@ export const GoogleAdsLandingPage: React.FC = () => {
             {/* Left Column: Direct Value Proposition */}
             <div className="lg:col-span-7 space-y-6">
               <FadeIn direction="up">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal/20 border border-teal/30 text-teal text-xs font-semibold">
-                  <Target className="w-3.5 h-3.5" />
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill-hero text-slate-100 text-xs font-semibold">
+                  <Target className="w-3.5 h-3.5 text-teal" />
                   <span>Google Review Assistance Campaign</span>
                 </div>
               </FadeIn>
@@ -224,7 +229,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
 
             {/* Right Column: High-Converting Compact Lead Form */}
             <div className="lg:col-span-5 scroll-mt-28" id="lead-form">
-              <div className="bg-white rounded-3xl p-7 sm:p-9 text-navy shadow-2xl border border-slate-200 relative">
+              <div className="glass-card-public rounded-3xl p-7 sm:p-9 text-navy shadow-2xl relative">
                 {submitted ? (
                   <div className="py-8 text-center space-y-4 animate-in fade-in duration-300">
                     <div className="w-14 h-14 rounded-full bg-teal/20 text-teal flex items-center justify-center mx-auto">
@@ -275,7 +280,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
                         placeholder="e.g. Metro Clinic"
                         value={formData.businessName}
                         onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-bg-soft border border-slate-200 text-xs text-navy focus:outline-none focus:ring-2 focus:ring-teal/50"
+                        className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-navy"
                       />
                     </div>
 
@@ -291,7 +296,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
                           placeholder="Contact Name"
                           value={formData.contactName}
                           onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-bg-soft border border-slate-200 text-xs text-navy focus:outline-none focus:ring-2 focus:ring-teal/50"
+                          className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-navy"
                         />
                       </div>
                       <div className="space-y-1">
@@ -305,7 +310,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
                           placeholder="you@email.com"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full px-3.5 py-2.5 rounded-xl bg-bg-soft border border-slate-200 text-xs text-navy focus:outline-none focus:ring-2 focus:ring-teal/50"
+                          className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-navy"
                         />
                       </div>
                     </div>
@@ -320,7 +325,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
                         placeholder="https://maps.google.com/..."
                         value={formData.profileUrl}
                         onChange={(e) => setFormData({ ...formData, profileUrl: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-bg-soft border border-slate-200 text-xs text-navy focus:outline-none focus:ring-2 focus:ring-teal/50"
+                        className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-navy"
                       />
                     </div>
 
@@ -332,7 +337,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
                         id="ads-review-count"
                         value={formData.reviewCount}
                         onChange={(e) => setFormData({ ...formData, reviewCount: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-bg-soft border border-slate-200 text-xs text-navy focus:outline-none focus:ring-2 focus:ring-teal/50"
+                        className="w-full px-3.5 py-2.5 rounded-xl glass-input text-xs text-navy"
                       >
                         <option value="1">1 Negative Review</option>
                         <option value="2-5">2 to 5 Reviews</option>
@@ -352,7 +357,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
                         placeholder="Describe the issue (e.g. competitor attack, non-customer spam, harassment)..."
                         value={formData.details}
                         onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                        className="w-full px-3.5 py-2 rounded-xl bg-bg-soft border border-slate-200 text-xs text-navy focus:outline-none focus:ring-2 focus:ring-teal/50"
+                        className="w-full px-3.5 py-2 rounded-xl glass-input text-xs text-navy"
                       />
                     </div>
 
@@ -360,6 +365,8 @@ export const GoogleAdsLandingPage: React.FC = () => {
                       type="submit"
                       variant="teal"
                       size="md"
+                      shine
+                      glow
                       disabled={isSubmitting}
                       className="w-full font-bold shadow-md shadow-teal/20 text-xs"
                     >
@@ -399,8 +406,8 @@ export const GoogleAdsLandingPage: React.FC = () => {
           />
 
           <div className="grid sm:grid-cols-3 gap-6 mt-12">
-            <Card variant="white" hoverLift className="p-7 border border-slate-200 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-teal/15 text-navy flex items-center justify-center">
+            <Card variant="glass" hoverLift spotlight tilt className="p-7 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-teal/15 text-navy flex items-center justify-center icon-floating">
                 <FileSearch className="w-5 h-5 text-teal" />
               </div>
               <h3 className="text-base font-bold text-navy">Policy Identification</h3>
@@ -409,8 +416,8 @@ export const GoogleAdsLandingPage: React.FC = () => {
               </p>
             </Card>
 
-            <Card variant="white" hoverLift className="p-7 border border-slate-200 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-ocean/10 text-ocean flex items-center justify-center">
+            <Card variant="glass" hoverLift spotlight tilt className="p-7 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-ocean/10 text-ocean flex items-center justify-center icon-floating">
                 <Scale className="w-5 h-5 text-ocean" />
               </div>
               <h3 className="text-base font-bold text-navy">Structured Evidence</h3>
@@ -419,8 +426,8 @@ export const GoogleAdsLandingPage: React.FC = () => {
               </p>
             </Card>
 
-            <Card variant="white" hoverLift className="p-7 border border-slate-200 space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center">
+            <Card variant="glass" hoverLift spotlight tilt className="p-7 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center icon-floating">
                 <Lock className="w-5 h-5 text-slate-700" />
               </div>
               <h3 className="text-base font-bold text-navy">Official Escalation</h3>
@@ -484,6 +491,8 @@ export const GoogleAdsLandingPage: React.FC = () => {
               <Button
                 variant="teal"
                 size="lg"
+                shine
+                glow
                 href="#lead-form"
                 onClick={scrollToForm}
                 className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20 flex items-center gap-2"
