@@ -21,15 +21,11 @@ import {
   FadeIn,
   StaggerContainer,
   StaggerItem,
-  TextReveal,
   AmbientGlow,
+  PageIntro,
 } from '@/components/common'
 
-import { motion } from 'framer-motion'
-import { useParallax } from '@/hooks/useParallax'
-
 export const PricingPage: React.FC = () => {
-  const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20request%20a%20quote%20for%20Google%20review%20assistance.'
 
@@ -90,77 +86,52 @@ export const PricingPage: React.FC = () => {
   return (
     <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
-          1. PAGE OPENING — CENTER-ALIGNED VALUE-FIRST HEADER WITH DIRECT CTAS
+          1. PAGE INTRO — LIGHT CENTER-ALIGNED FLOATING CARD FLOW
           ========================================================================= */}
-      <section className="relative pt-8 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 overflow-hidden text-center">
-        {/* Subtle Ambient Radial Lighting with Parallax */}
-        <motion.div
-          style={{ x: glowX, y: glowY }}
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
-          aria-hidden="true"
-        >
-          <div className="w-[500px] h-[300px] rounded-full bg-teal/15 blur-3xl" />
-        </motion.div>
-
-        <Container size="xl" className="relative z-10">
-          <div className="max-w-3xl mx-auto space-y-6">
-            <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-ocean text-xs font-semibold text-ocean shadow-xs">
-                <Tag className="w-4 h-4 text-teal shrink-0" />
-                <span className="tracking-wide text-xs">
-                  Transparent Pricing
-                </span>
-                <span className="text-ocean/40">•</span>
-                <span className="font-script text-base text-ocean font-normal tracking-wide">
-                  Quote-Based
-                </span>
-              </div>
-            </FadeIn>
-
-            <TextReveal
-              lines={[
-                { text: 'Every Review Situation' },
-                { text: 'Is Different.', highlight: true },
-              ]}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy leading-[1.12]"
-              delay={0.12}
-            />
-
-            <FadeIn direction="up" delay={0.25} duration={0.65}>
-              <p className="text-base sm:text-xl text-secondary font-normal leading-relaxed max-w-2xl mx-auto">
-                Share your review concerns with us to discuss the appropriate assistance for your business. We provide honest, custom quotes based on the specific circumstances of your case.
-              </p>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.35} duration={0.6}>
-              <div className="pt-2 flex flex-wrap justify-center gap-4 items-center">
-                <Button
-                  variant="teal"
-                  size="lg"
-                  shine
-                  glow
-                  to="/contact"
-                  className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
-                >
-                  <span>Request a Quote</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Button>
-
-                <Button
-                  variant="whatsapp"
-                  size="lg"
-                  href={whatsappUrl}
-                  isExternal
-                  className="px-7 py-4 text-sm font-semibold flex items-center gap-2"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Chat on WhatsApp</span>
-                </Button>
-              </div>
-            </FadeIn>
+      <PageIntro
+        layout="floating-card"
+        badge={
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-card-light-page text-xs font-semibold text-ocean shadow-xs">
+            <Tag className="w-4 h-4 text-teal shrink-0" />
+            <span className="tracking-wide text-xs">
+              Transparent Pricing
+            </span>
+            <span className="text-ocean/40">•</span>
+            <span className="font-script text-base text-ocean font-normal tracking-wide">
+              Quote-Based
+            </span>
           </div>
-        </Container>
-      </section>
+        }
+        title={
+          <>
+            Every Review Situation <span className="text-ocean">Is Different.</span>
+          </>
+        }
+        subtitle="Share your review concerns with us to discuss the appropriate assistance for your business. We provide honest, custom quotes based on the specific circumstances of your case."
+      >
+        <Button
+          variant="teal"
+          size="lg"
+          shine
+          glow
+          to="/contact"
+          className="px-8 py-4 text-sm font-bold shadow-lg shadow-teal/20"
+        >
+          <span>Request a Quote</span>
+          <ArrowRight className="w-4 h-4 ml-1.5" />
+        </Button>
+
+        <Button
+          variant="whatsapp"
+          size="lg"
+          href={whatsappUrl}
+          isExternal
+          className="px-7 py-4 text-sm font-semibold flex items-center gap-2"
+        >
+          <MessageCircle className="w-4 h-4" />
+          <span>Chat on WhatsApp</span>
+        </Button>
+      </PageIntro>
 
       {/* =========================================================================
           2. WHY QUOTE-BASED PRICING MATTERS
@@ -234,7 +205,7 @@ export const PricingPage: React.FC = () => {
             </div>
           </Container>
         </section>
-        <CurvedHeroTransition position="bottom" fillColor="soft" height={75} />
+        <CurvedHeroTransition position="bottom" fillColor="#DCEFF0" height={75} />
       </div>
 
       {/* =========================================================================

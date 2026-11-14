@@ -27,8 +27,8 @@ import {
   FadeIn,
   StaggerContainer,
   StaggerItem,
-  TextReveal,
   AmbientGlow,
+  PageIntro,
 } from '@/components/common'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import { useParallax } from '@/hooks/useParallax'
@@ -36,7 +36,6 @@ import { useParallax } from '@/hooks/useParallax'
 export const AboutPage: React.FC = () => {
   const prefersReduced = usePrefersReducedMotion()
   const { x: heroBgX, y: heroBgY } = useParallax(12)
-  const { x: glowX, y: glowY } = useParallax(-16)
   const whatsappUrl =
     'https://wa.me/923406523353?text=Hello%20RepuShield.%20I%20would%20like%20to%20learn%20more%20about%20your%20Google%20review%20removal%20assistance.'
 
@@ -115,133 +114,103 @@ export const AboutPage: React.FC = () => {
   return (
     <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
-          1. PAGE OPENING — TWO-COLUMN EDITORIAL SPLIT WITH 3D GLASS SHIELD
+          1. PAGE INTRO — LIGHT TWO-COLUMN INTRO FLOW WITH 3D GLASS SHIELD SCENE
           ========================================================================= */}
-      <section className="relative pt-8 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 overflow-hidden">
-        <Container size="xl" className="relative z-10">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left Narrative Column */}
-            <div className="lg:col-span-7 space-y-6">
-              <FadeIn direction="up" delay={0.05} duration={0.6}>
-                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-ocean text-xs font-semibold text-ocean shadow-xs">
-                  <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
-                  <span className="tracking-wide text-xs">
-                    About RepuShield
-                  </span>
-                  <span className="text-ocean/40">•</span>
-                  <span className="font-script text-base text-ocean font-normal tracking-wide">
-                    Policy Focused
-                  </span>
-                </div>
-              </FadeIn>
-
-              <TextReveal
-                lines={[
-                  { text: 'About' },
-                  { text: 'RepuShield.', highlight: true },
-                ]}
-                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy leading-[1.12]"
-                delay={0.12}
-              />
-
-              <FadeIn direction="up" delay={0.25} duration={0.65}>
-                <p className="text-base sm:text-xl text-secondary font-normal leading-relaxed max-w-2xl">
-                  A transparent, policy-focused approach to negative Google review assistance.
-                </p>
-              </FadeIn>
-
-              <FadeIn direction="up" delay={0.35} duration={0.6}>
-                <div className="pt-2 flex flex-wrap gap-4 items-center">
-                  <Button
-                    variant="teal"
-                    size="lg"
-                    shine
-                    glow
-                    to="/contact"
-                    className="px-7 py-3.5 text-sm font-bold shadow-lg shadow-teal/20"
-                  >
-                    <span>Get Help With Negative Reviews</span>
-                    <ArrowRight className="w-4 h-4 ml-1.5" />
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    shine
-                    to="/services"
-                    className="px-7 py-3.5 text-sm font-semibold glass-card-public border-white/80 text-navy hover:bg-white"
-                  >
-                    <span>Explore Our Services</span>
-                  </Button>
-                </div>
-              </FadeIn>
-            </div>
-
-            {/* Right Decorative 3D Glass Shield Composition (Strictly Decorative) */}
-            <div className="lg:col-span-5 relative flex items-center justify-center">
-              <FadeIn direction="up" delay={0.2} duration={0.7} className="w-full">
-                <div className="relative mx-auto max-w-sm sm:max-w-md w-full aspect-square flex items-center justify-center">
-                  {/* Subtle Ambient Radial Lighting with Parallax */}
-                  <motion.div
-                    style={prefersReduced ? undefined : { x: glowX, y: glowY }}
-                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                    aria-hidden="true"
-                  >
-                    <div className="w-64 h-64 rounded-full bg-teal/20 blur-3xl" />
-                    <div className="w-48 h-48 rounded-full bg-ocean/20 blur-2xl" />
-                  </motion.div>
-
-                  {/* Layered Decorative Elements with Parallax */}
-                  <motion.div
-                    style={prefersReduced ? undefined : { x: heroBgX, y: heroBgY }}
-                    className="relative z-10 w-full h-full flex items-center justify-center"
-                  >
-                    {/* Center Glass Shield Container */}
-                    <div className="w-52 h-52 sm:w-60 sm:h-60 rounded-3xl glass-card-public border-white/90 shadow-xl shadow-ocean/10 flex flex-col items-center justify-center relative overflow-hidden p-6 group">
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-teal/10 pointer-events-none" />
-                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-navy to-ocean text-white flex items-center justify-center shadow-lg shadow-ocean/30 relative">
-                        <ShieldCheck className="w-12 h-12 sm:w-14 sm:h-14 text-teal stroke-[2]" />
-                      </div>
-                      <div className="mt-4 flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
-                        <span className="w-12 h-1 rounded-full bg-ocean/30" />
-                      </div>
-                    </div>
-
-                    {/* Satellite Floating Glass Tile 1: Scale */}
-                    <div className="absolute top-4 left-4 sm:left-6 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card-public border-white/90 shadow-md flex items-center justify-center text-teal icon-floating">
-                      <Scale className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
-                    </div>
-
-                    {/* Satellite Floating Glass Tile 2: FileCheck */}
-                    <div
-                      className="absolute bottom-6 left-6 sm:left-8 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card-public border-white/90 shadow-md flex items-center justify-center text-ocean icon-floating"
-                      style={{ animationDelay: '1.2s' }}
-                    >
-                      <FileCheck className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
-                    </div>
-
-                    {/* Satellite Floating Glass Tile 3: Eye */}
-                    <div
-                      className="absolute top-8 right-4 sm:right-6 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card-public border-white/90 shadow-md flex items-center justify-center text-teal icon-floating"
-                      style={{ animationDelay: '2.4s' }}
-                    >
-                      <Eye className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
-                    </div>
-
-                    {/* Satellite Floating Glass Tile 4: Lock */}
-                    <div
-                      className="absolute bottom-8 right-6 sm:right-8 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card-public border-white/90 shadow-md flex items-center justify-center text-ocean icon-floating"
-                      style={{ animationDelay: '1.8s' }}
-                    >
-                      <Lock className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
-                    </div>
-                  </motion.div>
-                </div>
-              </FadeIn>
-            </div>
+      <PageIntro
+        layout="split"
+        badge={
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-card-light-page text-xs font-semibold text-ocean shadow-xs">
+            <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
+            <span className="tracking-wide text-xs">
+              About RepuShield
+            </span>
+            <span className="text-ocean/40">•</span>
+            <span className="font-script text-base text-ocean font-normal tracking-wide">
+              Policy Focused
+            </span>
           </div>
-        </Container>
-      </section>
+        }
+        title={
+          <>
+            About <span className="text-ocean">RepuShield.</span>
+          </>
+        }
+        subtitle="A transparent, policy-focused approach to negative Google review assistance."
+        rightContent={
+          <div className="relative mx-auto max-w-sm w-full aspect-square flex items-center justify-center [perspective:1000px]">
+            {/* Multi-Layer Stacked 3D Glass Shield Scene with Perspective Rotation */}
+            <motion.div
+              style={prefersReduced ? undefined : { x: heroBgX, y: heroBgY, rotateX: heroBgY, rotateY: heroBgX }}
+              className="relative z-10 w-full h-full flex items-center justify-center [transform-style:preserve-3d]"
+            >
+              {/* Layer 1: Ambient Backdrop Glass Plate (translateZ: 0px) */}
+              <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-3xl glass-card-light-page border border-white/80 shadow-2xl flex flex-col items-center justify-center relative overflow-hidden p-6 [transform:translateZ(0px)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-transparent to-teal/10 pointer-events-none" />
+                
+                {/* Layer 2: Elevated Core Shield Badge (translateZ: 30px) */}
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-navy via-ocean to-navy text-white flex items-center justify-center shadow-xl shadow-ocean/25 relative border border-white/40 [transform:translateZ(30px)]">
+                  <ShieldCheck className="w-12 h-12 sm:w-14 sm:h-14 text-teal stroke-[2]" />
+                </div>
+                <div className="mt-4 flex items-center gap-1.5 [transform:translateZ(20px)]">
+                  <span className="w-2 h-2 rounded-full bg-teal animate-pulse" />
+                  <span className="w-12 h-1 rounded-full bg-ocean/30" />
+                </div>
+              </div>
+
+              {/* Layer 3: Floating Satellite Icon Tiles (translateZ: 50px) */}
+              {/* Tile 1: Scale */}
+              <div className="absolute top-2 left-2 sm:left-4 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card-light-page border border-white/90 shadow-lg flex items-center justify-center text-teal icon-floating [transform:translateZ(50px)]">
+                <Scale className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
+              </div>
+
+              {/* Tile 2: FileCheck */}
+              <div
+                className="absolute bottom-4 left-4 sm:left-6 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card-light-page border border-white/90 shadow-lg flex items-center justify-center text-ocean icon-floating [transform:translateZ(50px)]"
+                style={{ animationDelay: '1.2s' }}
+              >
+                <FileCheck className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
+              </div>
+
+              {/* Tile 3: Eye */}
+              <div
+                className="absolute top-4 right-2 sm:right-4 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card-light-page border border-white/90 shadow-lg flex items-center justify-center text-teal icon-floating [transform:translateZ(50px)]"
+                style={{ animationDelay: '2.4s' }}
+              >
+                <Eye className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
+              </div>
+
+              {/* Tile 4: Lock */}
+              <div
+                className="absolute bottom-4 right-4 sm:right-6 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl glass-card-light-page border border-white/90 shadow-lg flex items-center justify-center text-ocean icon-floating [transform:translateZ(50px)]"
+                style={{ animationDelay: '1.8s' }}
+              >
+                <Lock className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2]" />
+              </div>
+            </motion.div>
+          </div>
+        }
+      >
+        <Button
+          variant="teal"
+          size="lg"
+          shine
+          glow
+          to="/contact"
+          className="px-7 py-3.5 text-sm font-bold shadow-lg shadow-teal/20"
+        >
+          <span>Get Help With Negative Reviews</span>
+          <ArrowRight className="w-4 h-4 ml-1.5" />
+        </Button>
+        <Button
+          variant="secondary"
+          size="lg"
+          shine
+          to="/services"
+          className="px-7 py-3.5 text-sm font-semibold glass-card-light-page border-white/80 text-navy hover:bg-white"
+        >
+          <span>Explore Our Services</span>
+        </Button>
+      </PageIntro>
 
       {/* =========================================================================
           2. WHO WE ARE SECTION
@@ -450,7 +419,7 @@ export const AboutPage: React.FC = () => {
             </StaggerContainer>
           </Container>
         </section>
-        <CurvedHeroTransition position="bottom" fillColor="soft" height={75} />
+        <CurvedHeroTransition position="bottom" fillColor="#DCEFF0" height={75} />
       </div>
 
       {/* =========================================================================

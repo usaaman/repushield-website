@@ -8,4 +8,6 @@ export * from './SectionHeading'
 export * from './Accordion'
 export * from './MotionWrapper'
 export * from './CTASection'
+export * from './PageHeader'
+export * from './PageIntro'
 

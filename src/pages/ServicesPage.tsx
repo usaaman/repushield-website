@@ -25,8 +25,8 @@ import {
   FadeIn,
   StaggerContainer,
   StaggerItem,
-  TextReveal,
   AmbientGlow,
+  PageIntro,
 } from '@/components/common'
 
 export const ServicesPage: React.FC = () => {
@@ -172,84 +172,66 @@ export const ServicesPage: React.FC = () => {
   return (
     <div className="flex flex-col text-navy selection:bg-teal selection:text-white">
       {/* =========================================================================
-          1. PAGE OPENING — SERVICE CATALOG HEADER WITH QUICK-JUMP ANCHORS
+          1. PAGE INTRO — LIGHT LEFT-ALIGNED INTRO FLOW WITH QUICK-JUMP CHIPS
           ========================================================================= */}
-      <section className="relative pt-8 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 overflow-hidden">
-        <Container size="xl" className="relative z-10">
-          <div className="max-w-3xl space-y-6">
-            <FadeIn direction="up" delay={0.05} duration={0.6}>
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-ocean text-xs font-semibold text-ocean shadow-xs">
-                <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
-                <span className="tracking-wide text-xs">
-                  RepuShield Review Services
-                </span>
-                <span className="text-ocean/40">•</span>
-                <span className="font-script text-base text-ocean font-normal tracking-wide">
-                  Policy Focused
-                </span>
-              </div>
-            </FadeIn>
-
-            <TextReveal
-              lines={[
-                { text: 'Our Reputation' },
-                { text: 'Assistance Services.', highlight: true },
-              ]}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy leading-[1.12]"
-              delay={0.12}
-            />
-
-            <FadeIn direction="up" delay={0.25} duration={0.65}>
-              <p className="text-base sm:text-xl text-secondary font-normal leading-relaxed max-w-2xl">
-                Practical, transparent guidance for businesses reviewing potentially policy-violating Google reviews.
-              </p>
-            </FadeIn>
-
-            <FadeIn direction="up" delay={0.35} duration={0.6}>
-              <div className="pt-2 flex flex-wrap gap-4 items-center">
-                <Button
-                  variant="teal"
-                  size="lg"
-                  shine
-                  glow
-                  to="/contact"
-                  className="px-7 py-3.5 text-sm font-bold shadow-lg shadow-teal/20"
-                >
-                  <span>Get Help With Negative Reviews</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  shine
-                  href="#services-list"
-                  className="px-7 py-3.5 text-sm font-semibold glass-card-public border-white/80 text-navy hover:bg-white"
-                >
-                  <span>Explore All Services</span>
-                </Button>
-              </div>
-            </FadeIn>
+      <PageIntro
+        layout="left"
+        badge={
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-card-light-page text-xs font-semibold text-ocean shadow-xs">
+            <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
+            <span className="tracking-wide text-xs">
+              RepuShield Review Services
+            </span>
+            <span className="text-ocean/40">•</span>
+            <span className="font-script text-base text-ocean font-normal tracking-wide">
+              Policy Focused
+            </span>
           </div>
-
-          {/* Quick-Jump Service Anchor Chips (Using exact service titles per Rule 6) */}
-          <FadeIn direction="up" delay={0.45} duration={0.6}>
-            <div className="mt-10 pt-6 border-t border-slate-200/70">
-              <div className="flex flex-wrap gap-2.5 items-center">
-                {mainServices.map((service) => (
-                  <a
-                    key={service.id}
-                    href={`#${service.id}`}
-                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold glass-card-public border-white/80 hover:border-ocean/40 text-navy hover:text-ocean transition-all duration-200 hover:shadow-xs group"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-teal group-hover:scale-125 transition-transform" />
-                    <span>{service.title}</span>
-                  </a>
-                ))}
-              </div>
+        }
+        title={
+          <>
+            Our Reputation <span className="text-ocean">Assistance Services.</span>
+          </>
+        }
+        subtitle="Practical, transparent guidance for businesses reviewing potentially policy-violating Google reviews."
+        chips={
+          <div className="mt-8 pt-5 border-t border-slate-200/70">
+            <div className="flex flex-wrap gap-2.5 items-center">
+              {mainServices.map((service) => (
+                <a
+                  key={service.id}
+                  href={`#${service.id}`}
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold glass-card-light-page border-white/80 hover:border-ocean/40 text-navy hover:text-ocean transition-all duration-200 hover:shadow-xs group"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal group-hover:scale-125 transition-transform" />
+                  <span>{service.title}</span>
+                </a>
+              ))}
             </div>
-          </FadeIn>
-        </Container>
-      </section>
+          </div>
+        }
+      >
+        <Button
+          variant="teal"
+          size="lg"
+          shine
+          glow
+          to="/contact"
+          className="px-7 py-3.5 text-sm font-bold shadow-lg shadow-teal/20"
+        >
+          <span>Get Help With Negative Reviews</span>
+          <ArrowRight className="w-4 h-4 ml-1.5" />
+        </Button>
+        <Button
+          variant="secondary"
+          size="lg"
+          shine
+          href="#services-list"
+          className="px-7 py-3.5 text-sm font-semibold glass-card-light-page border-white/80 text-navy hover:bg-white"
+        >
+          <span>Explore All Services</span>
+        </Button>
+      </PageIntro>
 
       {/* =========================================================================
           2. MAIN SERVICES SECTION (DETAILED PROBLEM/SOLUTION SERVICE CARDS)
@@ -421,7 +403,7 @@ export const ServicesPage: React.FC = () => {
             </FadeIn>
           </Container>
         </section>
-        <CurvedHeroTransition position="bottom" fillColor="soft" height={75} />
+        <CurvedHeroTransition position="bottom" fillColor="#DCEFF0" height={75} />
       </div>
 
       {/* =========================================================================
