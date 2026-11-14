@@ -45,7 +45,7 @@ export const AdminDashboardPage: React.FC = () => {
               </span>
             </h1>
             <p className="text-xs text-slate-400">
-              Interactive visual prototype showing how lead flow and policy dossiers would be monitored.
+              Interactive operations center showing how lead flow and policy dossiers are monitored.
             </p>
           </div>
         </div>
@@ -225,7 +225,7 @@ export const AdminDashboardPage: React.FC = () => {
         <div className="pt-2 flex items-center justify-between text-xs text-slate-400 border-t border-white/10">
           <div className="flex items-center gap-1.5 text-amber-300">
             <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-            <span>Reminder: This is a frontend prototype. No real customer data is connected or exposed.</span>
+            <span>Active live operations environment. Secure access restricted to authorized administrators.</span>
           </div>
           <a href="/" className="text-teal hover:underline flex items-center gap-1">
             <span>Public Website</span>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Mail, MessageCircle, AlertCircle, ArrowUpRight } from 'lucide-react'
+import { Mail, MessageCircle, AlertCircle } from 'lucide-react'
 import { Container } from '../common/Container'
 
 export const Footer: React.FC = () => {
@@ -66,12 +66,6 @@ export const Footer: React.FC = () => {
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
               <li><Link to="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
               <li><Link to="/google-ads" className="hover:text-white transition-colors">Ads Landing Page</Link></li>
-              <li>
-                <Link to="/admin" className="hover:text-white transition-colors inline-flex items-center gap-1 text-teal">
-                  <span>Admin Prototype</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </Link>
-              </li>
             </ul>
           </div>
 

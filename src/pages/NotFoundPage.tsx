@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { ShieldAlert, Home, ArrowLeft } from 'lucide-react'
 import { Container } from '@/components/common/Container'
 import { Button } from '@/components/common/Button'
@@ -32,13 +31,6 @@ export const NotFoundPage: React.FC = () => {
               <ArrowLeft className="w-4 h-4" />
               <span>Contact Support</span>
             </Button>
-          </div>
-
-          <div className="pt-6 border-t border-slate-100 text-xs text-muted">
-            Looking for the admin demo? Go to{' '}
-            <Link to="/admin" className="text-ocean font-medium hover:underline">
-              /admin
-            </Link>
           </div>
         </div>
       </Container>
