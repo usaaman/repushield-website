@@ -6,7 +6,6 @@ import {
   ArrowLeft,
   AlertCircle,
   CheckCircle2,
-  KeyRound,
 } from 'lucide-react'
 import { useAdminAuth } from '@/context/AdminAuthContext'
 import { usePageSEO } from '@/hooks/usePageSEO'
@@ -14,7 +13,7 @@ import { usePageSEO } from '@/hooks/usePageSEO'
 export const AdminForgotPasswordPage: React.FC = () => {
   usePageSEO()
 
-  const { resetPassword, isConfigured } = useAdminAuth()
+  const { resetPassword } = useAdminAuth()
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -71,15 +70,6 @@ export const AdminForgotPasswordPage: React.FC = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4 sm:px-0">
         <div className="bg-[#0D2434] border border-white/10 py-8 px-6 shadow-2xl rounded-2xl sm:px-10 space-y-6">
-          {!isConfigured && (
-            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs flex items-start gap-2.5">
-              <KeyRound className="w-4 h-4 shrink-0 mt-0.5 text-amber-400" />
-              <div className="flex-1 leading-relaxed">
-                Supabase backend credentials are not yet configured in <code className="font-mono bg-black/20 px-1 py-0.5 rounded">.env</code>. Auth emails are enabled once your Supabase project is connected.
-              </div>
-            </div>
-          )}
-
           {error && (
             <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5">
               <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />

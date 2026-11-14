@@ -8,7 +8,6 @@ import {
   EyeOff,
   ArrowLeft,
   AlertCircle,
-  KeyRound,
   Info,
 } from 'lucide-react'
 import { useAdminAuth } from '@/context/AdminAuthContext'
@@ -17,7 +16,7 @@ import { usePageSEO } from '@/hooks/usePageSEO'
 export const AdminLoginPage: React.FC = () => {
   usePageSEO()
 
-  const { signIn, isConfigured } = useAdminAuth()
+  const { signIn } = useAdminAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const from = (location.state as any)?.from?.pathname || '/admin'
@@ -80,19 +79,6 @@ export const AdminLoginPage: React.FC = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4 sm:px-0">
         <div className="bg-[#0D2434] border border-white/10 py-8 px-6 shadow-2xl rounded-2xl sm:px-10 space-y-6">
-          {/* Checkpoint Banner when Supabase not configured */}
-          {!isConfigured && (
-            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs space-y-1.5">
-              <div className="flex items-center gap-2 font-bold text-amber-300">
-                <KeyRound className="w-4 h-4 shrink-0" />
-                <span>Backend Database Configuration Pending</span>
-              </div>
-              <p className="text-[11px] leading-relaxed text-amber-200/90">
-                Supabase credentials must be configured in <code className="font-mono bg-black/20 px-1 py-0.5 rounded">.env</code> before administrator authentication can proceed.
-              </p>
-            </div>
-          )}
-
           {error && (
             <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5">
               <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
