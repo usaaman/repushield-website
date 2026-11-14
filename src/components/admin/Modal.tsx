@@ -47,27 +47,27 @@ export const Modal: React.FC<ModalProps> = ({
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-[#07131B]/80 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-[#07131B]/85 backdrop-blur-md transition-opacity duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Modal Dialog (Centered Horizontally & Vertically) */}
+      {/* Modal Dialog (Centered Horizontally & Vertically) with Rich Glassmorphism */}
       <div
-        className={`relative w-full ${maxWMap[maxWidth]} rounded-3xl bg-[#0C1D27] border border-white/15 text-slate-100 shadow-2xl overflow-hidden my-auto z-10 animate-in fade-in zoom-in-95 duration-200`}
+        className={`relative w-full ${maxWMap[maxWidth]} rounded-3xl bg-[#0B1E28]/95 bg-white/[0.05] backdrop-blur-2xl border border-white/15 text-slate-100 shadow-2xl shadow-black/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] overflow-hidden my-auto z-10 animate-in fade-in zoom-in-95 duration-200`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
       >
         {/* Header */}
-        <div className="px-6 py-5 border-b border-white/10 flex items-start justify-between gap-4">
+        <div className="px-6 py-5 border-b border-white/10 flex items-start justify-between gap-4 bg-white/[0.02]">
           <div>
             <h3 id="modal-title" className="text-lg font-bold text-white tracking-tight">{title}</h3>
             {subtitle && <p className="text-xs text-slate-400 mt-0.5">{subtitle}</p>}
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/20"
+            className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-all duration-200 active:scale-[0.97] focus:outline-none focus:ring-2 focus:ring-teal/30"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />

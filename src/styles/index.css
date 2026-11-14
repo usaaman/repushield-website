@@ -101,17 +101,58 @@ html {
 }
 
 .glass-admin {
-  background: rgba(15, 44, 61, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 }
 
 .glass-admin-card {
-  background: rgba(15, 44, 61, 0.45);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 14px 35px -12px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-admin-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(20, 184, 166, 0.4);
+  box-shadow: 0 22px 45px -10px rgba(0, 0, 0, 0.5), 0 0 25px -4px rgba(20, 184, 166, 0.22), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Admin Entrance Stagger Animations */
+@keyframes admin-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-fade-in-up {
+  animation: admin-fade-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.admin-stagger-1 { animation-delay: 0.06s; }
+.admin-stagger-2 { animation-delay: 0.12s; }
+.admin-stagger-3 { animation-delay: 0.18s; }
+.admin-stagger-4 { animation-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-admin-card:hover {
+    transform: none !important;
+  }
+  .admin-fade-in-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* =========================================================================
