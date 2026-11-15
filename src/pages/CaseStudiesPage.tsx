@@ -140,7 +140,7 @@ export const CaseStudiesPage: React.FC = () => {
           </div>
         </Container>
 
-        <CurvedHeroTransition fillColor="white" height={95} />
+        <CurvedHeroTransition position="bottom" fillColor="#07131B" height={95} />
       </section>
 
       {/* =========================================================================

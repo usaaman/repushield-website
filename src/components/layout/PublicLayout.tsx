@@ -12,7 +12,12 @@ export const PublicLayout: React.FC = () => {
   usePageSEO()
   const location = useLocation()
   const prefersReduced = usePrefersReducedMotion()
-  const isLightPage = ['/about', '/services', '/pricing'].includes(location.pathname)
+  const isLightPage = [
+    '/about',
+    '/services',
+    '/case-studies',
+    '/pricing',
+  ].includes(location.pathname)
   const hasDarkHero = [
     '/',
     '/case-studies',
@@ -30,7 +35,7 @@ export const PublicLayout: React.FC = () => {
           ========================================================================= */}
       {isLightPage ? (
         <div
-          className="fixed inset-0 pointer-events-none -z-10 overflow-hidden bg-gradient-to-b from-[#DCEFF0] via-[#EAF4F7] to-[#D7E6F5]"
+          className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-gradient-to-b from-[#DCEFF0] via-[#EAF4F7] to-[#D7E6F5]"
           aria-hidden="true"
         >
           {/* Orb 1: Accent Teal (Top Right) */}
@@ -44,7 +49,7 @@ export const PublicLayout: React.FC = () => {
         </div>
       ) : (
         <div
-          className="fixed inset-0 pointer-events-none -z-10 overflow-hidden bg-gradient-to-b from-[#EAF4F7] via-[#F4F9FA] to-[#E3F0F4]"
+          className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-gradient-to-b from-[#EAF4F7] via-[#F4F9FA] to-[#E3F0F4]"
           aria-hidden="true"
         >
           <div className="ambient-orb ambient-orb-1 absolute -top-[12%] -right-[8%] w-[50vw] max-w-[680px] h-[50vw] max-h-[680px] rounded-full bg-[#0A789B]/24 blur-[110px]" />
