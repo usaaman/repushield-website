@@ -18,6 +18,7 @@ export const PublicLayout: React.FC = () => {
     '/case-studies',
     '/contact',
     '/faq',
+    '/google-ads',
   ].includes(location.pathname)
 
   return (
@@ -29,7 +30,7 @@ export const PublicLayout: React.FC = () => {
           ========================================================================= */}
       {isLightPage ? (
         <div
-          className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-gradient-to-b from-[#DCEFF0] via-[#EAF4F7] to-[#D7E6F5]"
+          className="fixed inset-0 pointer-events-none -z-10 overflow-hidden bg-gradient-to-b from-[#DCEFF0] via-[#EAF4F7] to-[#D7E6F5]"
           aria-hidden="true"
         >
           {/* Orb 1: Accent Teal (Top Right) */}

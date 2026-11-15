@@ -159,13 +159,27 @@ export const GoogleAdsLandingPage: React.FC = () => {
       {/* =========================================================================
           1. HIGH-CONVERSION ADS HERO WITH EMBEDDED FORM
           ========================================================================= */}
-      <section className="relative min-h-[85vh] flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-12">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/95 via-navy/90 to-[#07131B]/95 pointer-events-none" />
+      <section className="relative min-h-screen flex flex-col justify-between bg-navy-midnight text-white overflow-hidden pt-28 sm:pt-36 pb-0">
+        {/* Full-Screen Luxury Architectural Background with Sophisticated Fade */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+          <img
+            src="/images/hero-luxury-building.jpg"
+            alt="Luxury Corporate Headquarters"
+            className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000"
+            loading="eager"
+            fetchPriority="high"
+          />
+          {/* Subtle multi-layer cinematic gradient overlays for high text contrast and luxury depth */}
+          <div className="absolute inset-0 bg-[#07131B]/40 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#091722]/95 via-[#091722]/85 to-[#091722]/65" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#091722]/90 via-transparent to-[#07131B]" />
+        </div>
+
         <motion.div style={{ x: glowX, y: glowY }} className="absolute inset-0 pointer-events-none">
           <AmbientGlow className="absolute top-1/4 right-1/4 w-[550px] h-[550px] bg-ocean/20 opacity-60" />
           <AmbientGlow className="absolute bottom-1/3 left-10 w-[450px] h-[450px] bg-teal/15 opacity-50" />
         </motion.div>
-        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-25" />
+        <div className="absolute inset-0 noise-overlay pointer-events-none opacity-20" />
 
         <Container size="xl" className="relative z-10 my-auto py-8">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -411,7 +425,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
       {/* =========================================================================
           2. CORE CAMPAIGN HIGHLIGHTS
           ========================================================================= */}
-      <SectionWrapper variant="white" className="py-16 sm:py-20">
+      <SectionWrapper variant="white" className="py-16 sm:py-20 bg-white relative z-10">
         <Container size="xl">
           <SectionHeading
             badge={<Badge variant="teal">Proven Approach</Badge>}

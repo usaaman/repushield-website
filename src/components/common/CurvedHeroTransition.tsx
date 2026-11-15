@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useId } from 'react'
 
 export interface CurvedHeroTransitionProps {
   /**
-   * Target fill color for the bottom area.
+   * Target fill color for the curve area.
    * Defaults to RiseRepute's soft page background #F6F8FA ('soft').
+   * Can be 'navy' | 'navy-dark' | 'dark' | 'soft' | 'white' | hex string.
    */
-  fillColor?: 'soft' | 'white' | 'navy' | string
+  fillColor?: 'soft' | 'white' | 'navy' | 'navy-dark' | 'dark' | string
   /**
-   * Position: 'bottom' (transitions from dark hero above to light section below)
-   * or 'top' (transitions into a dark section from above).
+   * Position: 'bottom' (transitions at the bottom of a section)
+   * or 'top' (transitions into a section from above).
    */
   position?: 'bottom' | 'top'
   className?: string
@@ -21,15 +22,37 @@ export const CurvedHeroTransition: React.FC<CurvedHeroTransitionProps> = ({
   className = '',
   height = 110,
 }) => {
+  const uniqueId = useId().replace(/:/g, '')
+  const glowId = `organicGlow-${uniqueId}`
+  const waveId = `translucentWave-${uniqueId}`
+
   const fillHex =
     {
       soft: '#F6F8FA',
       mist: '#EAF4F7',
       white: '#FFFFFF',
       navy: '#0F2C3D',
+      'navy-dark': '#07131B',
+      dark: '#07131B',
       transparent: 'transparent',
     }[fillColor] || fillColor
 
+  const isNavy =
+    fillColor === 'navy' ||
+    fillColor === 'navy-dark' ||
+    fillColor === 'dark' ||
+    (typeof fillColor === 'string' &&
+      (fillColor.startsWith('#0F') ||
+        fillColor.startsWith('#07') ||
+        fillColor.startsWith('#0B') ||
+        fillColor.startsWith('#06') ||
+        fillColor.toLowerCase().includes('navy')))
+
+  // When using a dark fill (navy), the wave shape itself is painted navy:
+  // - Top transition into a dark band: unrotated (top is 100% transparent letting ambient page background show, bottom is solid navy).
+  // - Bottom transition out of a dark band: rotated 180 (top is solid navy connecting to dark section, bottom is 100% transparent).
+  // When using a light fill (soft/white), traditional inverted logic applies.
+  const isRotated = isNavy ? position === 'bottom' : position === 'top'
   const isBottom = position === 'bottom'
 
   return (
@@ -43,7 +66,7 @@ export const CurvedHeroTransition: React.FC<CurvedHeroTransitionProps> = ({
       aria-hidden="true"
     >
       <svg
-        className={`w-full h-full block ${isBottom ? '' : 'rotate-180'}`}
+        className={`w-full h-full block ${isRotated ? 'rotate-180' : ''}`}
         viewBox="0 0 1440 180"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -51,14 +74,14 @@ export const CurvedHeroTransition: React.FC<CurvedHeroTransitionProps> = ({
       >
         <defs>
           {/* Subtle teal to ocean accent gradient for the architectural glow */}
-          <linearGradient id="organicGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id={glowId} x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#14B8A6" stopOpacity="0.4" />
             <stop offset="45%" stopColor="#0A789B" stopOpacity="0.6" />
             <stop offset="80%" stopColor="#14B8A6" stopOpacity="0.3" />
             <stop offset="100%" stopColor="#0F2C3D" stopOpacity="0.1" />
           </linearGradient>
 
-          <linearGradient id="translucentWave" x1="0%" y1="100%" x2="100%" y2="0%">
+          <linearGradient id={waveId} x1="0%" y1="100%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#0F2C3D" stopOpacity="0.3" />
             <stop offset="50%" stopColor="#0A789B" stopOpacity="0.18" />
             <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.08" />
@@ -68,13 +91,13 @@ export const CurvedHeroTransition: React.FC<CurvedHeroTransitionProps> = ({
         {/* Layer 1: Distant Asymmetric Wave Contour */}
         <path
           d="M0,45 C280,120 520,10 880,75 C1160,125 1320,60 1440,30 L1440,180 L0,180 Z"
-          fill="url(#translucentWave)"
+          fill={`url(#${waveId})`}
         />
 
         {/* Layer 2: Radiant Accent Glow Filament */}
         <path
           d="M0,60 C320,135 680,25 960,85 C1240,140 1380,85 1440,55"
-          stroke="url(#organicGlow)"
+          stroke={`url(#${glowId})`}
           strokeWidth="2.5"
           strokeLinecap="round"
           fill="none"
@@ -84,7 +107,7 @@ export const CurvedHeroTransition: React.FC<CurvedHeroTransitionProps> = ({
         <path
           d="M0,80 C260,30 640,140 980,80 C1220,38 1360,95 1440,105 L1440,180 L0,180 Z"
           fill={fillHex}
-          fillOpacity="0.45"
+          fillOpacity={isNavy ? '0.35' : '0.45'}
         />
 
         {/* Layer 4: Primary Foreground Organic Crest */}

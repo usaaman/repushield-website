@@ -5,7 +5,7 @@ import { Container } from '../common/Container'
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-navy text-white pt-16 pb-12 border-t border-slate-800">
+    <footer className="relative z-10 bg-navy text-white pt-16 pb-12 border-t border-slate-800">
       <Container size="xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand & Mission */}
