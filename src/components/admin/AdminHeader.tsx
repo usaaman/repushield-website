@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import {
   Menu,
   Calendar,
   LogOut,
   User as UserIcon,
+  ArrowLeft,
 } from 'lucide-react'
 import { useAdminAuth } from '@/context/AdminAuthContext'
 import { Modal } from '@/components/admin/Modal'
@@ -16,8 +17,27 @@ interface AdminHeaderProps {
 export const AdminHeader: React.FC<AdminHeaderProps> = ({ onToggleMobileMenu }) => {
   const { user, signOut, isConfigured } = useAdminAuth()
   const navigate = useNavigate()
+  const location = useLocation()
   const [showLogoutModal, setShowLogoutModal] = useState(false)
   const [isLoggingOut, setIsLoggingOut] = useState(false)
+
+  const isRootOverview = location.pathname === '/admin' || location.pathname === '/admin/'
+  const showBackButton = !isRootOverview
+
+  const handleGoBack = () => {
+    const hasInternalHistory =
+      typeof window !== 'undefined' &&
+      window.history.state &&
+      typeof window.history.state.idx === 'number' &&
+      window.history.state.idx > 0 &&
+      location.key !== 'default'
+
+    if (hasInternalHistory) {
+      navigate(-1)
+    } else {
+      navigate('/admin')
+    }
+  }
 
   const formattedDate = new Date().toLocaleDateString('en-US', {
     weekday: 'short',
@@ -52,6 +72,18 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ onToggleMobileMenu }) 
           <Menu className="w-5 h-5" />
         </button>
 
+        {showBackButton && (
+          <button
+            type="button"
+            onClick={handleGoBack}
+            aria-label="Go back"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/15 text-slate-200 hover:text-white border border-white/15 text-xs font-semibold transition-all duration-200 active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-teal select-none shrink-0"
+          >
+            <ArrowLeft className="w-3.5 h-3.5 text-teal" />
+            <span>Back</span>
+          </button>
+        )}
+
         <div className="hidden sm:flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-slate-300">
           <Calendar className="w-3.5 h-3.5 text-teal" />
           <span>{formattedDate}</span>
@@ -64,14 +96,12 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({ onToggleMobileMenu }) 
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm border border-white/20">
           <span className="relative flex h-2 w-2">
             <span
-              className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
-                isConfigured ? 'bg-teal' : 'bg-amber-400'
-              }`}
+              className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isConfigured ? 'bg-teal' : 'bg-amber-400'
+                }`}
             />
             <span
-              className={`relative inline-flex rounded-full h-2 w-2 ${
-                isConfigured ? 'bg-teal' : 'bg-amber-400'
-              }`}
+              className={`relative inline-flex rounded-full h-2 w-2 ${isConfigured ? 'bg-teal' : 'bg-amber-400'
+                }`}
             />
           </span>
           <span className="hidden md:inline uppercase tracking-wider text-[11px] font-semibold text-slate-200">
