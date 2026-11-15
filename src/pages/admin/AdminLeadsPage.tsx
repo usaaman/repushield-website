@@ -63,23 +63,30 @@ export const AdminLeadsPage: React.FC = () => {
 
   const handleConvertToCustomer = async () => {
     if (!selectedLead) return
-    const newCustomer = await customerService.createCustomer({
+    const existing = await customerService.getCustomerByEmail(selectedLead.email)
+    const isExisting = Boolean(existing)
+
+    const targetCustomer = await customerService.createCustomer({
       full_name: selectedLead.contact_name,
       company_name: selectedLead.business_name,
       email: selectedLead.email,
       phone: selectedLead.phone,
       country: selectedLead.country,
       status: 'active',
-      notes: `Converted from lead (${selectedLead.source}). Initial details: ${selectedLead.details || 'None'}`,
+      notes: `Converted from inquiry (${selectedLead.source}). Initial details: ${selectedLead.details || 'None'}`,
     })
 
-    if (newCustomer) {
+    if (targetCustomer) {
       await leadService.updateLead(selectedLead.id, {
         status: 'converted',
-        converted_customer_id: newCustomer.id,
+        converted_customer_id: targetCustomer.id,
         converted_at: new Date().toISOString(),
       })
-      setActionSuccess('Lead successfully converted to Customer!')
+      setActionSuccess(
+        isExisting
+          ? `Inquiry attached directly to existing client profile (${targetCustomer.full_name})!`
+          : `Lead successfully converted to new Customer profile!`
+      )
       loadLeads()
     }
   }
