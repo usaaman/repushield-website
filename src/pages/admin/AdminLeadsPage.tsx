@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import {
   Inbox,
   Search,
@@ -6,6 +7,9 @@ import {
   Eye,
   UserCheck,
   ExternalLink,
+  CheckCircle2,
+  AlertCircle,
+  X,
 } from 'lucide-react'
 import { leadService } from '@/services/leadService'
 import { customerService } from '@/services/customerService'
@@ -22,7 +26,21 @@ export const AdminLeadsPage: React.FC = () => {
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
   const [notesInput, setNotesInput] = useState('')
-  const [actionSuccess, setActionSuccess] = useState<string | null>(null)
+  const [actionSuccess, setActionSuccessState] = useState<string | null>(null)
+
+  // Tracking convert confirmation, loading & toast feedback
+  const [showConvertConfirm, setShowConvertConfirm] = useState(false)
+  const [isConverting, setIsConverting] = useState(false)
+  const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
+  const cancelButtonRef = useRef<HTMLButtonElement>(null)
+  const conversionAttemptRef = useRef(0)
+  const lastProcessedAttemptRef = useRef(0)
+  const lastActionSuccessRef = useRef<string | null>(null)
+
+  const setActionSuccess = (msg: string | null) => {
+    lastActionSuccessRef.current = msg
+    setActionSuccessState(msg)
+  }
 
   const loadLeads = async () => {
     const data = await leadService.getLeads()
@@ -32,6 +50,35 @@ export const AdminLeadsPage: React.FC = () => {
   useEffect(() => {
     loadLeads()
   }, [])
+
+  // Auto-dismiss screen-fixed toast after ~4.5 seconds
+  useEffect(() => {
+    if (!toast) return
+    const timer = setTimeout(() => {
+      setToast(null)
+    }, 4500)
+    return () => clearTimeout(timer)
+  }, [toast])
+
+  // Escape key and focus management for Confirmation Dialog
+  useEffect(() => {
+    if (!showConvertConfirm) return
+    cancelButtonRef.current?.focus()
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        e.stopPropagation()
+        e.stopImmediatePropagation()
+        setShowConvertConfirm(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown, true)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown, true)
+    }
+  }, [showConvertConfirm])
 
   const filteredLeads = leads.filter((lead) => {
     const matchesSearch =
@@ -81,6 +128,46 @@ export const AdminLeadsPage: React.FC = () => {
       })
       setActionSuccess('Lead successfully converted to Customer!')
       loadLeads()
+    }
+  }
+
+  const handleConfirmConvert = async () => {
+    if (isConverting || !selectedLead) return
+    setIsConverting(true)
+    setShowConvertConfirm(false)
+    const attemptId = ++conversionAttemptRef.current
+    lastActionSuccessRef.current = null
+
+    try {
+      await handleConvertToCustomer()
+
+      if (lastActionSuccessRef.current === 'Lead successfully converted to Customer!') {
+        if (lastProcessedAttemptRef.current !== attemptId) {
+          lastProcessedAttemptRef.current = attemptId
+          setToast({
+            type: 'success',
+            message: 'Lead converted to customer successfully.',
+          })
+        }
+      } else {
+        if (lastProcessedAttemptRef.current !== attemptId) {
+          lastProcessedAttemptRef.current = attemptId
+          setToast({
+            type: 'error',
+            message: 'Conversion failed. Please try again.',
+          })
+        }
+      }
+    } catch (err: any) {
+      if (lastProcessedAttemptRef.current !== attemptId) {
+        lastProcessedAttemptRef.current = attemptId
+        setToast({
+          type: 'error',
+          message: err?.message || 'Conversion failed. Please try again.',
+        })
+      }
+    } finally {
+      setIsConverting(false)
     }
   }
 
@@ -315,11 +402,12 @@ export const AdminLeadsPage: React.FC = () => {
               <Button
                 variant="teal"
                 size="sm"
-                onClick={handleConvertToCustomer}
-                className="text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+                onClick={() => setShowConvertConfirm(true)}
+                disabled={isConverting}
+                className="text-xs font-bold flex items-center gap-1.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <UserCheck className="w-4 h-4" />
-                <span>Convert to Active Customer</span>
+                <span>{isConverting ? 'Converting...' : 'Convert to Active Customer'}</span>
               </Button>
 
               <div className="flex items-center gap-2">
@@ -348,6 +436,99 @@ export const AdminLeadsPage: React.FC = () => {
             </div>
           </div>
         </Modal>
+      )}
+
+      {/* Convert to Active Customer Confirmation Dialog */}
+      {showConvertConfirm && selectedLead && typeof document !== 'undefined' && createPortal(
+        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-[#07131B]/85 backdrop-blur-md transition-opacity duration-200"
+            onClick={() => setShowConvertConfirm(false)}
+            aria-hidden="true"
+          />
+
+          {/* Dialog Container */}
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="convert-dialog-title"
+            className="relative w-full max-w-md rounded-3xl bg-[#0B1E28]/95 bg-white/[0.05] backdrop-blur-2xl border border-white/15 text-slate-100 shadow-2xl shadow-black/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] p-5 sm:p-6 z-10 animate-in fade-in zoom-in-95 duration-200"
+          >
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="p-2.5 rounded-2xl bg-teal/15 text-teal border border-teal/25 shrink-0">
+                <UserCheck className="w-5 h-5" />
+              </div>
+              <div className="space-y-1.5 flex-1 min-w-0">
+                <h3 id="convert-dialog-title" className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  Convert to active customer?
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Convert <strong className="text-white font-semibold break-words">{selectedLead.business_name}</strong> to an active customer? It will be added to Customers and this inquiry will be linked.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 flex items-center justify-end gap-2.5">
+              <button
+                ref={cancelButtonRef}
+                type="button"
+                onClick={() => setShowConvertConfirm(false)}
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={isConverting}
+                onClick={handleConfirmConvert}
+                className="px-4 py-2 rounded-xl text-xs font-bold text-[#06121A] bg-teal hover:bg-teal-light transition-all shadow-md active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-teal cursor-pointer"
+              >
+                {isConverting ? 'Converting...' : 'Yes, convert'}
+              </button>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* Screen-Fixed Toast Notification */}
+      {toast && typeof document !== 'undefined' && createPortal(
+        <aside
+          role={toast.type === 'error' ? 'alert' : 'status'}
+          aria-live="polite"
+          className="fixed top-4 right-4 left-4 sm:left-auto sm:right-6 sm:top-6 sm:max-w-sm z-[120] animate-in fade-in slide-in-from-top-4 duration-300 pointer-events-auto"
+        >
+          <div
+            className={`p-4 rounded-2xl backdrop-blur-2xl shadow-2xl shadow-black/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] border flex items-start gap-3 ${
+              toast.type === 'error'
+                ? 'bg-[#180C11]/95 border-rose-500/40 text-rose-200'
+                : 'bg-[#081B1F]/95 border-teal/40 text-teal-light'
+            }`}
+          >
+            <div className="shrink-0 mt-0.5">
+              {toast.type === 'error' ? (
+                <AlertCircle className="w-4 h-4 text-rose-400" />
+              ) : (
+                <CheckCircle2 className="w-4 h-4 text-teal" />
+              )}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-white leading-snug">
+                {toast.message}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setToast(null)}
+              aria-label="Close notification"
+              className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </aside>,
+        document.body
       )}
     </div>
   )
