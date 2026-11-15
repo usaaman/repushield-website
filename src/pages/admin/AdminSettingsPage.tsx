@@ -166,14 +166,14 @@ export const AdminSettingsPage: React.FC = () => {
                 <select
                   value={settings.default_currency}
                   onChange={(e) => setSettings({ ...settings, default_currency: e.target.value })}
-                  className="w-full bg-[#07131B] border border-white/10 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-teal/50 appearance-none"
+                  className="w-full bg-[#0A1A24] border border-white/15 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-slate-100 font-medium focus:outline-none focus:border-teal/50 appearance-none cursor-pointer"
                 >
-                  <option value="USD">USD ($) — United States Dollar</option>
-                  <option value="CAD">CAD ($) — Canadian Dollar</option>
-                  <option value="GBP">GBP (£) — British Pound</option>
-                  <option value="EUR">EUR (€) — Euro</option>
-                  <option value="PKR">PKR (Rs) — Pakistani Rupee</option>
-                  <option value="AED">AED (AED) — UAE Dirham</option>
+                  <option value="USD" className="bg-[#0A1A24] text-slate-100">USD ($) — United States Dollar</option>
+                  <option value="CAD" className="bg-[#0A1A24] text-slate-100">CAD ($) — Canadian Dollar</option>
+                  <option value="GBP" className="bg-[#0A1A24] text-slate-100">GBP (£) — British Pound</option>
+                  <option value="EUR" className="bg-[#0A1A24] text-slate-100">EUR (€) — Euro</option>
+                  <option value="PKR" className="bg-[#0A1A24] text-slate-100">PKR (Rs) — Pakistani Rupee</option>
+                  <option value="AED" className="bg-[#0A1A24] text-slate-100">AED (AED) — UAE Dirham</option>
                 </select>
               </div>
             </div>

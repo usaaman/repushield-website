@@ -327,6 +327,50 @@ html {
 }
 
 /* =========================================================================
+   ADMIN PORTAL SELECT & DROPDOWN ENHANCEMENTS
+   High contrast, accessible dark styling matching RiseRepute BMS theme
+   ========================================================================= */
+
+.admin-portal select,
+.admin-select,
+.glass-card-dark select {
+  background-color: #0A1A24 !important;
+  color: #F1F5F9 !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color-scheme: dark !important;
+}
+
+.admin-portal select:focus,
+.admin-select:focus,
+.glass-card-dark select:focus {
+  border-color: rgba(20, 184, 166, 0.5) !important;
+  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.3) !important;
+  outline: none !important;
+}
+
+/* Force dark styling on all native option elements to override Windows/Chrome white default */
+.admin-portal select option,
+select.admin-select option,
+.glass-card-dark select option,
+.admin-portal option {
+  background-color: #0A1A24 !important;
+  color: #F1F5F9 !important;
+  padding: 8px 12px;
+}
+
+.admin-portal select option:hover,
+.admin-portal select option:focus,
+.admin-portal select option:checked {
+  background-color: #0F2C3D !important;
+  color: #2DD4BF !important;
+}
+
+.admin-portal select option:disabled {
+  color: #64748B !important;
+  background-color: #07131B !important;
+}
+
+/* =========================================================================
    RESPONSIVE & ACCESSIBILITY OPTIMIZATIONS
    ========================================================================= */
 

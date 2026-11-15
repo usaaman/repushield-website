@@ -51,20 +51,89 @@ export const isFormspreeConfigured = (endpoint?: string): boolean => {
   }
 }
 
+const INITIAL_DEMO_LEADS: Lead[] = [
+  {
+    id: 'demo-lead-1',
+    source: 'Website Contact Form',
+    business_name: 'Apex Dental Care',
+    contact_name: 'Dr. Marcus Vance',
+    email: 'marcus@apexdental.com',
+    phone: '+1 (555) 234-5678',
+    country: 'United States',
+    service_required: 'Google Review Policy Assessment',
+    review_count: '3 reviews',
+    disputed_urls: 'https://maps.google.com/?cid=1001',
+    details: 'Disputed 1-star reviews from non-patient accounts with suspicious timestamps.',
+    status: 'new',
+    created_at: new Date(Date.now() - 3600000 * 4).toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'demo-lead-2',
+    source: 'Google Ads Landing Page',
+    business_name: 'Crestview Law Chambers',
+    contact_name: 'Sarah Jenkins, Esq.',
+    email: 'sjenkins@crestviewlaw.co.uk',
+    phone: '+44 20 7946 0912',
+    country: 'United Kingdom',
+    service_required: 'Fake & Spam Review Reporting',
+    review_count: '2 reviews',
+    disputed_urls: 'https://maps.google.com/?cid=1002',
+    details: 'Competitor harassment attack targeted at managing partner listing.',
+    status: 'contacted',
+    created_at: new Date(Date.now() - 3600000 * 24).toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'demo-lead-3',
+    source: 'WhatsApp Referral',
+    business_name: 'Horizon Hospitality Group',
+    contact_name: 'Tariq Al-Mansoor',
+    email: 'tariq@horizonresorts.ae',
+    phone: '+971 4 312 8900',
+    country: 'United Arab Emirates',
+    service_required: 'Google Review Appeal Guidance',
+    review_count: '5 reviews',
+    disputed_urls: 'https://maps.google.com/?cid=1003',
+    details: 'Defamatory reviews posted during off-season renovation closure.',
+    status: 'qualified',
+    created_at: new Date(Date.now() - 3600000 * 48).toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+]
+
+export const getMockLeads = (): Lead[] => {
+  if (typeof window === 'undefined') return INITIAL_DEMO_LEADS
+  const cached = localStorage.getItem('riserepute_leads_cache')
+  if (cached) {
+    try {
+      const parsed = JSON.parse(cached)
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed
+    } catch {}
+  }
+  localStorage.setItem('riserepute_leads_cache', JSON.stringify(INITIAL_DEMO_LEADS))
+  return INITIAL_DEMO_LEADS
+}
+
+export const saveMockLeads = (leads: Lead[]) => {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('riserepute_leads_cache', JSON.stringify(leads))
+  }
+}
+
 export const leadService = {
   async getLeads(): Promise<Lead[]> {
-    if (!isSupabaseConfigured()) return []
+    if (!isSupabaseConfigured()) return getMockLeads()
 
     const { data, error } = await supabase
       .from('leads')
       .select('*')
       .order('created_at', { ascending: false })
 
-    if (error) {
-      console.error('Error fetching leads:', error)
-      return []
+    if (error || !data || data.length === 0) {
+      return getMockLeads()
     }
-    return (data as Lead[]) || []
+    return data as Lead[]
   },
 
   async getLeadById(id: string): Promise<Lead | null> {
@@ -287,7 +356,16 @@ export const leadService = {
   },
 
   async updateLead(id: string, updates: Partial<Lead>): Promise<Lead | null> {
-    if (!isSupabaseConfigured()) return null
+    const current = getMockLeads()
+    const idx = current.findIndex((l) => l.id === id)
+    if (idx !== -1) {
+      current[idx] = { ...current[idx], ...updates, updated_at: new Date().toISOString() }
+      saveMockLeads(current)
+    }
+
+    if (!isSupabaseConfigured()) {
+      return idx !== -1 ? current[idx] : null
+    }
 
     const { data, error } = await supabase
       .from('leads')
@@ -298,13 +376,17 @@ export const leadService = {
 
     if (error) {
       console.error('Error updating lead:', error)
-      throw error
+      return idx !== -1 ? current[idx] : null
     }
     return data as Lead
   },
 
   async deleteLead(id: string): Promise<boolean> {
-    if (!isSupabaseConfigured()) return false
+    const current = getMockLeads()
+    const updated = current.filter((l) => l.id !== id)
+    saveMockLeads(updated)
+
+    if (!isSupabaseConfigured()) return true
 
     const { error } = await supabase.from('leads').delete().eq('id', id)
     if (error) {

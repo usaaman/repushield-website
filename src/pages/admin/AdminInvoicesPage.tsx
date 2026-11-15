@@ -379,13 +379,13 @@ export const AdminInvoicesPage: React.FC = () => {
                 <select
                   value={newPayment.payment_method}
                   onChange={(e) => setNewPayment({ ...newPayment, payment_method: e.target.value as PaymentMethod })}
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-teal/40"
+                  className="w-full p-2.5 rounded-xl bg-[#0A1A24] border border-white/15 text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-teal/40 cursor-pointer shadow-inner"
                 >
-                  <option value="bank_transfer">Bank Wire / Transfer</option>
-                  <option value="credit_card">Credit Card</option>
-                  <option value="online">Online Payment</option>
-                  <option value="cash">Cash / Direct</option>
-                  <option value="other">Other</option>
+                  <option value="bank_transfer" className="bg-[#0A1A24] text-slate-100">Bank Wire / Transfer</option>
+                  <option value="credit_card" className="bg-[#0A1A24] text-slate-100">Credit Card</option>
+                  <option value="online" className="bg-[#0A1A24] text-slate-100">Online Payment</option>
+                  <option value="cash" className="bg-[#0A1A24] text-slate-100">Cash / Direct</option>
+                  <option value="other" className="bg-[#0A1A24] text-slate-100">Other</option>
                 </select>
               </div>
             </div>
@@ -440,11 +440,11 @@ export const AdminInvoicesPage: React.FC = () => {
                   required
                   value={newInvoice.customer_id}
                   onChange={(e) => setNewInvoice({ ...newInvoice, customer_id: e.target.value })}
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-teal/40"
+                  className="w-full p-2.5 rounded-xl bg-[#0A1A24] border border-white/15 text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-teal/40 cursor-pointer shadow-inner"
                 >
-                  <option value="">Select a client</option>
+                  <option value="" className="bg-[#0A1A24] text-slate-100">Select a client</option>
                   {customers.map((c) => (
-                    <option key={c.id} value={c.id}>
+                    <option key={c.id} value={c.id} className="bg-[#0A1A24] text-slate-100">
                       {c.company_name} ({c.full_name})
                     </option>
                   ))}

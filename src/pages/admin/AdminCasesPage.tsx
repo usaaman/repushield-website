@@ -202,19 +202,19 @@ export const AdminCasesPage: React.FC = () => {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full sm:w-auto px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 focus:outline-none focus:ring-2 focus:ring-teal/40"
+            className="w-full sm:w-auto px-3.5 py-2 rounded-xl bg-[#0A1A24] border border-white/15 text-xs text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-teal/40 cursor-pointer shadow-inner"
           >
-            <option value="all">All Case Statuses</option>
-            <option value="new">New</option>
-            <option value="under_review">Under Review</option>
-            <option value="eligible">Eligible for Reporting</option>
-            <option value="in_progress">In Progress</option>
-            <option value="submitted">Submitted to Google</option>
-            <option value="info_required">Info Required</option>
-            <option value="removed">Removed (Confirmed)</option>
-            <option value="not_removed">Not Removed</option>
-            <option value="rejected">Rejected</option>
-            <option value="closed">Closed</option>
+            <option value="all" className="bg-[#0A1A24] text-slate-100">All Case Statuses</option>
+            <option value="new" className="bg-[#0A1A24] text-slate-100">New</option>
+            <option value="under_review" className="bg-[#0A1A24] text-slate-100">Under Review</option>
+            <option value="eligible" className="bg-[#0A1A24] text-slate-100">Eligible for Reporting</option>
+            <option value="in_progress" className="bg-[#0A1A24] text-slate-100">In Progress</option>
+            <option value="submitted" className="bg-[#0A1A24] text-slate-100">Submitted to Google</option>
+            <option value="info_required" className="bg-[#0A1A24] text-slate-100">Info Required</option>
+            <option value="removed" className="bg-[#0A1A24] text-slate-100">Removed (Confirmed)</option>
+            <option value="not_removed" className="bg-[#0A1A24] text-slate-100">Not Removed</option>
+            <option value="rejected" className="bg-[#0A1A24] text-slate-100">Rejected</option>
+            <option value="closed" className="bg-[#0A1A24] text-slate-100">Closed</option>
           </select>
         </div>
       </div>
@@ -467,11 +467,11 @@ export const AdminCasesPage: React.FC = () => {
                 required
                 value={newCase.customer_id}
                 onChange={(e) => handleCustomerSelect(e.target.value)}
-                className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-teal/40"
+                className="w-full p-2.5 rounded-xl bg-[#0A1A24] border border-white/15 text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-teal/40 cursor-pointer shadow-inner"
               >
-                <option value="">Select a customer</option>
+                <option value="" className="bg-[#0A1A24] text-slate-100">Select a customer</option>
                 {customers.map((c) => (
-                  <option key={c.id} value={c.id}>
+                  <option key={c.id} value={c.id} className="bg-[#0A1A24] text-slate-100">
                     {c.company_name} ({c.full_name})
                   </option>
                 ))}
@@ -486,10 +486,10 @@ export const AdminCasesPage: React.FC = () => {
                   required
                   value={newCase.business_id}
                   onChange={(e) => setNewCase({ ...newCase, business_id: e.target.value })}
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-teal/40"
+                  className="w-full p-2.5 rounded-xl bg-[#0A1A24] border border-white/15 text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-teal/40 cursor-pointer shadow-inner"
                 >
                   {businesses.map((b) => (
-                    <option key={b.id} value={b.id}>
+                    <option key={b.id} value={b.id} className="bg-[#0A1A24] text-slate-100">
                       {b.business_name} ({b.country || 'USA'})
                     </option>
                   ))}
@@ -503,14 +503,14 @@ export const AdminCasesPage: React.FC = () => {
                 <select
                   value={newCase.violation_category}
                   onChange={(e) => setNewCase({ ...newCase, violation_category: e.target.value })}
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-teal/40"
+                  className="w-full p-2.5 rounded-xl bg-[#0A1A24] border border-white/15 text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-teal/40 cursor-pointer shadow-inner"
                 >
-                  <option value="Conflict of Interest">Conflict of Interest (Staff/Competitor)</option>
-                  <option value="Fake / Non-Customer Spam">Fake / Non-Customer Spam</option>
-                  <option value="Off-Topic Content">Off-Topic Content (Third-party courier)</option>
-                  <option value="Harassment / Defamation">Harassment / Defamation</option>
-                  <option value="Personal Information Exposure">Personal Information Exposure</option>
-                  <option value="Other Policy Violation">Other Policy Violation</option>
+                  <option value="Conflict of Interest" className="bg-[#0A1A24] text-slate-100">Conflict of Interest (Staff/Competitor)</option>
+                  <option value="Fake / Non-Customer Spam" className="bg-[#0A1A24] text-slate-100">Fake / Non-Customer Spam</option>
+                  <option value="Off-Topic Content" className="bg-[#0A1A24] text-slate-100">Off-Topic Content (Third-party courier)</option>
+                  <option value="Harassment / Defamation" className="bg-[#0A1A24] text-slate-100">Harassment / Defamation</option>
+                  <option value="Personal Information Exposure" className="bg-[#0A1A24] text-slate-100">Personal Information Exposure</option>
+                  <option value="Other Policy Violation" className="bg-[#0A1A24] text-slate-100">Other Policy Violation</option>
                 </select>
               </div>
 
@@ -519,12 +519,12 @@ export const AdminCasesPage: React.FC = () => {
                 <select
                   value={newCase.priority}
                   onChange={(e) => setNewCase({ ...newCase, priority: e.target.value as any })}
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-teal/40"
+                  className="w-full p-2.5 rounded-xl bg-[#0A1A24] border border-white/15 text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-teal/40 cursor-pointer shadow-inner"
                 >
-                  <option value="low">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
-                  <option value="urgent">Urgent</option>
+                  <option value="low" className="bg-[#0A1A24] text-slate-100">Low</option>
+                  <option value="medium" className="bg-[#0A1A24] text-slate-100">Medium</option>
+                  <option value="high" className="bg-[#0A1A24] text-slate-100">High</option>
+                  <option value="urgent" className="bg-[#0A1A24] text-slate-100">Urgent</option>
                 </select>
               </div>
             </div>
@@ -581,11 +581,11 @@ export const AdminCasesPage: React.FC = () => {
                   onChange={(e) =>
                     setNewReview({ ...newReview, review_rating: parseInt(e.target.value) || 1 })
                   }
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-teal/40"
+                  className="w-full p-2.5 rounded-xl bg-[#0A1A24] border border-white/15 text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-teal/40 cursor-pointer shadow-inner"
                 >
-                  <option value="1">1 Star</option>
-                  <option value="2">2 Stars</option>
-                  <option value="3">3 Stars</option>
+                  <option value="1" className="bg-[#0A1A24] text-slate-100">1 Star</option>
+                  <option value="2" className="bg-[#0A1A24] text-slate-100">2 Stars</option>
+                  <option value="3" className="bg-[#0A1A24] text-slate-100">3 Stars</option>
                 </select>
               </div>
             </div>

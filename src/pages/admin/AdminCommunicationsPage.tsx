@@ -145,13 +145,13 @@ export const AdminCommunicationsPage: React.FC = () => {
                 <select
                   value={newComm.type}
                   onChange={(e) => setNewComm({ ...newComm, type: e.target.value as CommunicationType })}
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-teal/40"
+                  className="w-full p-2.5 rounded-xl bg-[#0A1A24] border border-white/15 text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-teal/40 cursor-pointer shadow-inner"
                 >
-                  <option value="whatsapp">WhatsApp Message / Call</option>
-                  <option value="email">Official Case Email</option>
-                  <option value="phone">Direct Phone Call</option>
-                  <option value="meeting">Video Consultation</option>
-                  <option value="other">Other</option>
+                  <option value="whatsapp" className="bg-[#0A1A24] text-slate-100">WhatsApp Message / Call</option>
+                  <option value="email" className="bg-[#0A1A24] text-slate-100">Official Case Email</option>
+                  <option value="phone" className="bg-[#0A1A24] text-slate-100">Direct Phone Call</option>
+                  <option value="meeting" className="bg-[#0A1A24] text-slate-100">Video Consultation</option>
+                  <option value="other" className="bg-[#0A1A24] text-slate-100">Other</option>
                 </select>
               </div>
 

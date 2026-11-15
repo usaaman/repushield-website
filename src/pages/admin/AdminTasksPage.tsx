@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { CheckSquare, Plus, Trash2, Calendar } from 'lucide-react'
+import { CheckSquare, Plus, Calendar } from 'lucide-react'
 import { taskService } from '@/services/taskService'
 import { StatusBadge } from '@/components/admin/StatusBadge'
 import { EmptyState } from '@/components/admin/EmptyState'
 import { Modal } from '@/components/admin/Modal'
 import { Button } from '@/components/common/Button'
+import { DeleteConfirmDropdown } from '@/components/admin/DeleteConfirmDropdown'
 import type { Task, PriorityLevel, TaskStatus } from '@/types/database.types'
 
 export const AdminTasksPage: React.FC = () => {
@@ -34,7 +35,6 @@ export const AdminTasksPage: React.FC = () => {
   }
 
   const handleDelete = async (id: string) => {
-    if (!window.confirm('Delete this task?')) return
     await taskService.deleteTask(id)
     loadTasks()
   }
@@ -155,13 +155,14 @@ export const AdminTasksPage: React.FC = () => {
                 </div>
               </div>
 
-              <button
-                onClick={() => handleDelete(task.id)}
-                className="p-1.5 rounded-lg text-slate-500 hover:text-rose-400 hover:bg-white/5 transition-colors"
-                title="Delete task"
-              >
-                <Trash2 className="w-3.5 h-3.5" />
-              </button>
+              <DeleteConfirmDropdown
+                onConfirm={() => handleDelete(task.id)}
+                title="Delete Task?"
+                description={`Permanently remove "${task.title}". This cannot be undone.`}
+                buttonTitle="Delete Task"
+                align="right"
+                direction="down"
+              />
             </div>
           ))}
         </div>
@@ -216,12 +217,12 @@ export const AdminTasksPage: React.FC = () => {
                 <select
                   value={newTask.priority}
                   onChange={(e) => setNewTask({ ...newTask, priority: e.target.value as PriorityLevel })}
-                  className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-teal/40"
+                  className="w-full p-2.5 rounded-xl bg-[#0A1A24] border border-white/15 text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-teal/40 cursor-pointer shadow-inner"
                 >
-                  <option value="low">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
-                  <option value="urgent">Urgent</option>
+                  <option value="low" className="bg-[#0A1A24] text-slate-100">Low</option>
+                  <option value="medium" className="bg-[#0A1A24] text-slate-100">Medium</option>
+                  <option value="high" className="bg-[#0A1A24] text-slate-100">High</option>
+                  <option value="urgent" className="bg-[#0A1A24] text-slate-100">Urgent</option>
                 </select>
               </div>
             </div>

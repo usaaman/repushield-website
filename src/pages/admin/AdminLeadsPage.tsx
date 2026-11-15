@@ -4,7 +4,6 @@ import {
   Search,
   Filter,
   Eye,
-  Trash2,
   UserCheck,
   ExternalLink,
 } from 'lucide-react'
@@ -14,6 +13,7 @@ import { StatusBadge } from '@/components/admin/StatusBadge'
 import { EmptyState } from '@/components/admin/EmptyState'
 import { Modal } from '@/components/admin/Modal'
 import { Button } from '@/components/common/Button'
+import { DeleteConfirmDropdown } from '@/components/admin/DeleteConfirmDropdown'
 import type { Lead, LeadStatus } from '@/types/database.types'
 
 export const AdminLeadsPage: React.FC = () => {
@@ -85,7 +85,6 @@ export const AdminLeadsPage: React.FC = () => {
   }
 
   const handleDelete = async (id: string) => {
-    if (!window.confirm('Are you sure you want to permanently delete this lead inquiry?')) return
     await leadService.deleteLead(id)
     if (selectedLead?.id === id) setSelectedLead(null)
     loadLeads()
@@ -126,17 +125,17 @@ export const AdminLeadsPage: React.FC = () => {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full md:w-auto px-3.5 py-2 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 focus:outline-none focus:ring-2 focus:ring-teal/40"
+            className="w-full md:w-auto px-3.5 py-2 rounded-xl bg-[#0A1A24] border border-white/15 text-xs text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-teal/40 cursor-pointer shadow-inner"
           >
-            <option value="all">All Statuses</option>
-            <option value="new">New</option>
-            <option value="contacted">Contacted</option>
-            <option value="qualified">Qualified</option>
-            <option value="awaiting_response">Awaiting Response</option>
-            <option value="converted">Converted</option>
-            <option value="not_interested">Not Interested</option>
-            <option value="closed">Closed</option>
-            <option value="spam">Spam</option>
+            <option value="all" className="bg-[#0A1A24] text-slate-100">All Statuses</option>
+            <option value="new" className="bg-[#0A1A24] text-slate-100">New</option>
+            <option value="contacted" className="bg-[#0A1A24] text-slate-100">Contacted</option>
+            <option value="qualified" className="bg-[#0A1A24] text-slate-100">Qualified</option>
+            <option value="awaiting_response" className="bg-[#0A1A24] text-slate-100">Awaiting Response</option>
+            <option value="converted" className="bg-[#0A1A24] text-slate-100">Converted</option>
+            <option value="not_interested" className="bg-[#0A1A24] text-slate-100">Not Interested</option>
+            <option value="closed" className="bg-[#0A1A24] text-slate-100">Closed</option>
+            <option value="spam" className="bg-[#0A1A24] text-slate-100">Spam</option>
           </select>
         </div>
       </div>
@@ -188,18 +187,19 @@ export const AdminLeadsPage: React.FC = () => {
                     <td className="py-3 px-4 text-right space-x-2">
                       <button
                         onClick={() => handleOpenDetail(lead)}
-                        className="px-2.5 py-1.5 rounded-lg bg-teal/15 text-teal hover:bg-teal/25 font-semibold transition-colors"
+                        className="px-2.5 py-1.5 rounded-lg bg-teal/15 text-teal hover:bg-teal/25 font-semibold transition-colors cursor-pointer"
                       >
                         <Eye className="w-3.5 h-3.5 inline mr-1" />
                         <span>View</span>
                       </button>
-                      <button
-                        onClick={() => handleDelete(lead.id)}
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-white/5 transition-colors"
-                        title="Delete Lead"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
+                      <DeleteConfirmDropdown
+                        onConfirm={() => handleDelete(lead.id)}
+                        title="Delete Lead Inquiry?"
+                        description={`Permanently remove inquiry for "${lead.business_name}". This cannot be undone.`}
+                        buttonTitle="Delete Lead"
+                        align="right"
+                        direction="down"
+                      />
                     </td>
                   </tr>
                 ))}
@@ -311,25 +311,40 @@ export const AdminLeadsPage: React.FC = () => {
             </div>
 
             {/* Convert to Customer Action */}
-            <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+            <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
               <Button
                 variant="teal"
                 size="sm"
                 onClick={handleConvertToCustomer}
-                className="text-xs font-bold flex items-center gap-1.5"
+                className="text-xs font-bold flex items-center gap-1.5 cursor-pointer"
               >
                 <UserCheck className="w-4 h-4" />
                 <span>Convert to Active Customer</span>
               </Button>
 
-              <Button
-                variant="secondary"
-                size="sm"
-                onClick={() => setSelectedLead(null)}
-                className="text-xs"
-              >
-                <span>Close</span>
-              </Button>
+              <div className="flex items-center gap-2">
+                <DeleteConfirmDropdown
+                  onConfirm={async () => {
+                    await handleDelete(selectedLead.id)
+                    setSelectedLead(null)
+                  }}
+                  title="Delete Lead Inquiry?"
+                  description="Permanently delete this inquiry from the database."
+                  buttonTitle="Delete Lead"
+                  align="right"
+                  direction="up"
+                  triggerClassName="px-3 py-1.5 rounded-xl text-xs font-semibold text-rose-400 hover:text-white bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 transition-colors flex items-center gap-1.5 cursor-pointer"
+                />
+
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => setSelectedLead(null)}
+                  className="text-xs cursor-pointer"
+                >
+                  <span>Close</span>
+                </Button>
+              </div>
             </div>
           </div>
         </Modal>

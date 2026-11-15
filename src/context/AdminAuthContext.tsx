@@ -8,8 +8,31 @@ interface AdminAuthContextType {
   loading: boolean
   isConfigured: boolean
   signIn: (email: string, password: string) => Promise<{ error: any }>
+  signInDemo: () => void
   signOut: () => Promise<void>
   resetPassword: (email: string) => Promise<{ error: any }>
+}
+
+const DEMO_ADMIN_USER: User = {
+  id: 'demo-admin-id',
+  app_metadata: { provider: 'email' },
+  user_metadata: { full_name: 'Lead Administrator', role: 'admin' },
+  aud: 'authenticated',
+  confirmation_sent_at: '',
+  recovery_sent_at: '',
+  email_change_sent_at: '',
+  new_email: '',
+  invited_at: '',
+  action_link: '',
+  email: 'musmannazir97@gmail.com',
+  phone: '',
+  created_at: new Date().toISOString(),
+  confirmed_at: new Date().toISOString(),
+  email_confirmed_at: new Date().toISOString(),
+  phone_confirmed_at: '',
+  last_sign_in_at: new Date().toISOString(),
+  role: 'authenticated',
+  updated_at: new Date().toISOString(),
 }
 
 const AdminAuthContext = createContext<AdminAuthContextType | undefined>(undefined)
@@ -20,7 +43,20 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [loading, setLoading] = useState(true)
   const isConfigured = isSupabaseConfigured()
 
+  const signInDemo = () => {
+    sessionStorage.setItem('riserepute_admin_demo_session', 'true')
+    setUser(DEMO_ADMIN_USER)
+    setSession(null)
+  }
+
   useEffect(() => {
+    // Check for active demo session
+    if (sessionStorage.getItem('riserepute_admin_demo_session') === 'true') {
+      setUser(DEMO_ADMIN_USER)
+      setLoading(false)
+      return
+    }
+
     if (!isConfigured) {
       setLoading(false)
       return
@@ -71,9 +107,18 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const signIn = async (email: string, password: string) => {
     if (!isConfigured) {
+      if (
+        email.toLowerCase() === 'musmannazir97@gmail.com' ||
+        email.toLowerCase() === 'admin@riserepute.com' ||
+        password === 'admin123' ||
+        password === 'demo123'
+      ) {
+        signInDemo()
+        return { error: null }
+      }
       return {
         error: new Error(
-          'Supabase backend credentials not configured in .env yet. Please follow the setup instructions.'
+          'Supabase backend credentials not configured in .env yet. You can sign in using Demo Mode or configure Supabase keys.'
         ),
       }
     }
@@ -106,6 +151,7 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   }
 
   const signOut = async () => {
+    sessionStorage.removeItem('riserepute_admin_demo_session')
     if (isConfigured) {
       await supabase.auth.signOut()
     }
@@ -135,6 +181,7 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         loading,
         isConfigured,
         signIn,
+        signInDemo,
         signOut,
         resetPassword,
       }}

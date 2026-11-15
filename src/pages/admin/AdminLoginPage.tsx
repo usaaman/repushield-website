@@ -9,6 +9,7 @@ import {
   ArrowLeft,
   AlertCircle,
   Info,
+  Sparkles,
 } from 'lucide-react'
 import { useAdminAuth } from '@/context/AdminAuthContext'
 import { usePageSEO } from '@/hooks/usePageSEO'
@@ -16,7 +17,7 @@ import { usePageSEO } from '@/hooks/usePageSEO'
 export const AdminLoginPage: React.FC = () => {
   usePageSEO()
 
-  const { signIn } = useAdminAuth()
+  const { signIn, signInDemo } = useAdminAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const from = (location.state as any)?.from?.pathname || '/admin'
@@ -26,6 +27,11 @@ export const AdminLoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  const handleDemoAccess = () => {
+    signInDemo()
+    navigate(from, { replace: true })
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -144,9 +150,20 @@ export const AdminLoginPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex justify-center items-center py-3 px-4 rounded-xl shadow-lg shadow-teal/20 text-sm font-bold text-navy bg-teal hover:bg-teal-light focus:outline-none transition-all disabled:opacity-50"
+                className="w-full flex justify-center items-center py-3 px-4 rounded-xl shadow-lg shadow-teal/20 text-sm font-bold text-navy bg-teal hover:bg-teal-light focus:outline-none transition-all disabled:opacity-50 cursor-pointer"
               >
                 {loading ? 'Authenticating...' : 'Sign In to RiseRepute BMS'}
+              </button>
+            </div>
+
+            <div className="pt-2 flex flex-col gap-2">
+              <button
+                type="button"
+                onClick={handleDemoAccess}
+                className="w-full flex justify-center items-center py-2.5 px-4 rounded-xl text-xs font-semibold text-teal bg-teal/10 hover:bg-teal/20 border border-teal/20 focus:outline-none transition-all cursor-pointer"
+              >
+                <Sparkles className="w-3.5 h-3.5 mr-1.5" />
+                <span>Quick Preview (Admin Demo Mode)</span>
               </button>
             </div>
           </form>

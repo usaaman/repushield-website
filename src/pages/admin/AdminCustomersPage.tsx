@@ -367,15 +367,15 @@ export const AdminCustomersPage: React.FC = () => {
               <select
                 value={newCustomer.country}
                 onChange={(e) => setNewCustomer({ ...newCustomer, country: e.target.value })}
-                className="w-full p-2.5 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-teal/40"
+                className="w-full p-2.5 rounded-xl bg-[#0A1A24] border border-white/15 text-slate-100 font-medium focus:outline-none focus:ring-2 focus:ring-teal/40 cursor-pointer shadow-inner"
               >
-                <option value="United States">United States</option>
-                <option value="Canada">Canada</option>
-                <option value="Pakistan">Pakistan</option>
-                <option value="United Kingdom">United Kingdom</option>
-                <option value="Australia">Australia</option>
-                <option value="United Arab Emirates">United Arab Emirates</option>
-                <option value="Other">Other</option>
+                <option value="United States" className="bg-[#0A1A24] text-slate-100">United States</option>
+                <option value="Canada" className="bg-[#0A1A24] text-slate-100">Canada</option>
+                <option value="Pakistan" className="bg-[#0A1A24] text-slate-100">Pakistan</option>
+                <option value="United Kingdom" className="bg-[#0A1A24] text-slate-100">United Kingdom</option>
+                <option value="Australia" className="bg-[#0A1A24] text-slate-100">Australia</option>
+                <option value="United Arab Emirates" className="bg-[#0A1A24] text-slate-100">United Arab Emirates</option>
+                <option value="Other" className="bg-[#0A1A24] text-slate-100">Other</option>
               </select>
             </div>
 

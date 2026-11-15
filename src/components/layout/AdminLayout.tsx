@@ -10,7 +10,7 @@ const AdminLayoutInner: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-[#07131B] text-slate-100 flex flex-col font-sans selection:bg-teal selection:text-white relative overflow-hidden">
+    <div className="admin-portal min-h-screen bg-[#07131B] text-slate-100 flex flex-col font-sans selection:bg-teal selection:text-white relative overflow-hidden">
       {/* Dark Navy Overlays matching Public Hero */}
       <div className="fixed inset-0 bg-gradient-to-r from-[#091722]/95 via-[#0F2C3D]/80 to-[#091722]/40 pointer-events-none z-0" />
       <div className="fixed inset-0 bg-gradient-to-b from-[#091722]/85 via-transparent to-[#07131B]/95 pointer-events-none z-0" />
