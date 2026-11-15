@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import {
   LayoutDashboard,
   Inbox,
@@ -11,9 +12,9 @@ import {
   BarChart3,
   Settings,
   ArrowLeft,
-  ShieldCheck,
   X,
 } from 'lucide-react'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
 interface AdminSidebarProps {
   mobileOpen: boolean
@@ -21,6 +22,7 @@ interface AdminSidebarProps {
 }
 
 export const AdminSidebar: React.FC<AdminSidebarProps> = ({ mobileOpen, onCloseMobile }) => {
+  const prefersReduced = usePrefersReducedMotion()
   const navItems = [
     { label: 'Overview', to: '/admin', icon: LayoutDashboard, exact: true },
     { label: 'Leads & Inquiries', to: '/admin/leads', icon: Inbox },
@@ -34,27 +36,28 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ mobileOpen, onCloseM
   ]
 
   const sidebarContent = (
-    <div className="flex flex-col h-full bg-[#0A1A24] border-r border-white/10 text-slate-200">
+    <div className="flex flex-col h-full bg-[#091722]/85 backdrop-blur-xl border-r border-white/15 text-slate-200 shadow-2xl">
       {/* Brand Header */}
       <div className="h-20 px-6 border-b border-white/10 flex items-center justify-between">
-        <Link to="/admin" className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-teal text-navy flex items-center justify-center font-bold shadow-md shadow-teal/20">
-            <ShieldCheck className="w-5 h-5 stroke-[2.5]" />
+        <Link to="/admin" className="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-teal rounded-lg">
+          <div className="h-9 w-auto flex items-center">
+            <img
+              src="/logo/riserepute-horizontal-light.png"
+              alt="RiseRepute"
+              width={150}
+              height={34}
+              className="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
           </div>
-          <div className="flex flex-col">
-            <span className="text-base font-extrabold tracking-tight text-white">
-              Rise<span className="text-teal">Repute</span>
-            </span>
-            <span className="text-[10px] uppercase font-bold tracking-wider text-teal-light -mt-0.5">
-              BMS Operations
-            </span>
-          </div>
+          <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-teal/15 text-teal border border-teal/30">
+            BMS
+          </span>
         </Link>
 
         {/* Mobile Close Button */}
         <button
           onClick={onCloseMobile}
-          className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10"
+          className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors duration-200"
           aria-label="Close sidebar"
         >
           <X className="w-5 h-5" />
@@ -63,7 +66,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ mobileOpen, onCloseM
 
       {/* Navigation List */}
       <nav className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
-        <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+        <p className="px-4 text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">
           Management Modules
         </p>
         {navItems.map((item) => (
@@ -73,15 +76,30 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ mobileOpen, onCloseM
             end={item.exact}
             onClick={onCloseMobile}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+              `relative flex items-center gap-3 px-4 py-2.5 rounded-full text-xs uppercase tracking-wider font-semibold transition-colors duration-200 ${
                 isActive
-                  ? 'bg-teal text-navy font-bold shadow-sm shadow-teal/30'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  ? 'text-white font-bold bg-white/15'
+                  : 'text-slate-200 hover:text-white hover:bg-white/10'
               }`
             }
           >
-            <item.icon className="w-4 h-4 shrink-0" />
-            <span>{item.label}</span>
+            {({ isActive }) => (
+              <>
+                <item.icon className="w-4 h-4 shrink-0 text-teal" />
+                <span className="relative z-10">{item.label}</span>
+                {isActive && !prefersReduced && (
+                  <motion.div
+                    layoutId="activeAdminNavIndicator"
+                    className="absolute bottom-1 inset-x-4 h-[2px] bg-teal rounded-full"
+                    transition={{
+                      type: 'spring',
+                      stiffness: 400,
+                      damping: 32,
+                    }}
+                  />
+                )}
+              </>
+            )}
           </NavLink>
         ))}
       </nav>
@@ -90,13 +108,13 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ mobileOpen, onCloseM
       <div className="p-4 border-t border-white/10 space-y-2">
         <Link
           to="/"
-          className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+          className="flex items-center gap-2.5 px-4 py-2.5 rounded-full text-xs uppercase tracking-wider font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-colors duration-200"
         >
           <ArrowLeft className="w-4 h-4 text-teal" />
           <span>Exit to Public Website</span>
         </Link>
-        <div className="px-3 text-[10px] text-slate-400">
-          Single Admin System • v1.0
+        <div className="px-4 text-[10px] text-slate-500 font-mono">
+          RiseRepute BMS • v1.0
         </div>
       </div>
     </div>
@@ -113,7 +131,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ mobileOpen, onCloseM
       {mobileOpen && (
         <div className="lg:hidden fixed inset-0 z-50 flex">
           <div
-            className="fixed inset-0 bg-[#07131B]/80 backdrop-blur-sm"
+            className="fixed inset-0 bg-[#07131B]/85 backdrop-blur-md"
             onClick={onCloseMobile}
             aria-hidden="true"
           />

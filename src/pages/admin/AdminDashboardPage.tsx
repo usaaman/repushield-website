@@ -30,7 +30,7 @@ const sampleTrendData = [
 
 export const AdminDashboardPage: React.FC = () => {
   return (
-    <div className="space-y-8 max-w-7xl mx-auto">
+    <div className="space-y-8 max-w-7xl mx-auto admin-fade-in-up">
       {/* Top Banner Notice */}
       <div className="glass-admin rounded-2xl p-4 border border-teal/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
@@ -91,10 +91,10 @@ export const AdminDashboardPage: React.FC = () => {
             color: 'text-teal-light',
             badge: 'Sample Metric',
           },
-        ].map((stat) => (
+        ].map((stat, idx) => (
           <div
             key={stat.label}
-            className="glass-admin-card rounded-2xl p-5 border border-white/10 hover:border-teal/30 transition-all space-y-3"
+            className={`glass-admin-card rounded-2xl p-5 border border-white/10 hover:border-teal/30 transition-all space-y-3 admin-fade-in-up admin-stagger-${idx + 1}`}
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-slate-400">{stat.label}</span>

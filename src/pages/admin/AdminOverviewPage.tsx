@@ -9,7 +9,8 @@ import {
   Clock,
   DollarSign,
   TrendingUp,
-  ArrowUpRight,
+  ArrowRight,
+  BarChart3,
   Plus,
   RefreshCw,
   FolderOpen,
@@ -141,81 +142,119 @@ export const AdminOverviewPage: React.FC = () => {
   ]
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-300">
-      {/* Top Banner / Actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
-            <span>Executive Business Overview</span>
-            <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-teal/15 text-teal border border-teal/30">
-              Real-time
+    <div className="space-y-10 admin-fade-in-up">
+      {/* Top Banner / Actions matching Public Hero */}
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-2">
+        <div className="space-y-3.5 max-w-3xl">
+          {/* Eyebrow Pill Badge */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-pill-hero text-xs font-semibold text-slate-100 shadow-sm">
+            <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
+            <span className="tracking-wide text-xs">
+              RiseRepute Operations Center
+            </span>
+            <span className="flex items-center gap-1.5 pl-2 border-l border-white/20 text-teal font-mono text-[11px]">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
+              Real-time Sync
+            </span>
+          </div>
+
+          {/* Main Headline with Teal Gradient Text */}
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.15]">
+            Executive Business{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-light via-teal to-ocean-light">
+              Operations Center
             </span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
-            Real-time pipeline metrics, review case progress, and revenue data.
+
+          <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed max-w-2xl">
+            Real-time pipeline metrics, review case progress, and jurisdictional revenue data.
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        {/* Primary and Secondary CTA Buttons */}
+        <div className="flex flex-wrap items-center gap-3 shrink-0">
           <button
             onClick={loadData}
             disabled={loading}
-            className="px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-semibold border border-white/10 flex items-center gap-1.5 transition-colors disabled:opacity-50"
+            className="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold border border-white/25 backdrop-blur-md shadow-sm flex items-center gap-2 transition-all duration-200 active:scale-[0.97] disabled:opacity-50"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
-            <span>Refresh</span>
+            <span>Refresh Metrics</span>
           </button>
 
           <Link
             to="/admin/cases"
-            className="px-4 py-2 rounded-xl bg-teal text-navy text-xs font-bold shadow-md shadow-teal/20 flex items-center gap-1.5 hover:bg-teal-light transition-all"
+            className="px-7 py-3.5 rounded-full bg-teal text-navy-dark text-xs font-bold shadow-lg shadow-teal/20 hover:bg-teal-light flex items-center gap-2 transition-all duration-200 active:scale-[0.97] group"
           >
-            <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
-            <span>New Case</span>
+            <Plus className="w-4 h-4 stroke-[2.5]" />
+            <span>New Review Case</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
           </Link>
         </div>
       </div>
 
-      {/* KPI Statistic Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {statCards.map((card) => (
+      {/* KPI Statistic Cards (Three-Pillar Card Style from About Page) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {statCards.map((card, idx) => (
           <Link
             key={card.title}
             to={card.to}
-            className="group rounded-2xl p-5 bg-[#0A1A24] border border-white/10 hover:border-teal/30 transition-all space-y-3 shadow-sm hover:shadow-md"
+            className={`admin-fade-in-up admin-stagger-${idx + 1} glass-card-dark glass-card-hover rounded-3xl p-6 sm:p-7 text-white flex flex-col justify-between group transition-all duration-300`}
           >
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-slate-400 group-hover:text-slate-200 transition-colors">
+            {/* Top Row: Icon Tile Top-Left + Mono Number Tag Top-Right */}
+            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <div className="w-12 h-12 rounded-2xl bg-white/10 text-teal flex items-center justify-center border border-white/15 group-hover:scale-105 group-hover:border-teal/30 group-hover:bg-teal/10 transition-all duration-300">
+                <card.icon className={`w-5 h-5 ${card.iconColor}`} />
+              </div>
+              <span className="text-2xl font-extrabold text-teal font-mono">
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+            </div>
+
+            {/* Middle: Metric Title, Value & Badge */}
+            <div className="py-4 space-y-2">
+              <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider block">
                 {card.title}
               </span>
-              <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center">
-                <card.icon className={`w-4 h-4 ${card.iconColor}`} />
+              <div className="flex items-baseline justify-between pt-1">
+                <span className="text-3xl font-extrabold text-white tracking-tight">
+                  {card.value}
+                </span>
+                <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border backdrop-blur-md ${card.badgeColor}`}>
+                  {card.badge}
+                </span>
               </div>
             </div>
 
-            <div className="flex items-baseline justify-between pt-1">
-              <span className="text-2xl font-bold text-white tracking-tight">{card.value}</span>
-              <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${card.badgeColor}`}>
-                {card.badge}
-              </span>
+            {/* Bottom Row: View Details Link with Arrow */}
+            <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400 group-hover:text-teal transition-colors duration-200">
+              <span className="font-semibold uppercase tracking-wider text-[11px]">View Module</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
             </div>
           </Link>
         ))}
       </div>
 
-      {/* Interactive Charts Section */}
+      {/* Interactive Charts Section (Pillar Card Style) */}
       <div className="grid lg:grid-cols-12 gap-6">
         {/* Left: Lead & Case Volume Trend */}
-        <div className="lg:col-span-8 rounded-2xl p-6 bg-[#0A1A24] border border-white/10 space-y-4">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <div>
-              <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-teal" />
-                <span>Monthly Intake & Case Trajectory</span>
-              </h3>
-              <p className="text-xs text-slate-400">Aggregated review cases and incoming inquiries</p>
+        <div className="lg:col-span-8 glass-card-dark rounded-3xl p-6 sm:p-8 text-white space-y-5 border border-white/15">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+            <div className="flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-2xl bg-white/10 text-teal flex items-center justify-center border border-white/15 shrink-0">
+                <TrendingUp className="w-5 h-5 text-teal" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-white tracking-tight">
+                  Monthly Intake &amp; Case Trajectory
+                </h3>
+                <p className="text-xs text-slate-300">
+                  Aggregated review cases and incoming inquiries
+                </p>
+              </div>
             </div>
-            <span className="text-[11px] text-teal font-mono bg-teal/10 px-2 py-0.5 rounded border border-teal/20">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass-pill-hero text-[11px] font-mono text-teal border border-white/15 self-start sm:self-auto">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
               Database Sync
             </span>
           </div>
@@ -253,10 +292,20 @@ export const AdminOverviewPage: React.FC = () => {
         </div>
 
         {/* Right: Cases by Jurisdiction */}
-        <div className="lg:col-span-4 rounded-2xl p-6 bg-[#0A1A24] border border-white/10 space-y-4">
-          <div className="border-b border-white/10 pb-4">
-            <h3 className="text-sm font-bold text-white">Target Jurisdiction Distribution</h3>
-            <p className="text-xs text-slate-400">USA, Canada, and Pakistan distribution</p>
+        <div className="lg:col-span-4 glass-card-dark rounded-3xl p-6 sm:p-8 text-white space-y-5 border border-white/15">
+          <div className="flex items-center justify-between border-b border-white/10 pb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-2xl bg-white/10 text-teal flex items-center justify-center border border-white/15 shrink-0">
+                <BarChart3 className="w-5 h-5 text-teal" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-white tracking-tight">
+                  Target Jurisdictions
+                </h3>
+                <p className="text-xs text-slate-300">USA, Canada, Pakistan</p>
+              </div>
+            </div>
+            <span className="text-2xl font-extrabold text-teal font-mono">02</span>
           </div>
 
           <div className="h-64 w-full pt-2">
@@ -281,23 +330,29 @@ export const AdminOverviewPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Recent Inquiries List */}
-      <div className="rounded-2xl p-6 bg-[#0A1A24] border border-white/10 space-y-4">
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
-          <div>
-            <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <Inbox className="w-4 h-4 text-teal" />
-              <span>Recent Inquiries</span>
-            </h3>
-            <p className="text-xs text-slate-400">Incoming leads from Contact Page & Google Ads landing page</p>
+      {/* Recent Inquiries List in Elevated Glass Card (Pillar Card Style) */}
+      <div className="glass-card-dark rounded-3xl p-6 sm:p-8 space-y-5 border border-white/15">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-2xl bg-white/10 text-teal flex items-center justify-center border border-white/15 shrink-0">
+              <Inbox className="w-5 h-5 text-teal" />
+            </div>
+            <div>
+              <h3 className="text-base font-bold text-white tracking-tight">
+                Recent Inquiries
+              </h3>
+              <p className="text-xs text-slate-300">
+                Incoming leads from Contact Page &amp; Google Ads landing page
+              </p>
+            </div>
           </div>
 
           <Link
             to="/admin/leads"
-            className="text-xs font-semibold text-teal hover:text-white transition-colors flex items-center gap-1"
+            className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold border border-white/25 backdrop-blur-md shadow-sm inline-flex items-center gap-2 group transition-all duration-200 self-start sm:self-auto active:scale-[0.97]"
           >
             <span>View All Leads</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
@@ -308,32 +363,32 @@ export const AdminOverviewPage: React.FC = () => {
             <p className="text-[11px] text-slate-500">Public form submissions will automatically record here.</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs text-slate-300">
+          <div className="overflow-x-auto rounded-2xl border border-white/10">
+            <table className="w-full text-left text-xs text-slate-200">
               <thead>
-                <tr className="border-b border-white/10 text-slate-400 uppercase tracking-wider font-semibold">
-                  <th className="py-3 px-3">Date</th>
-                  <th className="py-3 px-3">Business Name</th>
-                  <th className="py-3 px-3">Contact</th>
-                  <th className="py-3 px-3">Country</th>
-                  <th className="py-3 px-3">Service</th>
-                  <th className="py-3 px-3">Status</th>
+                <tr className="border-b border-white/10 text-slate-300 uppercase tracking-wider text-[11px] font-semibold bg-white/[0.04]">
+                  <th className="py-4 px-4">Date</th>
+                  <th className="py-4 px-4">Business Name</th>
+                  <th className="py-4 px-4">Contact</th>
+                  <th className="py-4 px-4">Country</th>
+                  <th className="py-4 px-4">Service</th>
+                  <th className="py-4 px-4">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
                 {recentLeads.map((lead) => (
-                  <tr key={lead.id} className="hover:bg-white/5 transition-colors">
-                    <td className="py-3 px-3 font-mono text-slate-400">
+                  <tr key={lead.id} className="hover:bg-white/[0.06] transition-colors duration-200">
+                    <td className="py-4 px-4 font-mono text-slate-400">
                       {new Date(lead.created_at).toLocaleDateString()}
                     </td>
-                    <td className="py-3 px-3 font-bold text-white">{lead.business_name}</td>
-                    <td className="py-3 px-3">
-                      <div>{lead.contact_name}</div>
-                      <div className="text-[10px] text-slate-400">{lead.email}</div>
+                    <td className="py-4 px-4 font-bold text-white">{lead.business_name}</td>
+                    <td className="py-4 px-4">
+                      <div className="font-semibold text-slate-200">{lead.contact_name}</div>
+                      <div className="text-[10px] text-slate-400 font-mono">{lead.email}</div>
                     </td>
-                    <td className="py-3 px-3">{lead.country || 'Not specified'}</td>
-                    <td className="py-3 px-3 text-slate-300">{lead.service_required || 'Review Audit'}</td>
-                    <td className="py-3 px-3">
+                    <td className="py-4 px-4">{lead.country || 'Not specified'}</td>
+                    <td className="py-4 px-4 text-slate-300">{lead.service_required || 'Review Audit'}</td>
+                    <td className="py-4 px-4">
                       <StatusBadge status={lead.status} />
                     </td>
                   </tr>
