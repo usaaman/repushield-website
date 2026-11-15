@@ -382,8 +382,8 @@ export const HomePage: React.FC = () => {
           </div>
         </Container>
 
-        {/* Smooth Organic Wave Transition into the Light Section */}
-        <CurvedHeroTransition fillColor="soft" height={100} />
+        {/* Smooth Organic Wave Transition into the Ambient Section */}
+        <CurvedHeroTransition fillColor="gradient" height={100} />
       </section>
 
       {/* =========================================================================

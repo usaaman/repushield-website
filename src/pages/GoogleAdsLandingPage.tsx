@@ -419,7 +419,7 @@ export const GoogleAdsLandingPage: React.FC = () => {
           </div>
         </Container>
 
-        <CurvedHeroTransition fillColor="white" height={90} />
+        <CurvedHeroTransition fillColor="gradient" height={90} />
       </section>
 
       {/* =========================================================================

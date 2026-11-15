@@ -179,7 +179,7 @@ export const ContactPage: React.FC = () => {
           </div>
         </Container>
 
-        <CurvedHeroTransition fillColor="white" height={95} />
+        <CurvedHeroTransition fillColor="gradient" height={95} />
       </section>
 
       {/* =========================================================================

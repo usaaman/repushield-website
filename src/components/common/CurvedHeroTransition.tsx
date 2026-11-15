@@ -4,9 +4,9 @@ export interface CurvedHeroTransitionProps {
   /**
    * Target fill color for the curve area.
    * Defaults to RiseRepute's soft page background #F6F8FA ('soft').
-   * Can be 'navy' | 'navy-dark' | 'dark' | 'soft' | 'white' | hex string.
+   * Can be 'gradient' | 'ambient' | 'mist' | 'soft' | 'white' | 'navy' | 'navy-dark' | 'dark' | hex string.
    */
-  fillColor?: 'soft' | 'white' | 'navy' | 'navy-dark' | 'dark' | string
+  fillColor?: 'gradient' | 'ambient' | 'mist' | 'soft' | 'white' | 'navy' | 'navy-dark' | 'dark' | string
   /**
    * Position: 'bottom' (transitions at the bottom of a section)
    * or 'top' (transitions into a section from above).
@@ -25,6 +25,12 @@ export const CurvedHeroTransition: React.FC<CurvedHeroTransitionProps> = ({
   const uniqueId = useId().replace(/:/g, '')
   const glowId = `organicGlow-${uniqueId}`
   const waveId = `translucentWave-${uniqueId}`
+  const gradientId = `ambientGradient-${uniqueId}`
+
+  const isGradient =
+    fillColor === 'gradient' ||
+    fillColor === 'ambient' ||
+    fillColor === 'mist-gradient'
 
   const fillHex =
     {
@@ -36,6 +42,8 @@ export const CurvedHeroTransition: React.FC<CurvedHeroTransitionProps> = ({
       dark: '#07131B',
       transparent: 'transparent',
     }[fillColor] || fillColor
+
+  const fillValue = isGradient ? `url(#${gradientId})` : fillHex
 
   const isNavy =
     fillColor === 'navy' ||
@@ -86,6 +94,13 @@ export const CurvedHeroTransition: React.FC<CurvedHeroTransitionProps> = ({
             <stop offset="50%" stopColor="#0A789B" stopOpacity="0.18" />
             <stop offset="100%" stopColor="#14B8A6" stopOpacity="0.08" />
           </linearGradient>
+
+          {/* Ambient Page Gradient matching PublicLayout #EAF4F7 to #F4F9FA seamless transition */}
+          <linearGradient id={gradientId} x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#DCEEF2" />
+            <stop offset="40%" stopColor="#E4F0F4" />
+            <stop offset="100%" stopColor="#EAF4F7" />
+          </linearGradient>
         </defs>
 
         {/* Layer 1: Distant Asymmetric Wave Contour */}
@@ -106,14 +121,14 @@ export const CurvedHeroTransition: React.FC<CurvedHeroTransitionProps> = ({
         {/* Layer 3: Secondary Overlapping Organic Sweep */}
         <path
           d="M0,80 C260,30 640,140 980,80 C1220,38 1360,95 1440,105 L1440,180 L0,180 Z"
-          fill={fillHex}
-          fillOpacity={isNavy ? '0.35' : '0.45'}
+          fill={fillValue}
+          fillOpacity={isNavy ? '0.35' : isGradient ? '0.5' : '0.45'}
         />
 
         {/* Layer 4: Primary Foreground Organic Crest */}
         <path
           d="M0,105 C240,40 560,150 920,95 C1200,50 1340,120 1440,125 L1440,180 L0,180 Z"
-          fill={fillHex}
+          fill={fillValue}
         />
       </svg>
     </div>
